@@ -29,7 +29,7 @@
                 throw new InvalidDayException("Error: Invalid No of Days");
             }
 
-            if(salaryData.Salary >= 0 && salaryData.Salary <= 1000000)
+            if(salaryData.Salary <= 0 || salaryData.Salary >= 1000000)
             {
                 throw new InvalidSalaryException("Error: Invalid Salary");
             }

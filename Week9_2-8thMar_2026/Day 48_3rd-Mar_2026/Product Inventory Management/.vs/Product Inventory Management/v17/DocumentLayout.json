@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week9_2-8thMar_2026\\Day 48_3rd-Mar_2026\\Product Inventory Management\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3AD9CF04-CC28-4752-89BC-D88992D46828}|Product Inventory Management\\Product Inventory Management.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week9_2-8thmar_2026\\day 48_3rd-mar_2026\\product inventory management\\product inventory management\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3AD9CF04-CC28-4752-89BC-D88992D46828}|Product Inventory Management\\Product Inventory Management.csproj|solutionrelative:product inventory management\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week9_2-8thMar_2026\\Day 48_3rd-Mar_2026\\Product Inventory Management\\Product Inventory Management\\Program.cs",
+              "RelativeDocumentMoniker": "Product Inventory Management\\Program.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week9_2-8thMar_2026\\Day 48_3rd-Mar_2026\\Product Inventory Management\\Product Inventory Management\\Program.cs",
+              "RelativeToolTip": "Product Inventory Management\\Program.cs",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAqwFoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T05:14:01.406Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

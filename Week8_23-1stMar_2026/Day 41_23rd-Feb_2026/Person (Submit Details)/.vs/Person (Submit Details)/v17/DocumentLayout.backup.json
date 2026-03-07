@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week8_23-1stMar_2026\\Day 41_23rd-Feb_2026\\Person (Submit Details)\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D1B5B613-1D9B-4E33-971E-B9964194C3BF}|Person (Submit Details)\\Person (Submit Details).csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week8_23-1stmar_2026\\day 41_23rd-feb_2026\\person (submit details)\\person (submit details)\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1B5B613-1D9B-4E33-971E-B9964194C3BF}|Person (Submit Details)\\Person (Submit Details).csproj|solutionrelative:person (submit details)\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week8_23-1stMar_2026\\Day 41_23rd-Feb_2026\\Person (Submit Details)\\Person (Submit Details)\\Program.cs",
+              "RelativeDocumentMoniker": "Person (Submit Details)\\Program.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week8_23-1stMar_2026\\Day 41_23rd-Feb_2026\\Person (Submit Details)\\Person (Submit Details)\\Program.cs",
+              "RelativeToolTip": "Person (Submit Details)\\Program.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAYwCQAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-02T18:45:17.967Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>C# Quiz App</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea, #764ba2, #ff6ec4);
+        background-size: 300% 300%;
+        animation: gradientMove 10s ease infinite;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .quiz-box {
+        width: 500px;
+        padding: 30px;
+        border-radius: 15px;
+        backdrop-filter: blur(15px);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        color: white;
+      }
+
+      h2 {
+        margin-bottom: 15px;
+      }
+
+      .option {
+        display: block;
+        margin: 10px 0;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+        transition: 0.3s;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+      }
+
+      .option:hover {
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      .correct {
+        background: #28a745 !important;
+      }
+
+      .wrong {
+        background: #dc3545 !important;
+      }
+
+      #nextBtn {
+        margin-top: 15px;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 8px;
+        background: #ff6ec4;
+        color: white;
+        cursor: pointer;
+        display: none;
+      }
+
+      #timer {
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="quiz-box">
+      <div id="timer">Time Left: 15s</div>
+      <h2 id="question">Question text</h2>
+      <div id="options"></div>
+      <button id="nextBtn">Next</button>
+    </div>
+
+    <script>
+      const questions = [
+        {
+          question: "Which keyword is used to define a class in C#?",
+          options: ["define", "class", "struct", "new"],
+          answer: 1,
+        },
+        {
+          question: "Which method is the entry point of a C# program?",
+          options: ["Start()", "Run()", "Main()", "Execute()"],
+          answer: 2,
+        },
+        {
+          question: "Which keyword is used for inheritance in C#?",
+          options: ["extends", "inherits", ":", "implements"],
+          answer: 2,
+        },
+        {
+          question: "Which collection does NOT allow duplicate values?",
+          options: ["List", "Array", "Dictionary", "HashSet"],
+          answer: 3,
+        },
+        {
+          question: "Which keyword is used to handle exceptions?",
+          options: ["error", "try-catch", "exception", "handle"],
+          answer: 1,
+        },
+        {
+          question:
+            "Which keyword is used to access private members of a class?",
+          options: ["public", "protected", "private", "internal"],
+          answer: 2,
+        },
+        {
+          question: "Which keyword is used to to use Generic Types?",
+          options: ["<T>", "<E>", "<K>", "<V>"],
+          answer: 0,
+        },
+      ];
+
+      let currentQuestion = 0;
+      let score = 0;
+      let timeLeft = 15;
+      let timerInterval;
+
+      const questionEl = document.getElementById("question");
+      const optionsEl = document.getElementById("options");
+      const nextBtn = document.getElementById("nextBtn");
+      const timerEl = document.getElementById("timer");
+
+      function startTimer() {
+        timeLeft = 15;
+        timerEl.textContent = "Time Left: " + timeLeft + "s";
+
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          timerEl.textContent = "Time Left: " + timeLeft + "s";
+
+          if (timeLeft === 0) {
+            clearInterval(timerInterval);
+            nextBtn.style.display = "block";
+          }
+        }, 1000);
+      }
+
+      function loadQuestion() {
+        clearInterval(timerInterval);
+        startTimer();
+
+        nextBtn.style.display = "none";
+        optionsEl.innerHTML = "";
+
+        const q = questions[currentQuestion];
+        questionEl.textContent = q.question;
+
+        q.options.forEach((option, index) => {
+          const button = document.createElement("button");
+          button.textContent = option;
+          button.classList.add("option");
+
+          button.addEventListener("click", () => checkAnswer(index, button));
+
+          optionsEl.appendChild(button);
+        });
+      }
+
+      function checkAnswer(selectedIndex, button) {
+        clearInterval(timerInterval);
+
+        const correctIndex = questions[currentQuestion].answer;
+        const allOptions = document.querySelectorAll(".option");
+
+        allOptions.forEach((btn, index) => {
+          btn.disabled = true;
+          if (index === correctIndex) {
+            btn.classList.add("correct");
+          }
+        });
+
+        if (selectedIndex === correctIndex) {
+          score++;
+        } else {
+          button.classList.add("wrong");
+        }
+
+        nextBtn.style.display = "block";
+      }
+
+      nextBtn.addEventListener("click", () => {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+          loadQuestion();
+        } else {
+          showResult();
+        }
+      });
+
+      function showResult() {
+        clearInterval(timerInterval);
+        document.querySelector(".quiz-box").innerHTML =
+          `<h2>Quiz Completed 🎉</h2>
+         <p>Your Score: ${score} / ${questions.length}</p>`;
+      }
+
+      loadQuestion();
+    </script>
+  </body>
+</html>

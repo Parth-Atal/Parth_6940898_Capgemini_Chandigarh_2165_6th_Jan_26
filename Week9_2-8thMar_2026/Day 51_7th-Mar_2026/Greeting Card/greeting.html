@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Greeting Card</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(
+          135deg,
+          #ff9a9e,
+          #fad0c4,
+          #fad0c4,
+          #fbc2eb,
+          #a18cd1
+        );
+      }
+
+      .card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        width: 400px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s;
+      }
+
+      .card:hover {
+        transform: scale(1.03);
+      }
+
+      h1 {
+        color: #ff4081;
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+        color: #555;
+      }
+
+      button {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 30px;
+        background: linear-gradient(45deg, #ff758c, #ff7eb3);
+        color: white;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      #surprise {
+        display: none;
+        font-size: 1.3rem;
+        color: #6a1b9a;
+        font-weight: bold;
+        margin-top: 10px;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="card">
+      <h1>🎉 Happy Birthday! 🎂</h1>
+      <p>
+        Hope your day is filled with laughter, cake, and wonderful memories!
+      </p>
+
+      <button onclick="showMessage()">Click for Surprise 🎁</button>
+
+      <div id="surprise">Wishing you lots of joy! 🥳</div>
+    </div>
+
+    <script>
+      function showMessage() {
+        document.getElementById("surprise").style.display = "block";
+      }
+    </script>
+  </body>
+</html>

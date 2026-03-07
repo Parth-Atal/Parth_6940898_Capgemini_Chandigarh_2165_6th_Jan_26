@@ -49,17 +49,19 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(457, 35);
+            dataGridView1.Location = new Point(727, 52);
+            dataGridView1.Margin = new Padding(4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(674, 272);
+            dataGridView1.Size = new Size(973, 651);
             dataGridView1.TabIndex = 8;
             // 
             // add_button
             // 
-            add_button.Location = new Point(241, 479);
+            add_button.Location = new Point(75, 313);
+            add_button.Margin = new Padding(4);
             add_button.Name = "add_button";
-            add_button.Size = new Size(516, 34);
+            add_button.Size = new Size(344, 44);
             add_button.TabIndex = 9;
             add_button.Text = "Add";
             add_button.UseVisualStyleBackColor = true;
@@ -67,9 +69,10 @@
             // 
             // delete_button
             // 
-            delete_button.Location = new Point(457, 565);
+            delete_button.Location = new Point(168, 452);
+            delete_button.Margin = new Padding(4);
             delete_button.Name = "delete_button";
-            delete_button.Size = new Size(112, 34);
+            delete_button.Size = new Size(146, 44);
             delete_button.TabIndex = 10;
             delete_button.Text = "Delete";
             delete_button.UseVisualStyleBackColor = true;
@@ -77,9 +80,10 @@
             // 
             // update_button
             // 
-            update_button.Location = new Point(39, 694);
+            update_button.Location = new Point(30, 589);
+            update_button.Margin = new Padding(4);
             update_button.Name = "update_button";
-            update_button.Size = new Size(993, 34);
+            update_button.Size = new Size(187, 147);
             update_button.TabIndex = 11;
             update_button.Text = "Update";
             update_button.UseVisualStyleBackColor = true;
@@ -87,100 +91,111 @@
             // 
             // email_textBox
             // 
-            email_textBox.Location = new Point(241, 337);
+            email_textBox.Location = new Point(168, 107);
+            email_textBox.Margin = new Padding(4);
             email_textBox.Name = "email_textBox";
-            email_textBox.Size = new Size(150, 31);
+            email_textBox.Size = new Size(372, 39);
             email_textBox.TabIndex = 12;
             email_textBox.Text = "Your Email";
             // 
             // firstName_textBox
             // 
-            firstName_textBox.Location = new Point(421, 337);
+            firstName_textBox.Location = new Point(168, 179);
+            firstName_textBox.Margin = new Padding(4);
             firstName_textBox.Name = "firstName_textBox";
-            firstName_textBox.Size = new Size(150, 31);
+            firstName_textBox.Size = new Size(372, 39);
             firstName_textBox.TabIndex = 13;
             firstName_textBox.Text = "Your FirstName";
             // 
             // lastName_textBox
             // 
-            lastName_textBox.Location = new Point(607, 337);
+            lastName_textBox.Location = new Point(168, 249);
+            lastName_textBox.Margin = new Padding(4);
             lastName_textBox.Name = "lastName_textBox";
-            lastName_textBox.Size = new Size(150, 31);
+            lastName_textBox.Size = new Size(367, 39);
             lastName_textBox.TabIndex = 14;
             lastName_textBox.Text = "Your LastName";
             // 
             // email_add_label
             // 
             email_add_label.AutoSize = true;
-            email_add_label.Location = new Point(241, 396);
+            email_add_label.Location = new Point(51, 114);
+            email_add_label.Margin = new Padding(4, 0, 4, 0);
             email_add_label.Name = "email_add_label";
-            email_add_label.Size = new Size(54, 25);
+            email_add_label.Size = new Size(71, 32);
             email_add_label.TabIndex = 15;
             email_add_label.Text = "Email";
             // 
             // firstName_label
             // 
             firstName_label.AutoSize = true;
-            firstName_label.Location = new Point(421, 396);
+            firstName_label.Location = new Point(30, 186);
+            firstName_label.Margin = new Padding(4, 0, 4, 0);
             firstName_label.Name = "firstName_label";
-            firstName_label.Size = new Size(92, 25);
+            firstName_label.Size = new Size(122, 32);
             firstName_label.TabIndex = 16;
             firstName_label.Text = "FirstName";
             // 
             // lastName_label
             // 
             lastName_label.AutoSize = true;
-            lastName_label.Location = new Point(607, 396);
+            lastName_label.Location = new Point(30, 249);
+            lastName_label.Margin = new Padding(4, 0, 4, 0);
             lastName_label.Name = "lastName_label";
-            lastName_label.Size = new Size(90, 25);
+            lastName_label.Size = new Size(119, 32);
             lastName_label.TabIndex = 17;
             lastName_label.Text = "LastName";
             // 
             // idToDelete_textBox
             // 
-            idToDelete_textBox.Location = new Point(241, 565);
+            idToDelete_textBox.Location = new Point(136, 390);
+            idToDelete_textBox.Margin = new Padding(4);
             idToDelete_textBox.Name = "idToDelete_textBox";
-            idToDelete_textBox.Size = new Size(150, 31);
+            idToDelete_textBox.Size = new Size(194, 39);
             idToDelete_textBox.TabIndex = 18;
             idToDelete_textBox.Text = "ID to delete";
             // 
             // lastNameUpdate_textBox
             // 
-            lastNameUpdate_textBox.Location = new Point(685, 633);
+            lastNameUpdate_textBox.Location = new Point(225, 772);
+            lastNameUpdate_textBox.Margin = new Padding(4);
             lastNameUpdate_textBox.Name = "lastNameUpdate_textBox";
-            lastNameUpdate_textBox.Size = new Size(150, 31);
+            lastNameUpdate_textBox.Size = new Size(194, 39);
             lastNameUpdate_textBox.TabIndex = 21;
             lastNameUpdate_textBox.Text = "Updated LastName";
             // 
             // firstNameUpdate_textBox
             // 
-            firstNameUpdate_textBox.Location = new Point(457, 633);
+            firstNameUpdate_textBox.Location = new Point(225, 697);
+            firstNameUpdate_textBox.Margin = new Padding(4);
             firstNameUpdate_textBox.Name = "firstNameUpdate_textBox";
-            firstNameUpdate_textBox.Size = new Size(150, 31);
+            firstNameUpdate_textBox.Size = new Size(194, 39);
             firstNameUpdate_textBox.TabIndex = 20;
             firstNameUpdate_textBox.Text = "Updated FirstName";
             // 
             // emailUpdate_textBox
             // 
-            emailUpdate_textBox.Location = new Point(237, 633);
+            emailUpdate_textBox.Location = new Point(225, 630);
+            emailUpdate_textBox.Margin = new Padding(4);
             emailUpdate_textBox.Name = "emailUpdate_textBox";
-            emailUpdate_textBox.Size = new Size(150, 31);
+            emailUpdate_textBox.Size = new Size(194, 39);
             emailUpdate_textBox.TabIndex = 19;
             emailUpdate_textBox.Text = "Updated Email";
             // 
             // idUpdate_textBox
             // 
-            idUpdate_textBox.Location = new Point(39, 633);
+            idUpdate_textBox.Location = new Point(225, 545);
+            idUpdate_textBox.Margin = new Padding(4);
             idUpdate_textBox.Name = "idUpdate_textBox";
-            idUpdate_textBox.Size = new Size(150, 31);
+            idUpdate_textBox.Size = new Size(194, 39);
             idUpdate_textBox.TabIndex = 26;
             idUpdate_textBox.Text = "ID to Update";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1183, 768);
+            ClientSize = new Size(1713, 983);
             Controls.Add(idUpdate_textBox);
             Controls.Add(lastNameUpdate_textBox);
             Controls.Add(firstNameUpdate_textBox);
@@ -196,6 +211,7 @@
             Controls.Add(delete_button);
             Controls.Add(add_button);
             Controls.Add(dataGridView1);
+            Margin = new Padding(4);
             Name = "Form1";
             Text = "V";
             Load += Form1_Load;

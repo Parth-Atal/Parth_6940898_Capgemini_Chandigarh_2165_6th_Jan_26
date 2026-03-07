@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration & Login</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #f8d0fe, #77f5fc);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        width: 350px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        background: #667eea;
+        border: none;
+        color: white;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #defa08;
+      }
+
+      .toggle {
+        text-align: center;
+        margin-top: 15px;
+        cursor: pointer;
+        color: #6dfae2;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Register Form -->
+      <div id="registerForm">
+        <h2>Register</h2>
+        <div class="form-group">
+          <input type="text" id="regUsername" placeholder="Username" />
+        </div>
+        <div class="form-group">
+          <input type="email" id="regEmail" placeholder="Email" />
+        </div>
+        <div class="form-group">
+          <input type="password" id="regPassword" placeholder="Password" />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            id="regConfirmPassword"
+            placeholder="Confirm Password"
+          />
+        </div>
+        <button onclick="register()">Register</button>
+        <div class="toggle" onclick="showLogin()">
+          Already have an account? Login
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <div id="loginForm" class="hidden">
+        <h2>Login</h2>
+        <div class="form-group">
+          <input type="email" id="loginEmail" placeholder="Email" />
+        </div>
+        <div class="form-group">
+          <input type="password" id="loginPassword" placeholder="Password" />
+        </div>
+        <button onclick="login()">Login</button>
+        <div class="toggle" onclick="showRegister()">
+          Don't have an account? Register
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showLogin() {
+        document.getElementById("registerForm").classList.add("hidden");
+        document.getElementById("loginForm").classList.remove("hidden");
+      }
+
+      function showRegister() {
+        document.getElementById("loginForm").classList.add("hidden");
+        document.getElementById("registerForm").classList.remove("hidden");
+      }
+
+      function validateEmail(email) {
+        const pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        return pattern.test(email);
+      }
+
+      function register() {
+        const username = document.getElementById("regUsername").value.trim();
+        const email = document.getElementById("regEmail").value.trim();
+        const password = document.getElementById("regPassword").value;
+        const confirmPassword =
+          document.getElementById("regConfirmPassword").value;
+
+        if (!username || !email || !password || !confirmPassword) {
+          alert("All fields are required!");
+          return;
+        }
+
+        if (!validateEmail(email)) {
+          alert("Invalid email format!");
+          return;
+        }
+
+        if (password.length < 6) {
+          alert("Password must be at least 6 characters long!");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          alert("Passwords do not match!");
+          return;
+        }
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        const userExists = users.find((user) => user.email === email);
+        if (userExists) {
+          alert("User already registered!");
+          return;
+        }
+
+        users.push({ username, email, password });
+        localStorage.setItem("users", JSON.stringify(users));
+
+        alert("Registration successful!");
+        showLogin();
+      }
+
+      function login() {
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        const validUser = users.find(
+          (user) => user.email === email && user.password === password,
+        );
+
+        if (validUser) {
+          alert("Login successful! Welcome " + validUser.username);
+        } else {
+          alert("Invalid email or password!");
+        }
+      }
+    </script>
+  </body>
+</html>

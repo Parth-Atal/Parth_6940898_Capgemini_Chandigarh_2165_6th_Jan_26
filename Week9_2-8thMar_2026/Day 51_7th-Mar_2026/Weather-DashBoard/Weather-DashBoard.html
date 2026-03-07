@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashboard</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #6dd5fa, #2980b9);
+        transition: 0.6s;
+      }
+
+      /* Weather Card */
+
+      .container {
+        background: white;
+        padding: 30px;
+        width: 350px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      /* Input */
+
+      .input-box {
+        display: flex;
+        gap: 10px;
+      }
+
+      input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 6px;
+        background: #3498db;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #1d6fa5;
+      }
+
+      /* Weather Display */
+
+      .weather {
+        margin-top: 10px;
+        padding: 15px;
+        border-radius: 10px;
+        background: #f4f4f4;
+      }
+
+      .weather img {
+        width: 70px;
+      }
+
+      .city {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .temp {
+        font-size: 28px;
+        margin: 5px 0;
+      }
+
+      .desc {
+        font-size: 18px;
+        color: #555;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>🌤 Weather Today</h1>
+
+      <div class="input-box">
+        <input type="text" id="cityInput" placeholder="Enter city name" />
+        <button onclick="getWeather()">Check Weather</button>
+      </div>
+
+      <div class="weather" id="weatherBox" style="display: none">
+        <div class="city" id="city"></div>
+        <img id="icon" />
+        <div class="temp" id="temp"></div>
+        <div class="desc" id="desc"></div>
+      </div>
+    </div>
+
+    <script>
+      async function getWeather() {
+        let city = document.getElementById("cityInput").value;
+
+        if (city === "") {
+          alert("Please enter a city");
+          return;
+        }
+
+        try {
+          let response = await fetch(`https://wttr.in/${city}?format=j1`);
+          let data = await response.json();
+
+          let current = data.current_condition[0];
+
+          let temp = current.temp_C;
+          let desc = current.weatherDesc[0].value;
+          let icon = current.weatherIconUrl[0].value;
+
+          /* Display data */
+
+          document.getElementById("weatherBox").style.display = "block";
+          document.getElementById("city").innerText = "City: " + city;
+          document.getElementById("temp").innerText = temp + "°C";
+          document.getElementById("desc").innerText = desc;
+          document.getElementById("icon").src = icon;
+
+          /* Change background based on weather */
+
+          let weather = desc.toLowerCase();
+
+          if (weather.includes("sun")) {
+            document.body.style.background =
+              "linear-gradient(135deg,#fceabb,#f8b500)";
+          } else if (weather.includes("rain")) {
+            document.body.style.background =
+              "linear-gradient(135deg,#4facfe,#00f2fe)";
+          } else if (weather.includes("cloud")) {
+            document.body.style.background =
+              "linear-gradient(135deg,#bdc3c7,#2c3e50)";
+          } else {
+            document.body.style.background =
+              "linear-gradient(135deg,#6dd5fa,#2980b9)";
+          }
+        } catch (error) {
+          alert("Weather data not found");
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analog To-Do List</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #c9b79c, #e8dcc4);
+        font-family: "Courier New", monospace;
+      }
+
+      /* Notebook Style Card */
+
+      .container {
+        background: #fffaf0;
+        width: 400px;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25);
+        border-left: 8px solid #c0392b;
+      }
+
+      /* Title */
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      /* Input Section */
+
+      .input-area {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      input {
+        flex: 1;
+        padding: 8px;
+        border: 2px solid #888;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      button {
+        padding: 8px 12px;
+        border: none;
+        background: #444;
+        color: white;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #222;
+      }
+
+      /* Task List */
+
+      ul {
+        list-style: none;
+      }
+
+      li {
+        padding: 10px;
+        border-bottom: 1px dashed #999;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      li:hover {
+        background: #f1e8d8;
+      }
+
+      /* Done Style */
+
+      .done {
+        text-decoration: line-through;
+        color: gray;
+      }
+
+      .reset {
+        margin-top: 15px;
+        width: 100%;
+        background: #b03a2e;
+      }
+
+      .reset:hover {
+        background: #922b21;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>📒 My To-Do List</h1>
+
+      <div class="input-area">
+        <input type="text" id="taskInput" placeholder="Write a task..." />
+        <button onclick="addTask()">Add</button>
+      </div>
+
+      <ul id="taskList"></ul>
+
+      <button class="reset" onclick="clearTasks()">Clear All Tasks</button>
+    </div>
+
+    <script>
+      function addTask() {
+        let input = document.getElementById("taskInput");
+        let taskText = input.value.trim();
+
+        if (taskText === "") {
+          alert("Please enter a task");
+          return;
+        }
+
+        let li = document.createElement("li");
+        li.textContent = taskText;
+
+        li.onclick = function () {
+          li.classList.toggle("done");
+        };
+
+        document.getElementById("taskList").appendChild(li);
+
+        input.value = "";
+      }
+
+      function clearTasks() {
+        document.getElementById("taskList").innerHTML = "";
+      }
+    </script>
+  </body>
+</html>
