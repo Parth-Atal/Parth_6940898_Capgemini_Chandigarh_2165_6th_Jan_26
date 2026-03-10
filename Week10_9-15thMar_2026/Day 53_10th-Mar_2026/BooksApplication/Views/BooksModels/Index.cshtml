@@ -1,0 +1,147 @@
+﻿@model IEnumerable<BooksApplication.Models.BooksModel>
+
+@{
+    ViewData["Title"] = "Books Library 🗿";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Books Library</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .page-container {
+            width: 80%;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+            margin-bottom: 25px;
+        }
+
+        .create-btn {
+            display: inline-block;
+            padding: 10px 18px;
+            background: linear-gradient(45deg,#36d1dc,#5b86e5);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+            .create-btn:hover {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead {
+            background: linear-gradient(45deg,#5f9cff,#7b68ee);
+            color: white;
+        }
+
+        th {
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tbody tr:hover {
+            background-color: #f4f6ff;
+        }
+
+        .actions a {
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            margin-right: 5px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .edit {
+            background: #4CAF50;
+        }
+
+        .details {
+            background: #2196F3;
+        }
+
+        .delete {
+            background: #f44336;
+        }
+
+        .actions a:hover {
+            opacity: 0.85;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="page-container">
+
+        <h1>📚 Books Library</h1>
+
+        <p>
+            <a class="create-btn" asp-action="Create">+ Create New Book</a>
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.BookName)</th>
+                    <th>@Html.DisplayNameFor(model => model.AuthorName)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.BookName)</td>
+
+                        <td>@Html.DisplayFor(modelItem => item.AuthorName)</td>
+
+                        <td class="actions">
+                            <a class="edit" asp-action="Edit" asp-route-id="@item.BookModelId">Edit</a>
+                            <a class="details" asp-action="Details" asp-route-id="@item.BookModelId">Details</a>
+                            <a class="delete" asp-action="Delete" asp-route-id="@item.BookModelId">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+
+</body>
+</html>

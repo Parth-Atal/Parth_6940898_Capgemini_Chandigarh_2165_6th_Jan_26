@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EfCoreCodeFirstApproachDemo01.Models.EmployeeModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Job)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmployeeModelId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EmployeeModelId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmployeeModelId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

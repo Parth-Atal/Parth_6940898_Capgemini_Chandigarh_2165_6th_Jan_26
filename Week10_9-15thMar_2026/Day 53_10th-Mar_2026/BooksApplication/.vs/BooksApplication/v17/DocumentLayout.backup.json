@@ -1,0 +1,173 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week10_9-15thmar_2026\\day 53_10th-mar_2026\\booksapplication\\views\\booksmodels\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|solutionrelative:views\\booksmodels\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week10_9-15thmar_2026\\day 53_10th-mar_2026\\booksapplication\\views\\booksmodels\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|solutionrelative:views\\booksmodels\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week10_9-15thmar_2026\\day 53_10th-mar_2026\\booksapplication\\views\\booksmodels\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|solutionrelative:views\\booksmodels\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week10_9-15thmar_2026\\day 53_10th-mar_2026\\booksapplication\\views\\booksmodels\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|solutionrelative:views\\booksmodels\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week10_9-15thmar_2026\\day 53_10th-mar_2026\\booksapplication\\views\\booksmodels\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|solutionrelative:views\\booksmodels\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week10_9-15thmar_2026\\day 53_10th-mar_2026\\booksapplication\\controllers\\booksmodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|solutionrelative:controllers\\booksmodelscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week10_9-15thmar_2026\\day 53_10th-mar_2026\\booksapplication\\models\\bookmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|solutionrelative:models\\bookmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week10_9-15thmar_2026\\day 53_10th-mar_2026\\booksapplication\\models\\bookdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|solutionrelative:models\\bookdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week10_9-15thmar_2026\\day 53_10th-mar_2026\\booksapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD878A0F-F517-46E5-8079-C03D9A2984B9}|BooksApplication.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Views\\BooksModels\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\BooksModels\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Views\\BooksModels\\Create.cshtml*",
+              "RelativeToolTip": "Views\\BooksModels\\Create.cshtml*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGkAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-10T09:21:50.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Views\\BooksModels\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Views\\BooksModels\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Views\\BooksModels\\Delete.cshtml",
+              "RelativeToolTip": "Views\\BooksModels\\Delete.cshtml",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAqwIQAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-10T09:21:14.066Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Views\\BooksModels\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\BooksModels\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Views\\BooksModels\\Details.cshtml",
+              "RelativeToolTip": "Views\\BooksModels\\Details.cshtml",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAqwHIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-10T09:20:27.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Views\\BooksModels\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\BooksModels\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Views\\BooksModels\\Edit.cshtml",
+              "RelativeToolTip": "Views\\BooksModels\\Edit.cshtml",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAqwIsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-10T09:18:54.219Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Views\\BooksModels\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\BooksModels\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Views\\BooksModels\\Index.cshtml",
+              "RelativeToolTip": "Views\\BooksModels\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-10T09:14:14.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BookModel.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Models\\BookModel.cs",
+              "RelativeDocumentMoniker": "Models\\BookModel.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Models\\BookModel.cs",
+              "RelativeToolTip": "Models\\BookModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T08:41:44.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BookdbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Models\\BookdbContext.cs",
+              "RelativeDocumentMoniker": "Models\\BookdbContext.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Models\\BookdbContext.cs",
+              "RelativeToolTip": "Models\\BookdbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T08:41:34.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T06:51:58.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BooksModelsController.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Controllers\\BooksModelsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BooksModelsController.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week10_9-15thMar_2026\\Day 53_10th-Mar_2026\\BooksApplication\\Controllers\\BooksModelsController.cs",
+              "RelativeToolTip": "Controllers\\BooksModelsController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwBUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-10T06:51:18.787Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

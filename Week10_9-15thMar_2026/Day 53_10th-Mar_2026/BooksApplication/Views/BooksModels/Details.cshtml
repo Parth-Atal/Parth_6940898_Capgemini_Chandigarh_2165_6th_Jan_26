@@ -1,0 +1,129 @@
+﻿@model BooksApplication.Models.BooksModel
+
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<style>
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg,#667eea,#764ba2);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .page-container {
+        width: 40%;
+        margin: 80px auto;
+        background: white;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    h4 {
+        text-align: center;
+        color: #777;
+        margin-bottom: 20px;
+    }
+
+    hr {
+        margin-bottom: 25px;
+    }
+
+    dl {
+        font-size: 16px;
+    }
+
+    dt {
+        font-weight: 600;
+        color: #444;
+        margin-top: 10px;
+    }
+
+    dd {
+        margin-left: 0;
+        margin-bottom: 10px;
+        padding: 8px;
+        background: #f5f7ff;
+        border-radius: 6px;
+    }
+
+    .button-group {
+        margin-top: 25px;
+        text-align: center;
+    }
+
+    .btn {
+        text-decoration: none;
+        padding: 10px 18px;
+        border-radius: 6px;
+        color: white;
+        font-weight: 500;
+        margin: 5px;
+        display: inline-block;
+        transition: 0.3s;
+    }
+
+    .edit-btn {
+        background: linear-gradient(45deg,#36d1dc,#5b86e5);
+    }
+
+    .back-btn {
+        background: #6c757d;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+
+</style>
+
+<div class="page-container">
+
+    <h1>📖 Book Details</h1>
+
+    <h4>BooksModel</h4>
+    <hr />
+
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.BookName)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.BookName)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </dt>
+
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AuthorName)
+        </dd>
+
+    </dl>
+
+    <div class="button-group">
+
+        <a class="btn edit-btn" asp-action="Edit" asp-route-id="@Model?.BookModelId">
+            ✏ Edit
+        </a>
+
+        <a class="btn back-btn" asp-action="Index">
+            ← Back to List
+        </a>
+
+    </div>
+
+</div>
