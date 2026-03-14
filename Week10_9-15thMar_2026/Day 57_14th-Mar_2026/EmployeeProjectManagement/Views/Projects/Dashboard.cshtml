@@ -1,0 +1,30 @@
+﻿@model IEnumerable<EmployeeProjectManagement.Models.Project>
+
+<h2>Project Dashboard</h2>
+
+@foreach (var project in Model)
+{
+    <h3>@project.Title</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Employee</th>
+                <th>Department</th>
+                <th>Assigned Date</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var ep in project.EmployeeProjects)
+            {
+                <tr>
+                    <td>@ep.Employee.Name</td>
+                    <td>@ep.Employee.Department.DepartmentName</td>
+                    <td>@ep.AssignedDate.ToShortDateString()</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
