@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EmployeePortal</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EmployeePortal.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div class="container-fluid">
+
+                <!-- BRAND -->
+                <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
+                    EmployeePortal
+                </a>
+
+                <!-- TOGGLE -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- NAV LINKS -->
+                <div class="collapse navbar-collapse" id="navbarContent">
+
+                    <!-- LEFT SIDE -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Employee" asp-action="Index">Employees</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Account" asp-action="Profile">Profile</a>
+                        </li>
+
+                    </ul>
+
+                    <!-- RIGHT SIDE -->
+                    <div class="d-flex align-items-center">
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <span class="text-white me-3">
+                                👋 Hello, @User.Identity.Name
+                            </span>
+                        }
+
+                        <partial name="_LoginPartial" />
+
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container mt-4">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-top footer text-muted mt-5">
+        <div class="container text-center py-3">
+            &copy; 2026 - EmployeePortal |
+            <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
