@@ -1,0 +1,26 @@
+﻿@page
+@model RegisterModel
+
+<h2>Register for Event</h2>
+
+<form method="post">
+    <div>
+        <label>Name</label>
+        <input asp-for="Registration.ParticipantName" />
+        <span asp-validation-for="Registration.ParticipantName"></span>
+    </div>
+
+    <div>
+        <label>Email</label>
+        <input asp-for="Registration.Email" />
+        <span asp-validation-for="Registration.Email"></span>
+    </div>
+
+    <div>
+        <label>Event</label>
+        <input asp-for="Registration.EventName" />
+        <span asp-validation-for="Registration.EventName"></span>
+    </div>
+
+    <button type="submit">Register</button>
+</form>

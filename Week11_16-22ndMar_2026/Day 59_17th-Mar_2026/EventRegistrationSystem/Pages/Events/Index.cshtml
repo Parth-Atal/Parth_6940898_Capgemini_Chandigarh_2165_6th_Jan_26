@@ -1,0 +1,35 @@
+﻿@page
+@model IndexModel
+
+<h2>Participants List</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Event</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model.Participants)
+    {
+        <tr>
+            <td>@item.ParticipantName</td>
+            <td>@item.Email</td>
+            <td>@item.EventName</td>
+            <td>
+                <form method="post" asp-page-handler="Delete">
+                    <input type="hidden" name="id" value="@item.Id" />
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <form method="post" asp-page-handler="Delete">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit">Delete</button>
+                        </form>
+                    }
+                    
+                </form>
+            </td>
+        </tr>
+    }
+</table>

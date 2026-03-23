@@ -1,0 +1,42 @@
+﻿@model List<Room>
+
+<h2>Rooms</h2>
+
+<a class="btn btn-primary mb-2" href="/Room/Create">Add Room</a>
+
+@foreach (var r in Model)
+{
+    <div class="card mb-3 p-3">
+
+        <!-- Carousel -->
+        <div id="carousel@r.Id" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="@r.ImageUrl" class="d-block w-100" height="200">
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mt-2">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#details@r.Id">Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#amenities@r.Id">Amenities</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="details@r.Id" class="tab-pane fade show active">
+                <p>Type: @r.Type</p>
+                <p>Price: ₹@r.Price</p>
+            </div>
+
+            <div id="amenities@r.Id" class="tab-pane fade">
+                <p>@r.Amenities</p>
+            </div>
+        </div>
+
+    </div>
+}

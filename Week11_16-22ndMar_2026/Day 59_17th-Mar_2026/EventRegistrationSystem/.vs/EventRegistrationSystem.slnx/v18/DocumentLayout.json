@@ -1,0 +1,181 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|c:\\d-drive\\my files\\capgegemini_cu_sec3_.netwithazure_mahesh\\week11---16_mar_26to21_mar_26\\17_mar_26\\eventregistrationsystem\\pages\\events\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|solutionrelative:pages\\events\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|c:\\d-drive\\my files\\capgegemini_cu_sec3_.netwithazure_mahesh\\week11---16_mar_26to21_mar_26\\17_mar_26\\eventregistrationsystem\\pages\\events\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|solutionrelative:pages\\events\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|c:\\d-drive\\my files\\capgegemini_cu_sec3_.netwithazure_mahesh\\week11---16_mar_26to21_mar_26\\17_mar_26\\eventregistrationsystem\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|c:\\d-drive\\my files\\capgegemini_cu_sec3_.netwithazure_mahesh\\week11---16_mar_26to21_mar_26\\17_mar_26\\eventregistrationsystem\\pages\\events\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|solutionrelative:pages\\events\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|c:\\d-drive\\my files\\capgegemini_cu_sec3_.netwithazure_mahesh\\week11---16_mar_26to21_mar_26\\17_mar_26\\eventregistrationsystem\\pages\\events\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|solutionrelative:pages\\events\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|c:\\d-drive\\my files\\capgegemini_cu_sec3_.netwithazure_mahesh\\week11---16_mar_26to21_mar_26\\17_mar_26\\eventregistrationsystem\\models\\eventregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|solutionrelative:models\\eventregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|c:\\d-drive\\my files\\capgegemini_cu_sec3_.netwithazure_mahesh\\week11---16_mar_26to21_mar_26\\17_mar_26\\eventregistrationsystem\\pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|solutionrelative:pages\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|c:\\d-drive\\my files\\capgegemini_cu_sec3_.netwithazure_mahesh\\week11---16_mar_26to21_mar_26\\17_mar_26\\eventregistrationsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|c:\\d-drive\\my files\\capgegemini_cu_sec3_.netwithazure_mahesh\\week11---16_mar_26to21_mar_26\\17_mar_26\\eventregistrationsystem\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|c:\\d-drive\\my files\\capgegemini_cu_sec3_.netwithazure_mahesh\\week11---16_mar_26to21_mar_26\\17_mar_26\\eventregistrationsystem\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{583876C0-BC2E-B10B-2B74-7130130B3BA2}|EventRegistrationSystem.csproj|solutionrelative:pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T10:12:17.036Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Pages\\Events\\Register.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Events\\Register.cshtml",
+              "ToolTip": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Pages\\Events\\Register.cshtml",
+              "RelativeToolTip": "Pages\\Events\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-18T09:48:30.896Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Register.cshtml.cs",
+              "DocumentMoniker": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Pages\\Events\\Register.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Events\\Register.cshtml.cs",
+              "ToolTip": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Pages\\Events\\Register.cshtml.cs",
+              "RelativeToolTip": "Pages\\Events\\Register.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T09:51:08.452Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Pages\\Events\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Events\\Index.cshtml.cs",
+              "ToolTip": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Pages\\Events\\Index.cshtml.cs",
+              "RelativeToolTip": "Pages\\Events\\Index.cshtml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAYwBYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T09:50:42.584Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Pages\\Events\\Index.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Events\\Index.cshtml",
+              "ToolTip": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Pages\\Events\\Index.cshtml",
+              "RelativeToolTip": "Pages\\Events\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-18T09:46:47.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EventRegistration.cs",
+              "DocumentMoniker": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Models\\EventRegistration.cs",
+              "RelativeDocumentMoniker": "Models\\EventRegistration.cs",
+              "ToolTip": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Models\\EventRegistration.cs",
+              "RelativeToolTip": "Models\\EventRegistration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T09:43:09.791Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Pages\\Index.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Index.cshtml",
+              "ToolTip": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Pages\\Index.cshtml",
+              "RelativeToolTip": "Pages\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-18T09:51:34.186Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAuwBgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T10:01:24.912Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAACgAAAAAAAAAAAAuwDkAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-03-18T09:53:16.665Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Pages\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Index.cshtml.cs",
+              "ToolTip": "C:\\D-drive\\My files\\Capgegemini_CU_Sec3_.NetWithAzure_Mahesh\\Week11---16_Mar_26to21_Mar_26\\17_Mar_26\\EventRegistrationSystem\\Pages\\Index.cshtml.cs",
+              "RelativeToolTip": "Pages\\Index.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T09:51:45.509Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

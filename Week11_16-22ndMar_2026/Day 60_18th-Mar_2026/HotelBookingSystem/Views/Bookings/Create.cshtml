@@ -1,0 +1,28 @@
+﻿@model Booking
+
+<form method="post">
+    @Html.DropDownListFor(m => m.RoomId, (SelectList)ViewData["RoomId"], "Select room", new { @class = "form-control" })
+    @Html.DropDownListFor(m => m.CustomerId, (SelectList)ViewData["CustomerId"], "Select customer", new { @class = "form-control mt-2" })
+
+    <input type="date" name="CheckIn" class="form-control mt-2" />
+    <input type="date" name="CheckOut" class="form-control mt-2" />
+
+    <button class="btn btn-success mt-2">Book</button>
+
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('form').submit(function (event) {
+                var checkIn = new Date($('input[name="CheckIn"]').val());
+                var checkOut = new Date($('input[name="CheckOut"]').val());
+
+                if (checkIn >= checkOut) {
+                    alert('Check-out date must be after check-in date.');
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+}

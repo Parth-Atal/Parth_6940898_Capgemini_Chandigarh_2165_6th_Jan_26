@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotel Management System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- ✅ NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+
+            <!-- 🔥 BRAND -->
+            <a class="navbar-brand fw-bold" asp-controller="Rooms" asp-action="Index">
+                Hotel Management System
+            </a>
+
+            <!-- 🔥 TOGGLE BUTTON (mobile) -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- 🔥 NAV LINKS -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Rooms" asp-action="Index">Rooms</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Customers" asp-action="Index">Customers</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Bookings" asp-action="Index">Bookings</a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ✅ MAIN CONTENT -->
+    <div class="container mt-4">
+
+        @if (TempData["msg"] != null)
+        {
+            <div class="alert alert-success">@TempData["msg"]</div>
+        }
+
+        @if (TempData["error"] != null)
+        {
+            <div class="alert alert-danger">@TempData["error"]</div>
+        }
+
+        @RenderBody()
+    </div>
+
+    <!-- ✅ JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
