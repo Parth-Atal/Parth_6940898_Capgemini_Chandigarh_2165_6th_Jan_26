@@ -1,0 +1,23 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.userprefs
+
+## EF Core
+*.db
+*.db-shm
+*.db-wal
+
+## Node
+node_modules/
+
+## Environment
+.env
+appsettings.Production.json
+
+## OS
+.DS_Store
+Thumbs.db

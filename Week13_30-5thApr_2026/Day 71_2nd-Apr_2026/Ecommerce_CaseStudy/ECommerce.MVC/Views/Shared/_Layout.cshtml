@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ECommerce</title>
+
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #eef2f7, #dfe9f3);
+            margin: 0;
+        }
+
+        
+        .custom-navbar {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            padding: 12px 25px;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 18px;
+            color: #333 !important;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            margin-left: 15px;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            left: 0;
+            bottom: -3px;
+            background: #667eea;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        
+        .nav-link.active {
+            color: #667eea !important;
+        }
+
+        
+        .main-container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        
+        .glass-card {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 13px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" asp-controller="Order" asp-action="Index">
+                🛍️ ECommerce
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Order" asp-action="Index">Orders</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Product" asp-action="Index">Products</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" asp-controller="Auth" asp-action="Logout">Logout</a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <div class="main-container">
+        @RenderBody()
+    </div>
+
+    
+    <footer>
+        © 2026 ECommerce App • Built with ASP.NET MVC
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

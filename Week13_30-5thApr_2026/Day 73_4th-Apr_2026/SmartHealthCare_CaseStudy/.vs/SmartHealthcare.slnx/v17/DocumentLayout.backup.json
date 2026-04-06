@@ -1,0 +1,518 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.mvc\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|solutionrelative:src\\smarthealthcare.mvc\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.mvc\\views\\appointment\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|solutionrelative:src\\smarthealthcare.mvc\\views\\appointment\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\mappings\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\mappings\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B25498F-C7C7-426E-3C99-74EB917BF59D}|src\\SmartHealthcare.Models\\SmartHealthcare.Models.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.models\\dtos\\appointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B25498F-C7C7-426E-3C99-74EB917BF59D}|src\\SmartHealthcare.Models\\SmartHealthcare.Models.csproj|solutionrelative:src\\smarthealthcare.models\\dtos\\appointmentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.mvc\\views\\billing\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|solutionrelative:src\\smarthealthcare.mvc\\views\\billing\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.mvc\\views\\billing\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|solutionrelative:src\\smarthealthcare.mvc\\views\\billing\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.mvc\\views\\billing\\generate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|solutionrelative:src\\smarthealthcare.mvc\\views\\billing\\generate.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.mvc\\controllers\\billingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|solutionrelative:src\\smarthealthcare.mvc\\controllers\\billingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B25498F-C7C7-426E-3C99-74EB917BF59D}|src\\SmartHealthcare.Models\\SmartHealthcare.Models.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.models\\dtos\\billdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B25498F-C7C7-426E-3C99-74EB917BF59D}|src\\SmartHealthcare.Models\\SmartHealthcare.Models.csproj|solutionrelative:src\\smarthealthcare.models\\dtos\\billdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\controllers\\billingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\controllers\\billingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\services\\billingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\services\\billingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\services\\interfaces\\ibillingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\services\\interfaces\\ibillingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\repositories\\billingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\repositories\\billingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\repositories\\interfaces\\ibillingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\repositories\\interfaces\\ibillingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\configurations\\billconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\configurations\\billconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B25498F-C7C7-426E-3C99-74EB917BF59D}|src\\SmartHealthcare.Models\\SmartHealthcare.Models.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.models\\entities\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B25498F-C7C7-426E-3C99-74EB917BF59D}|src\\SmartHealthcare.Models\\SmartHealthcare.Models.csproj|solutionrelative:src\\smarthealthcare.models\\entities\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B25498F-C7C7-426E-3C99-74EB917BF59D}|src\\SmartHealthcare.Models\\SmartHealthcare.Models.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.models\\entities\\bill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B25498F-C7C7-426E-3C99-74EB917BF59D}|src\\SmartHealthcare.Models\\SmartHealthcare.Models.csproj|solutionrelative:src\\smarthealthcare.models\\entities\\bill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.mvc\\views\\prescription\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|solutionrelative:src\\smarthealthcare.mvc\\views\\prescription\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.mvc\\views\\prescription\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|solutionrelative:src\\smarthealthcare.mvc\\views\\prescription\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.mvc\\views\\prescription\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|solutionrelative:src\\smarthealthcare.mvc\\views\\prescription\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.mvc\\controllers\\prescriptioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FB147AA3-2F9F-5D91-BA6C-305B7E345463}|src\\SmartHealthcare.MVC\\SmartHealthcare.MVC.csproj|solutionrelative:src\\smarthealthcare.mvc\\controllers\\prescriptioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B25498F-C7C7-426E-3C99-74EB917BF59D}|src\\SmartHealthcare.Models\\SmartHealthcare.Models.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.models\\entities\\medicine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B25498F-C7C7-426E-3C99-74EB917BF59D}|src\\SmartHealthcare.Models\\SmartHealthcare.Models.csproj|solutionrelative:src\\smarthealthcare.models\\entities\\medicine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\controllers\\prescriptionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\controllers\\prescriptionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\services\\prescriptionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\services\\prescriptionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\repositories\\prescriptionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\repositories\\prescriptionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\repositories\\interfaces\\iprescriptionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\repositories\\interfaces\\iprescriptionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\services\\interfaces\\iprescriptionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\services\\interfaces\\iprescriptionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7B25498F-C7C7-426E-3C99-74EB917BF59D}|src\\SmartHealthcare.Models\\SmartHealthcare.Models.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.models\\dtos\\prescriptiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B25498F-C7C7-426E-3C99-74EB917BF59D}|src\\SmartHealthcare.Models\\SmartHealthcare.Models.csproj|solutionrelative:src\\smarthealthcare.models\\dtos\\prescriptiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|c:\\users\\parth\\source\\repos\\capgemini_cu_sec3_.netwithazure_parthatal\\week13_30-5thapr_2026\\smarthealthcare_casestudy\\src\\smarthealthcare.api\\migrations\\20260406042051_billingadded.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76A66E78-9F51-4C8D-BA3C-186148FB9489}|src\\SmartHealthcare.API\\SmartHealthcare.API.csproj|solutionrelative:src\\smarthealthcare.api\\migrations\\20260406042051_billingadded.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppointmentController.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Controllers\\AppointmentController.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.MVC\\Controllers\\AppointmentController.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Controllers\\AppointmentController.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.MVC\\Controllers\\AppointmentController.cs",
+              "ViewState": "AgIAAHQAAAAAAAAAAADwv50AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:42:00.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MappingProfile.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Mappings\\MappingProfile.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Mappings\\MappingProfile.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Mappings\\MappingProfile.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Mappings\\MappingProfile.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:35:32.418Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppointmentDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.Models\\DTOs\\AppointmentDTO.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.Models\\DTOs\\AppointmentDTO.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.Models\\DTOs\\AppointmentDTO.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.Models\\DTOs\\AppointmentDTO.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAABEAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:35:00.13Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Billing\\Index.cshtml",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.MVC\\Views\\Billing\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Billing\\Index.cshtml",
+              "RelativeToolTip": "src\\SmartHealthcare.MVC\\Views\\Billing\\Index.cshtml",
+              "ViewState": "AgIAAOsAAAAAAAAAAAAYwAMBAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-06T04:24:01.971Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Billing\\Details.cshtml",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.MVC\\Views\\Billing\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Billing\\Details.cshtml",
+              "RelativeToolTip": "src\\SmartHealthcare.MVC\\Views\\Billing\\Details.cshtml",
+              "ViewState": "AgIAAG8CAAAAAAAAAAAYwJgCAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-06T04:23:22.362Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Generate.cshtml",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Billing\\Generate.cshtml",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.MVC\\Views\\Billing\\Generate.cshtml",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Billing\\Generate.cshtml",
+              "RelativeToolTip": "src\\SmartHealthcare.MVC\\Views\\Billing\\Generate.cshtml",
+              "ViewState": "AgIAADQBAAAAAAAAAAAYwF0BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-06T04:22:52.177Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BillingController.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Controllers\\BillingController.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.MVC\\Controllers\\BillingController.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Controllers\\BillingController.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.MVC\\Controllers\\BillingController.cs",
+              "ViewState": "AgIAADcBAAAAAAAAAAAUwGgBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:21:48.555Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Appointment\\Details.cshtml",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.MVC\\Views\\Appointment\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Appointment\\Details.cshtml",
+              "RelativeToolTip": "src\\SmartHealthcare.MVC\\Views\\Appointment\\Details.cshtml",
+              "ViewState": "AgIAAH8DAAAAAAAAAADwv7IDAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-04T06:03:24.431Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "20260406042051_BillingAdded.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Migrations\\20260406042051_BillingAdded.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Migrations\\20260406042051_BillingAdded.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Migrations\\20260406042051_BillingAdded.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Migrations\\20260406042051_BillingAdded.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:20:51.645Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Program.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Program.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Program.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Program.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:18:31.816Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BillingController.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Controllers\\BillingController.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Controllers\\BillingController.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Controllers\\BillingController.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Controllers\\BillingController.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAYwJ4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:18:15.676Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "BillingService.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Services\\BillingService.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Services\\BillingService.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Services\\BillingService.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Services\\BillingService.cs",
+              "ViewState": "AgIAAOQAAAAAAAAAAAAIwMYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:16:56.93Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IBillingService.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Services\\Interfaces\\IBillingService.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Services\\Interfaces\\IBillingService.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Services\\Interfaces\\IBillingService.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Services\\Interfaces\\IBillingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:16:36.092Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "BillingRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Repositories\\BillingRepository.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Repositories\\BillingRepository.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Repositories\\BillingRepository.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Repositories\\BillingRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:15:57.973Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IBillingRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Repositories\\Interfaces\\IBillingRepository.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Repositories\\Interfaces\\IBillingRepository.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Repositories\\Interfaces\\IBillingRepository.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Repositories\\Interfaces\\IBillingRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:14:09.657Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BillDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.Models\\DTOs\\BillDTO.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.Models\\DTOs\\BillDTO.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.Models\\DTOs\\BillDTO.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.Models\\DTOs\\BillDTO.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAA+wDcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:12:51.607Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "BillConfiguration.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Configurations\\BillConfiguration.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Configurations\\BillConfiguration.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Configurations\\BillConfiguration.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Configurations\\BillConfiguration.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:11:52.336Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA7wBMAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:11:08.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Appointment.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.Models\\Entities\\Appointment.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.Models\\Entities\\Appointment.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.Models\\Entities\\Appointment.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.Models\\Entities\\Appointment.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:10:32.303Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Bill.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.Models\\Entities\\Bill.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.Models\\Entities\\Bill.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.Models\\Entities\\Bill.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.Models\\Entities\\Bill.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T04:09:36.344Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Prescription\\Details.cshtml",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.MVC\\Views\\Prescription\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Prescription\\Details.cshtml",
+              "RelativeToolTip": "src\\SmartHealthcare.MVC\\Views\\Prescription\\Details.cshtml",
+              "ViewState": "AgIAAIMBAAAAAAAAAAAkwKUBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-04T06:02:58.83Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Prescription\\Edit.cshtml",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.MVC\\Views\\Prescription\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Prescription\\Edit.cshtml",
+              "RelativeToolTip": "src\\SmartHealthcare.MVC\\Views\\Prescription\\Edit.cshtml",
+              "ViewState": "AgIAAKsBAAAAAAAAAAAkwM0BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-04T06:02:30.623Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Prescription\\Create.cshtml",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.MVC\\Views\\Prescription\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Views\\Prescription\\Create.cshtml",
+              "RelativeToolTip": "src\\SmartHealthcare.MVC\\Views\\Prescription\\Create.cshtml",
+              "ViewState": "AgIAAGMBAAAAAAAAAAAkwIUBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-04T06:01:58.021Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "PrescriptionController.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Controllers\\PrescriptionController.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.MVC\\Controllers\\PrescriptionController.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.MVC\\Controllers\\PrescriptionController.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.MVC\\Controllers\\PrescriptionController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF8AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-04T05:57:47.007Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Medicine.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.Models\\Entities\\Medicine.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.Models\\Entities\\Medicine.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.Models\\Entities\\Medicine.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.Models\\Entities\\Medicine.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-04T05:56:50.945Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "PrescriptionsController.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Controllers\\PrescriptionsController.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Controllers\\PrescriptionsController.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Controllers\\PrescriptionsController.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Controllers\\PrescriptionsController.cs",
+              "ViewState": "AgIAAFsAAAAAAAAAAAA5wH0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-04T05:56:20.344Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "PrescriptionService.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Services\\PrescriptionService.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Services\\PrescriptionService.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Services\\PrescriptionService.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Services\\PrescriptionService.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAowHoAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-04T05:55:41.076Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "PrescriptionRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Repositories\\PrescriptionRepository.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Repositories\\PrescriptionRepository.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Repositories\\PrescriptionRepository.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Repositories\\PrescriptionRepository.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAkwFIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-04T05:55:22.535Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "IPrescriptionRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Repositories\\Interfaces\\IPrescriptionRepository.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Repositories\\Interfaces\\IPrescriptionRepository.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Repositories\\Interfaces\\IPrescriptionRepository.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Repositories\\Interfaces\\IPrescriptionRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-04T05:55:05.213Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "IPrescriptionService.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Services\\Interfaces\\IPrescriptionService.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.API\\Services\\Interfaces\\IPrescriptionService.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.API\\Services\\Interfaces\\IPrescriptionService.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.API\\Services\\Interfaces\\IPrescriptionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-04T05:54:36.058Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "PrescriptionDTO.cs",
+              "DocumentMoniker": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.Models\\DTOs\\PrescriptionDTO.cs",
+              "RelativeDocumentMoniker": "src\\SmartHealthcare.Models\\DTOs\\PrescriptionDTO.cs",
+              "ToolTip": "C:\\Users\\Parth\\source\\repos\\Capgemini_CU_Sec3_.NetwithAzure_ParthAtal\\Week13_30-5thApr_2026\\SmartHealthCare_CaseStudy\\src\\SmartHealthcare.Models\\DTOs\\PrescriptionDTO.cs",
+              "RelativeToolTip": "src\\SmartHealthcare.Models\\DTOs\\PrescriptionDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-04T05:53:41.063Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

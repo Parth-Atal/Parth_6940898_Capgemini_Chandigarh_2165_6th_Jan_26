@@ -1,0 +1,190 @@
+@model List<Order>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orders</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef2f7, #dfe9f3);
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            padding: 15px 30px;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .navbar span {
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .navbar a {
+            color: #333;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            left: 0;
+            bottom: -4px;
+            background: #667eea;
+            transition: 0.3s;
+        }
+
+        .navbar a:hover::after {
+            width: 100%;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* BUTTON */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        /* TABLE CARD */
+        .table-card {
+            margin-top: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 16px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 16px;
+            color: #444;
+            font-size: 14px;
+        }
+
+        tr {
+            transition: 0.2s;
+        }
+
+        tr:hover {
+            background: #f4f6ff;
+        }
+
+        tr:not(:last-child) td {
+            border-bottom: 1px solid #eee;
+        }
+
+        /* EMPTY STATE */
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <span>🛍️ ECommerce Dashboard</span>
+        <div>
+            <a href="/Order/Index">Orders</a>
+            <a href="/Product/Index">Products</a>
+            <a href="/Auth/Logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>All Orders</h2>
+
+        <a href="/Order/Create" class="btn">+ Place New Order</a>
+
+        <div class="table-card">
+            <table>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User ID</th>
+                    <th>Order Date</th>
+                </tr>
+
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td>#@order.Id</td>
+                            <td>@order.UserId</td>
+                            <td>@order.OrderDate.ToString("dd MMM yyyy")</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" class="empty">No orders found</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

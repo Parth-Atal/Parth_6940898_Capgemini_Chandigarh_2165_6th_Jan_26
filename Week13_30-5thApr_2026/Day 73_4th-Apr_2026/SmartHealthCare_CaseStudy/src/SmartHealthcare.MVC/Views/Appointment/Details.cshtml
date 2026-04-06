@@ -1,0 +1,947 @@
+@model SmartHealthcare.Models.DTOs.AppointmentDTO
+
+@{
+    ViewData["Title"] = $"Appointment #{Model.Id}";
+    var prescription = ViewBag.Prescription as SmartHealthcare.Models.DTOs.PrescriptionDTO;
+    var bill = ViewBag.Bill as SmartHealthcare.Models.DTOs.BillDTO;
+    var role = ViewBag.Role as string;
+    var isDoctor = role == "Doctor";
+    var isAdmin = role == "Admin";
+    var isPatient = role == "Patient";
+    var isDoctorOrAdmin = isDoctor || isAdmin;
+}
+
+<div class="container-main">
+
+    @* ── Alerts ── *@
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert-box alert-success">
+            <i class="bi bi-check-circle-fill me-2"></i>@TempData["Success"]
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert-box alert-error">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>@TempData["Error"]
+        </div>
+    }
+
+    <a href="@Url.Action("Index")" class="back-btn">← Back to Appointments</a>
+
+    @* ── Header ── *@
+    <div class="header fade-in">
+        <div>
+            <h1>Appointment <span class="text-muted">#@Model.Id</span></h1>
+            <p class="text-muted small-text">
+                Booked on @Model.CreatedAt.ToString("dd MMM yyyy")
+            </p>
+        </div>
+        <div class="header-right">
+            <span class="status @Model.Status.ToLower()">@Model.Status</span>
+
+            @* ── Status change buttons — Doctor and Admin only ── *@
+            @if (isDoctorOrAdmin)
+            {
+                @if (Model.Status == "Pending")
+                {
+                    <form asp-controller="Appointment"
+                          asp-action="UpdateStatus"
+                          asp-route-id="@Model.Id"
+                          method="post"
+                          class="d-inline">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="status" value="Completed" />
+                        <button type="submit" class="btn-status btn-complete">
+                            ✓ Mark as Completed
+                        </button>
+                    </form>
+
+                    <form asp-controller="Appointment"
+                          asp-action="UpdateStatus"
+                          asp-route-id="@Model.Id"
+                          method="post"
+                          class="d-inline">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="status" value="Cancelled" />
+                        <button type="submit" class="btn-status btn-cancel">
+                            ✗ Cancel Appointment
+                        </button>
+                    </form>
+                }
+                else if (Model.Status == "Completed")
+                {
+                    <form asp-controller="Appointment"
+                          asp-action="UpdateStatus"
+                          asp-route-id="@Model.Id"
+                          method="post"
+                          class="d-inline">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="status" value="Pending" />
+                        <button type="submit" class="btn-status btn-revert">
+                            ↺ Revert to Pending
+                        </button>
+                    </form>
+                }
+            }
+        </div>
+    </div>
+
+    @* ── Appointment info card ── *@
+    <div class="card fade-in">
+        <div class="grid">
+            <div class="box">
+                <h4>Patient</h4>
+                <p>@Model.PatientName</p>
+            </div>
+            <div class="box">
+                <h4>Doctor</h4>
+                <p>Dr. @Model.DoctorName</p>
+            </div>
+            <div class="box">
+                <h4>Date &amp; Time</h4>
+                <p>@Model.AppointmentDate.ToString("dd MMM yyyy, HH:mm")</p>
+            </div>
+            <div class="box">
+                <h4>Booked On</h4>
+                <p>@Model.CreatedAt.ToString("dd MMM yyyy")</p>
+            </div>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(Model.Notes))
+        {
+            <div class="notes">
+                <h4>Notes</h4>
+                <p>@Model.Notes</p>
+            </div>
+        }
+    </div>
+
+    @* ── Prescription card ── *@
+    <div class="card fade-in">
+        <div class="section-header">
+            <h2>Prescription</h2>
+            <div class="section-actions">
+                @if (isDoctor)
+                {
+                    @if (prescription == null)
+                    {
+                        <a asp-controller="Prescription"
+                           asp-action="Create"
+                           asp-route-appointmentId="@Model.Id"
+                           class="btn-action btn-primary-action">
+                            + Write Prescription
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Prescription"
+                           asp-action="Edit"
+                           asp-route-id="@prescription.Id"
+                           class="btn-action btn-secondary-action">
+                            ✎ Edit
+                        </a>
+                    }
+                }
+                @if (prescription != null)
+                {
+                    <a asp-controller="Prescription"
+                       asp-action="Details"
+                       asp-route-id="@prescription.Id"
+                       class="btn-action btn-outline-action">
+                        View Full
+                    </a>
+                }
+            </div>
+        </div>
+
+        @if (prescription == null)
+        {
+            <div class="empty-state">
+                <span class="empty-icon">📋</span>
+                <p>No prescription has been written for this appointment yet.</p>
+                @if (isDoctor)
+                {
+                    <a asp-controller="Prescription"
+                       asp-action="Create"
+                       asp-route-appointmentId="@Model.Id"
+                       class="btn-action btn-primary-action mt-2">
+                        + Write Prescription Now
+                    </a>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="section">
+                <h4>Diagnosis</h4>
+                <p>@prescription.Diagnosis</p>
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(prescription.Notes))
+            {
+                <div class="section">
+                    <h4>Doctor's Notes</h4>
+                    <p class="muted">@prescription.Notes</p>
+                </div>
+            }
+
+            @if (prescription.Medicines?.Any() == true)
+            {
+                <div class="medicine-grid">
+                    @foreach (var med in prescription.Medicines)
+                    {
+                        <div class="med-card">
+                            <h5>@med.Name</h5>
+                            <p><b>Dosage:</b> @med.Dosage</p>
+                            <p><b>Duration:</b> @med.Duration</p>
+                            @if (!string.IsNullOrWhiteSpace(med.Instructions))
+                            {
+                                <p class="muted">@med.Instructions</p>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="muted" style="margin-top:12px;">No medicines listed.</p>
+            }
+        }
+    </div>
+
+    @* ── Billing card ── *@
+    <div class="card fade-in">
+        <div class="section-header">
+            <h2>Billing</h2>
+            <div class="section-actions">
+                @if (isDoctorOrAdmin && bill == null)
+                {
+                    <a asp-controller="Billing"
+                       asp-action="Generate"
+                       asp-route-appointmentId="@Model.Id"
+                       class="btn-action btn-primary-action">
+                        + Generate Bill
+                    </a>
+                }
+                @if (bill != null)
+                {
+                    <a asp-controller="Billing"
+                       asp-action="Details"
+                       asp-route-id="@bill.Id"
+                       class="btn-action btn-outline-action">
+                        View Full Bill
+                    </a>
+                }
+            </div>
+        </div>
+
+        @if (bill == null)
+        {
+            <div class="empty-state">
+                <span class="empty-icon">🧾</span>
+                <p>No bill has been generated for this appointment yet.</p>
+            </div>
+        }
+        else
+        {
+            @* ── Bill summary ── *@
+            <div class="bill-summary">
+                <div class="bill-row">
+                    <span class="bill-label">Consultation Fee</span>
+                    <span class="bill-value">₹@bill.ConsultationFee.ToString("N2")</span>
+                </div>
+                <div class="bill-row">
+                    <span class="bill-label">Medicine Charges</span>
+                    <span class="bill-value">₹@bill.MedicineCharges.ToString("N2")</span>
+                </div>
+                <div class="bill-row bill-total">
+                    <span class="bill-label">Total Amount</span>
+                    <span class="bill-value total-amount">₹@bill.TotalAmount.ToString("N2")</span>
+                </div>
+            </div>
+
+            @* ── Payment status badge ── *@
+            <div class="payment-status-row">
+                <span class="payment-badge @bill.PaymentStatus.ToLower()">
+                    @if (bill.PaymentStatus == "Paid")
+                    {
+                        <span>✓ Paid</span>
+                        if (bill.PaidAt.HasValue)
+                        {
+                            <span class="paid-date">on @bill.PaidAt.Value.ToString("dd MMM yyyy")</span>
+                        }
+                    }
+                    else if (bill.PaymentStatus == "Waived")
+                    {
+                        <span>⊘ Waived</span>
+                    }
+                    else
+                    {
+                        <span>⏳ Unpaid</span>
+                    }
+                </span>
+
+                @* ── PAY NOW button — patient sees this when bill is unpaid ── *@
+                @if (isPatient && bill.PaymentStatus == "Unpaid")
+                {
+                    <button type="button"
+                            class="btn-pay-now"
+                            data-bs-toggle="modal"
+                            data-bs-target="#payNowModal">
+                        💳 Pay Now  ₹@bill.TotalAmount.ToString("N2")
+                    </button>
+                }
+
+                @* ── Mark as Paid — doctor/admin ── *@
+                @if (isDoctorOrAdmin && bill.PaymentStatus == "Unpaid")
+                {
+                    <button type="button"
+                            class="btn-action btn-complete"
+                            data-bs-toggle="modal"
+                            data-bs-target="#markPaidModal">
+                        ✓ Mark as Paid
+                    </button>
+                }
+            </div>
+        }
+    </div>
+
+</div>
+
+@* ════════════════════ MODALS ════════════════════ *@
+
+@* Pay Now modal — for patients ── *@
+@if (bill != null && isPatient && bill.PaymentStatus == "Unpaid")
+{
+    <div class="modal fade" id="payNowModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius:16px; overflow:hidden;">
+                <div class="modal-header" style="background:linear-gradient(135deg,#6366f1,#06b6d4); color:white; border:none;">
+                    <h5 class="modal-title">
+                        💳 Complete Payment
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="bill-summary mb-4">
+                        <div class="bill-row">
+                            <span class="bill-label">Consultation Fee</span>
+                            <span class="bill-value">₹@bill.ConsultationFee.ToString("N2")</span>
+                        </div>
+                        <div class="bill-row">
+                            <span class="bill-label">Medicine Charges</span>
+                            <span class="bill-value">₹@bill.MedicineCharges.ToString("N2")</span>
+                        </div>
+                        <div class="bill-row bill-total">
+                            <span class="bill-label">Total Payable</span>
+                            <span class="bill-value total-amount">₹@bill.TotalAmount.ToString("N2")</span>
+                        </div>
+                    </div>
+
+                    <p class="text-muted small-text mb-3">
+                        Select your payment method to proceed:
+                    </p>
+
+                    @* Payment method selector *@
+                    <div class="payment-methods">
+                        <label class="payment-method active" id="method-upi">
+                            <input type="radio" name="paymentMethod" value="UPI" checked hidden />
+                            <span class="method-icon">📱</span>
+                            <span>UPI</span>
+                        </label>
+                        <label class="payment-method" id="method-card">
+                            <input type="radio" name="paymentMethod" value="Card" hidden />
+                            <span class="method-icon">💳</span>
+                            <span>Card</span>
+                        </label>
+                        <label class="payment-method" id="method-cash">
+                            <input type="radio" name="paymentMethod" value="Cash" hidden />
+                            <span class="method-icon">💵</span>
+                            <span>Cash</span>
+                        </label>
+                        <label class="payment-method" id="method-netbanking">
+                            <input type="radio" name="paymentMethod" value="NetBanking" hidden />
+                            <span class="method-icon">🏦</span>
+                            <span>Net Banking</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border:none; padding:16px 24px;">
+                    <button type="button"
+                            class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    @* This submits as "Mark as Paid" with the payment method as notes *@
+                    <form asp-controller="Billing"
+                          asp-action="MarkAsPaid"
+                          asp-route-id="@bill.Id"
+                          method="post"
+                          class="d-inline"
+                          id="payNowForm">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="notes" id="paymentMethodNotes" />
+                        <button type="submit"
+                                class="btn-pay-now px-4"
+                                id="confirmPayBtn">
+                            ✓ Confirm Payment  ₹@bill.TotalAmount.ToString("N2")
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@* Mark as Paid modal — for doctor/admin ── *@
+@if (bill != null && isDoctorOrAdmin && bill.PaymentStatus == "Unpaid")
+{
+    <div class="modal fade" id="markPaidModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius:16px; border: 2px solid #22c55e;">
+                <div class="modal-header" style="background:#22c55e; color:white; border:none;">
+                    <h5 class="modal-title">✓ Record Payment</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="mb-3">
+                        Mark <strong>Bill #@bill.Id</strong> as paid?
+                        Amount: <strong style="color:#166534;">₹@bill.TotalAmount.ToString("N2")</strong>
+                    </p>
+                    <label class="form-label small fw-semibold">Payment notes (optional)</label>
+                    <input type="text"
+                           class="form-control form-control-sm"
+                           id="adminPaidNotes"
+                           placeholder="e.g. Cash received at counter, UPI ref #..." />
+                </div>
+                <div class="modal-footer" style="border:none;">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    <form asp-controller="Billing"
+                          asp-action="MarkAsPaid"
+                          asp-route-id="@bill.Id"
+                          method="post"
+                          class="d-inline"
+                          id="adminMarkPaidForm">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="notes" id="adminPaidNotesHidden" />
+                        <button type="submit" class="btn btn-success px-4">
+                            ✓ Confirm Payment
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+
+    :root {
+        --bg: #f6f9ff;
+        --card: #ffffff;
+        --border: #e6ecff;
+        --text: #0f172a;
+        --muted: #64748b;
+        --cyan: #06b6d4;
+        --violet: #6366f1;
+        --green: #22c55e;
+        --red: #ef4444;
+        --yellow: #f59e0b;
+    }
+
+    body {
+        background: linear-gradient(135deg, #f8fbff, #eef3ff);
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
+    }
+
+    .container-main {
+        max-width: 900px;
+        margin: auto;
+        padding: 50px 40px;
+    }
+
+    .back-btn {
+        display: inline-block;
+        margin-bottom: 20px;
+        text-decoration: none;
+        color: var(--muted);
+        transition: .3s;
+    }
+
+        .back-btn:hover {
+            color: var(--violet);
+        }
+
+    .small-text {
+        font-size: 13px;
+    }
+
+    /* HEADER */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin: 0;
+        }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .text-muted {
+        color: var(--muted);
+    }
+
+    /* STATUS BADGE */
+    .status {
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+        .status.pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status.completed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status.cancelled {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+    /* STATUS ACTION BUTTONS */
+    .btn-status {
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: .2s;
+    }
+
+    .btn-complete {
+        background: #dcfce7;
+        color: #166534;
+        border: 1px solid #86efac;
+    }
+
+        .btn-complete:hover {
+            background: #bbf7d0;
+        }
+
+    .btn-cancel {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+    }
+
+        .btn-cancel:hover {
+            background: #fecaca;
+        }
+
+    .btn-revert {
+        background: #fef3c7;
+        color: #92400e;
+        border: 1px solid #fcd34d;
+    }
+
+        .btn-revert:hover {
+            background: #fde68a;
+        }
+
+    /* CARD */
+    .card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.05);
+        transition: .3s;
+    }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+    /* SECTION HEADER inside card */
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+    .section-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    /* ACTION BUTTONS */
+    .btn-action {
+        padding: 7px 14px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        border: none;
+        transition: .2s;
+        display: inline-block;
+    }
+
+    .btn-primary-action {
+        background: linear-gradient(135deg, var(--violet), var(--cyan));
+        color: white;
+    }
+
+        .btn-primary-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99,102,241,.3);
+            color: white;
+        }
+
+    .btn-secondary-action {
+        background: #fef3c7;
+        color: #92400e;
+        border: 1px solid #fcd34d;
+    }
+
+        .btn-secondary-action:hover {
+            background: #fde68a;
+        }
+
+    .btn-outline-action {
+        background: white;
+        color: var(--muted);
+        border: 1px solid var(--border);
+    }
+
+        .btn-outline-action:hover {
+            background: #f1f5ff;
+            color: var(--text);
+        }
+
+    /* GRID */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .box {
+        background: #f8fbff;
+        padding: 15px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+    }
+
+        .box h4 {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+    .notes {
+        margin-top: 20px;
+    }
+
+    /* SECTION */
+    .section {
+        margin-top: 15px;
+        padding: 15px;
+        border-radius: 12px;
+        background: #f1f5ff;
+        border: 1px solid var(--border);
+    }
+
+    /* MEDICINE */
+    .medicine-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .med-card {
+        padding: 15px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #ecfeff, #eef2ff);
+        border: 1px solid var(--border);
+        transition: .3s;
+    }
+
+        .med-card:hover {
+            transform: translateY(-3px) scale(1.02);
+        }
+
+    .muted {
+        color: var(--muted);
+    }
+
+    /* EMPTY STATE */
+    .empty-state {
+        text-align: center;
+        padding: 30px;
+        color: var(--muted);
+    }
+
+    .empty-icon {
+        font-size: 2.5rem;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .mt-2 {
+        margin-top: 8px;
+    }
+
+    /* BILL SUMMARY */
+    .bill-summary {
+        background: #f8fbff;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+
+    .bill-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 0;
+        font-size: 14px;
+        border-bottom: 1px solid var(--border);
+    }
+
+        .bill-row:last-child {
+            border-bottom: none;
+        }
+
+    .bill-total {
+        margin-top: 4px;
+        padding-top: 10px;
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .bill-label {
+        color: var(--muted);
+    }
+
+    .bill-value {
+        font-weight: 600;
+    }
+
+    .total-amount {
+        color: #166534;
+        font-size: 18px;
+    }
+
+    /* PAYMENT STATUS ROW */
+    .payment-status-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .payment-badge {
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+        .payment-badge.paid {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .payment-badge.unpaid {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .payment-badge.waived {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+    .paid-date {
+        font-weight: 400;
+        font-size: 12px;
+        opacity: .8;
+    }
+
+    /* PAY NOW BUTTON — stands out as the primary CTA for patients */
+    .btn-pay-now {
+        padding: 12px 24px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #6366f1, #06b6d4);
+        color: white;
+        font-weight: 700;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+        transition: .2s;
+        letter-spacing: .3px;
+    }
+
+        .btn-pay-now:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, .35);
+        }
+
+    /* PAYMENT METHODS */
+    .payment-methods {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .payment-method {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 16px;
+        border-radius: 12px;
+        border: 2px solid var(--border);
+        cursor: pointer;
+        transition: .2s;
+        font-weight: 600;
+        font-size: 14px;
+        background: white;
+    }
+
+        .payment-method:hover {
+            border-color: var(--violet);
+            background: #f5f3ff;
+        }
+
+        .payment-method.active {
+            border-color: var(--violet);
+            background: #eef2ff;
+            color: var(--violet);
+        }
+
+    .method-icon {
+        font-size: 20px;
+    }
+
+    /* ALERT BOXES */
+    .alert-box {
+        padding: 12px 16px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .alert-success {
+        background: #dcfce7;
+        color: #166534;
+        border: 1px solid #86efac;
+    }
+
+    .alert-error {
+        background: #fee2e2;
+        color: #991b1b;
+        border: 1px solid #fca5a5;
+    }
+
+    /* ANIMATION */
+    .fade-in {
+        animation: fadeIn .6s ease;
+    }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @@media (max-width: 600px) {
+        .grid, .medicine-grid, .payment-methods {
+            grid-template-columns: 1fr;
+        }
+
+        .container-main {
+            padding: 24px 16px;
+        }
+
+        .header {
+            flex-direction: column;
+        }
+    }
+
+</style>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            // ── Payment method pill selection
+            $('.payment-method').on('click', function () {
+                $('.payment-method').removeClass('active');
+                $(this).addClass('active');
+                $(this).find('input[type=radio]').prop('checked', true);
+            });
+
+            // ── Wire the selected payment method into the hidden notes field
+            // before the Pay Now form submits so it gets recorded on the bill
+            $('#payNowForm').on('submit', function () {
+                const method = $('input[name=paymentMethod]:checked').val() || 'Online';
+                $('#paymentMethodNotes').val('Paid via ' + method);
+                $('#confirmPayBtn')
+                    .prop('disabled', true)
+                    .text('Processing...');
+            });
+
+            // ── Wire admin mark paid notes
+            $('#adminMarkPaidForm').on('submit', function () {
+                $('#adminPaidNotesHidden').val($('#adminPaidNotes').val());
+            });
+
+        });
+    </script>
+}

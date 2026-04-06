@@ -1,0 +1,966 @@
+@model SmartHealthcare.Models.DTOs.RegisterDTO
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="scene">
+
+    
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+
+    
+    <div class="grid-overlay"></div>
+
+    <div class="layout">
+
+        
+        <div class="brand-panel">
+            <div class="brand-inner">
+
+                <div class="brand-badge">
+                    <span class="badge-dot"></span>
+                    New Account
+                </div>
+
+                <div class="brand-logo">
+                    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="60" height="60" rx="18" fill="url(#logoGrad)"/>
+                        <path d="M30 12v36M12 30h36" stroke="white" stroke-width="5" stroke-linecap="round"/>
+                        <circle cx="30" cy="30" r="10" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#00E5FF"/>
+                                <stop offset="1" stop-color="#7B2FF7"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+
+                <h1 class="brand-name">Join Smart<br>Healthcare</h1>
+                <p class="brand-tagline">Your health journey<br>starts here.</p>
+
+                <div class="perks">
+                    <div class="perk">
+                        <div class="perk-icon">
+                            <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 2v4M13 2v4M3 9h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <div class="perk-text">
+                            <span class="perk-title">Book Appointments</span>
+                            <span class="perk-desc">Schedule with 140+ qualified doctors</span>
+                        </div>
+                    </div>
+                    <div class="perk">
+                        <div class="perk-icon">
+                            <svg viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 10h4M10 8v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <div class="perk-text">
+                            <span class="perk-title">Medical History</span>
+                            <span class="perk-desc">Access your records anytime</span>
+                        </div>
+                    </div>
+                    <div class="perk">
+                        <div class="perk-icon">
+                            <svg viewBox="0 0 20 20" fill="none"><path d="M6 3h8l2 4H4L6 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M10 11v3M8.5 12.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <div class="perk-text">
+                            <span class="perk-title">Digital Prescriptions</span>
+                            <span class="perk-desc">Receive & store Rx instantly</span>
+                        </div>
+                    </div>
+                    <div class="perk">
+                        <div class="perk-icon">
+                            <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M10 7v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <div class="perk-text">
+                            <span class="perk-title">24/7 Access</span>
+                            <span class="perk-desc">Always online, always available</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        
+        <div class="form-panel">
+            <div class="form-scroll">
+                <div class="form-card">
+
+                    <div class="form-top">
+                        <p class="form-eyebrow">Get started</p>
+                        <h2 class="form-title">Create your<br>account</h2>
+                    </div>
+
+                    <form asp-action="Register" method="post" novalidate class="register-form">
+                        <div asp-validation-summary="All" class="error-box" role="alert"></div>
+
+                        
+                        <div class="field-group">
+                            <label asp-for="FullName" class="field-label">Full Name</label>
+                            <div class="field-wrap">
+                                <svg class="field-icon" viewBox="0 0 20 20" fill="none">
+                                    <circle cx="10" cy="7" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M3 17c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                                <input asp-for="FullName" class="field-input" placeholder="Your full name" autocomplete="name" />
+                            </div>
+                            <span asp-validation-for="FullName" class="field-error"></span>
+                        </div>
+
+                        
+                        <div class="field-group">
+                            <label asp-for="Email" class="field-label">Email Address</label>
+                            <div class="field-wrap">
+                                <svg class="field-icon" viewBox="0 0 20 20" fill="none">
+                                    <path d="M2.5 5.5L10 11l7.5-5.5M2.5 5.5h15v9h-15v-9z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                                </svg>
+                                <input asp-for="Email" class="field-input" type="email" placeholder="you@example.com" autocomplete="email" />
+                            </div>
+                            <span asp-validation-for="Email" class="field-error"></span>
+                        </div>
+
+                        
+                        <div class="field-group">
+                            <label asp-for="Password" class="field-label">Password</label>
+                            <div class="field-wrap">
+                                <svg class="field-icon" viewBox="0 0 20 20" fill="none">
+                                    <rect x="4" y="9" width="12" height="8" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                                    <path d="M7 9V6a3 3 0 016 0v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                                <input asp-for="Password" class="field-input" type="password" placeholder="Min. 6 characters" id="pwdInput" autocomplete="new-password" />
+                                <button type="button" class="toggle-pwd" onclick="togglePwd()" tabindex="-1" title="Toggle visibility">
+                                    <svg id="eyeIcon" viewBox="0 0 20 20" fill="none">
+                                        <path d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z" stroke="currentColor" stroke-width="1.5"/>
+                                        <circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            
+                            <div class="strength-wrap" id="strengthWrap">
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="strengthFill"></div>
+                                </div>
+                                <span class="strength-label" id="strengthLabel"></span>
+                            </div>
+
+                            <span asp-validation-for="Password" class="field-error"></span>
+                        </div>
+
+                        
+                        <div class="field-group">
+                            <label asp-for="Role" class="field-label">I am registering as</label>
+                            <div class="role-toggle">
+                                <label class="role-option" id="rolePatient">
+                                    <input type="radio" name="Role" value="Patient" checked onchange="setRole('Patient')" />
+                                    <span class="role-box">
+                                        <svg viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="7" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+                                            <path d="M3 17c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                        <span class="role-name">Patient</span>
+                                        <span class="role-desc">I need care</span>
+                                    </span>
+                                </label>
+                                <label class="role-option" id="roleDoctor">
+                                    <input type="radio" name="Role" value="Doctor" onchange="setRole('Doctor')" />
+                                    <span class="role-box">
+                                        <svg viewBox="0 0 20 20" fill="none">
+                                            <path d="M10 2a4 4 0 014 4v1a4 4 0 01-8 0V6a4 4 0 014-4z" stroke="currentColor" stroke-width="1.5"/>
+                                            <path d="M4 18v-1a6 6 0 0112 0v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                            <path d="M13 13h4M15 11v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                        <span class="role-name">Doctor</span>
+                                        <span class="role-desc">I provide care</span>
+                                    </span>
+                                </label>
+                            </div>
+                           
+                            <select asp-for="Role" id="roleSelect" style="display:none">
+                                <option value="Patient">Patient</option>
+                                <option value="Doctor">Doctor</option>
+                            </select>
+                            <span asp-validation-for="Role" class="field-error"></span>
+                        </div>
+
+                        
+                        <div class="terms-row">
+                            <label class="checkbox-label">
+                                <input type="checkbox" class="checkbox-input" id="terms" required />
+                                <span class="checkbox-custom"></span>
+                                <span>I agree to the <a href="#" class="terms-link">Terms &amp; Conditions</a></span>
+                            </label>
+                        </div>
+
+                        
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Create Account</span>
+                            <svg class="btn-arrow" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div class="btn-shine"></div>
+                        </button>
+
+                    </form>
+
+                    <div class="form-footer">
+                        Already have an account?
+                        <a asp-action="Login" class="login-link">
+                            Sign in
+                            <svg viewBox="0 0 16 16" fill="none">
+                                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                </div>
+
+                <p class="support-text">
+                    Issues? <a href="mailto:support@healthcare.com">support@healthcare.com</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+@@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --cyan:    #00E5FF;
+    --violet:  #7B2FF7;
+    --pink:    #FF3CAC;
+    --green:   #00FFA3;
+    --amber:   #FFB830;
+    --dark:    #080B14;
+    --dark2:   #0E1220;
+    --dark3:   #141929;
+    --glass:   rgba(255,255,255,0.045);
+    --glass2:  rgba(255,255,255,0.07);
+    --border:  rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.13);
+    --text:    #E8EEFF;
+    --muted:   rgba(200,210,255,0.55);
+    --font-display: 'Syne', sans-serif;
+    --font-body:    'DM Sans', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    background: var(--dark);
+    color: var(--text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+}
+
+
+.scene {
+    position: fixed; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 80% 50%, #0a0e1f 0%, var(--dark) 70%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+}
+.orb-1 {
+    width: 550px; height: 550px;
+    background: radial-gradient(circle, var(--cyan) 0%, transparent 70%);
+    top: -120px; right: -80px;
+    opacity: 0.35;
+    animation: driftA 20s ease-in-out infinite alternate;
+}
+.orb-2 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, var(--violet) 0%, transparent 70%);
+    bottom: -100px; left: -80px;
+    opacity: 0.45;
+    animation: driftB 24s ease-in-out infinite alternate;
+}
+.orb-3 {
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, var(--green) 0%, transparent 70%);
+    top: 15%; left: 35%;
+    opacity: 0.18;
+    animation: driftC 16s ease-in-out infinite alternate;
+}
+.orb-4 {
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, var(--pink) 0%, transparent 70%);
+    bottom: 20%; right: 25%;
+    opacity: 0.2;
+    animation: driftA 28s ease-in-out infinite alternate-reverse;
+}
+
+@@keyframes driftA {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(-60px, 70px) scale(1.12); }
+}
+@@keyframes driftB {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(55px, -65px) scale(1.1); }
+}
+@@keyframes driftC {
+    from { transform: translate(0,0) scale(0.9); }
+    to   { transform: translate(-40px, 50px) scale(1.2); }
+}
+
+
+.grid-overlay {
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+
+.layout {
+    position: relative; z-index: 10;
+    display: flex;
+    width: min(1060px, 95vw);
+    min-height: min(680px, 92vh);
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,0.04),
+        0 40px 100px rgba(0,0,0,0.7),
+        0 0 80px rgba(0,229,255,0.1);
+    animation: panelIn 0.9s cubic-bezier(0.22,1,0.36,1) both;
+}
+
+@@keyframes panelIn {
+    from { opacity: 0; transform: translateY(40px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+
+.brand-panel {
+    width: 42%;
+    background: linear-gradient(145deg, rgba(0,229,255,0.25) 0%, rgba(123,47,247,0.45) 100%);
+    border-right: 1px solid var(--border);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 3rem 2.5rem;
+}
+
+.brand-panel::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(circle at 70% 20%, rgba(0,229,255,0.2) 0%, transparent 50%),
+        radial-gradient(circle at 20% 80%, rgba(123,47,247,0.3) 0%, transparent 50%);
+}
+
+.brand-panel::after {
+    content: '';
+    position: absolute;
+    width: 460px; height: 460px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spinSlow 45s linear infinite reverse;
+}
+
+@@keyframes spinSlow {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.brand-inner {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column;
+    gap: 1.5rem;
+}
+
+.brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0,229,255,0.12);
+    border: 1px solid rgba(0,229,255,0.3);
+    color: var(--cyan);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.8rem;
+    border-radius: 100px;
+    width: fit-content;
+    animation: fadeUp 0.7s 0.3s both;
+}
+
+.badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
+    animation: blink 2s ease-in-out infinite;
+}
+
+@@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.brand-logo svg {
+    width: 56px; height: 56px;
+    filter: drop-shadow(0 0 20px rgba(0,229,255,0.5));
+    animation: fadeUp 0.7s 0.4s both;
+}
+
+.brand-name {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #fff;
+    animation: fadeUp 0.7s 0.5s both;
+}
+
+.brand-tagline {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted);
+    line-height: 1.6;
+    animation: fadeUp 0.7s 0.6s both;
+}
+
+
+.perks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    animation: fadeUp 0.7s 0.7s both;
+}
+
+.perk {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.7rem 0.85rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.perk:hover {
+    background: rgba(0,229,255,0.07);
+    border-color: rgba(0,229,255,0.2);
+}
+
+.perk-icon {
+    width: 34px; height: 34px;
+    flex-shrink: 0;
+    display: grid; place-items: center;
+    background: rgba(0,229,255,0.12);
+    border-radius: 9px;
+    color: var(--cyan);
+}
+.perk-icon svg { width: 16px; height: 16px; }
+
+.perk-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.perk-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.perk-desc {
+    font-size: 0.7rem;
+    color: var(--muted);
+}
+
+
+.form-panel {
+    flex: 1;
+    background: var(--dark2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.form-scroll {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 3rem;
+    gap: 1.25rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+}
+
+.form-scroll::-webkit-scrollbar { width: 4px; }
+.form-scroll::-webkit-scrollbar-track { background: transparent; }
+.form-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.form-card {
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    animation: fadeUp 0.7s 0.2s both;
+}
+
+.form-top { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.form-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cyan);
+}
+
+.form-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.field-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+}
+
+.field-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.field-icon {
+    position: absolute;
+    left: 1rem;
+    width: 17px; height: 17px;
+    color: rgba(200,210,255,0.35);
+    pointer-events: none;
+    transition: color 0.2s;
+}
+
+.field-wrap:focus-within .field-icon {
+    color: var(--cyan);
+}
+
+.field-input {
+    width: 100%;
+    background: var(--glass2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem 0.75rem 2.75rem;
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+    -webkit-appearance: none;
+}
+
+.field-input::placeholder { color: rgba(200,210,255,0.25); }
+
+.field-input:focus {
+    border-color: var(--cyan);
+    background: rgba(0,229,255,0.05);
+    box-shadow: 0 0 0 3px rgba(0,229,255,0.1), inset 0 0 20px rgba(0,229,255,0.04);
+}
+
+.toggle-pwd {
+    position: absolute; right: 0.9rem;
+    background: none; border: none; cursor: pointer;
+    color: rgba(200,210,255,0.3);
+    display: flex; align-items: center;
+    padding: 0.2rem;
+    transition: color 0.2s;
+}
+.toggle-pwd:hover { color: var(--cyan); }
+.toggle-pwd svg { width: 17px; height: 17px; }
+
+
+.strength-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: -0.1rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.strength-wrap.visible { opacity: 1; }
+
+.strength-bar {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    transition: width 0.4s ease, background 0.4s ease;
+}
+
+.strength-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    min-width: 40px;
+}
+
+.field-error {
+    font-size: 0.75rem;
+    color: #FF6B8A;
+    display: block;
+}
+
+.error-box {
+    background: rgba(255,60,100,0.1);
+    border: 1px solid rgba(255,60,100,0.3);
+    border-radius: 10px;
+    color: #FF8FA0;
+    font-size: 0.82rem;
+    padding: 0.65rem 0.9rem;
+}
+.error-box:empty { display: none; }
+
+
+.role-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+}
+
+.role-option { cursor: pointer; }
+.role-option input { display: none; }
+
+.role-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.9rem 0.75rem;
+    background: var(--glass2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    text-align: center;
+    transition: all 0.25s;
+}
+
+.role-box svg {
+    width: 22px; height: 22px;
+    color: rgba(200,210,255,0.4);
+    transition: color 0.25s;
+}
+
+.role-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    transition: color 0.25s;
+}
+
+.role-desc {
+    font-size: 0.68rem;
+    color: rgba(200,210,255,0.3);
+}
+
+.role-option input:checked + .role-box {
+    background: rgba(0,229,255,0.1);
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 1px rgba(0,229,255,0.15), 0 4px 20px rgba(0,229,255,0.1);
+}
+
+.role-option input:checked + .role-box svg { color: var(--cyan); }
+.role-option input:checked + .role-box .role-name { color: var(--cyan); }
+
+.role-option:hover .role-box {
+    border-color: rgba(0,229,255,0.3);
+    background: rgba(0,229,255,0.06);
+}
+
+
+.terms-row { margin-top: -0.1rem; }
+
+.checkbox-label {
+    display: flex; align-items: center;
+    gap: 0.55rem;
+    cursor: pointer;
+    font-size: 0.82rem;
+    color: var(--muted);
+    user-select: none;
+}
+
+.checkbox-input { display: none; }
+
+.checkbox-custom {
+    width: 17px; height: 17px;
+    border: 1.5px solid var(--border2);
+    border-radius: 5px;
+    background: var(--glass);
+    display: grid; place-items: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.checkbox-input:checked + .checkbox-custom {
+    background: var(--cyan);
+    border-color: var(--cyan);
+    box-shadow: 0 0 10px rgba(0,229,255,0.4);
+}
+
+.checkbox-input:checked + .checkbox-custom::after {
+    content: '';
+    width: 4px; height: 7px;
+    border-right: 2px solid #000;
+    border-bottom: 2px solid #000;
+    transform: rotate(45deg) translate(-1px, -1px);
+    display: block;
+}
+
+.terms-link {
+    color: var(--cyan);
+    text-decoration: none;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+.terms-link:hover { opacity: 1; }
+
+
+.submit-btn {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.85rem 1.5rem;
+    background: linear-gradient(135deg, #00b4cc 0%, var(--cyan) 40%, var(--green) 100%);
+    background-size: 200% 200%;
+    border: none;
+    border-radius: 12px;
+    color: #080B14;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(0,229,255,0.3), 0 2px 8px rgba(0,0,0,0.3);
+    margin-top: 0.3rem;
+    animation: gradientShift 4s ease infinite;
+}
+
+@@keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 40px rgba(0,229,255,0.45), 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.submit-btn:active { transform: translateY(0); }
+
+.btn-text { position: relative; z-index: 1; }
+
+.btn-arrow {
+    width: 18px; height: 18px;
+    position: relative; z-index: 1;
+    transition: transform 0.3s;
+}
+
+.submit-btn:hover .btn-arrow { transform: translateX(4px); }
+
+.btn-shine {
+    position: absolute;
+    top: -100%; left: -100%;
+    width: 60%; height: 300%;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.25) 50%, transparent 60%);
+    transform: rotate(25deg);
+    transition: left 0.5s ease, top 0.5s ease;
+}
+
+.submit-btn:hover .btn-shine { left: 150%; top: -100%; }
+
+
+.form-footer {
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--muted);
+    padding-top: 0.25rem;
+}
+
+.login-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--cyan);
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 0.3rem;
+    transition: gap 0.2s;
+}
+.login-link svg { width: 14px; height: 14px; }
+.login-link:hover { gap: 0.5rem; }
+
+
+.support-text {
+    font-size: 0.73rem;
+    color: rgba(200,210,255,0.3);
+}
+.support-text a {
+    color: rgba(200,210,255,0.45);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.support-text a:hover { color: var(--cyan); }
+
+
+@@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+@@media (max-width: 768px) {
+    html, body { overflow: auto; }
+    .scene { position: relative; min-height: 100vh; }
+    .layout {
+        flex-direction: column;
+        min-height: auto;
+        border-radius: 20px;
+        margin: 1.5rem;
+        width: calc(100vw - 3rem);
+    }
+    .brand-panel {
+        width: 100%;
+        padding: 2rem 2rem 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+    .brand-panel::after { display: none; }
+    .brand-name { font-size: 2rem; }
+    .perks { display: none; }
+    .form-scroll { padding: 2rem 1.75rem; }
+}
+
+@@media (max-width: 480px) {
+    .layout { margin: 1rem; width: calc(100vw - 2rem); border-radius: 16px; }
+    .brand-panel { padding: 1.5rem; }
+    .form-scroll { padding: 1.5rem; }
+    .form-title { font-size: 1.65rem; }
+    .role-toggle { grid-template-columns: 1fr 1fr; }
+}
+</style>
+
+<script>
+function togglePwd() {
+    const input = document.getElementById('pwdInput');
+    const icon = document.getElementById('eyeIcon');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.innerHTML = `<path d="M3 3l14 14M8.5 8.7A3 3 0 0110 7a3 3 0 013 3 3 3 0 01-.3 1.3M6.1 6.2C4.3 7.2 2.9 8.9 2 10c1.5 2.4 4.5 6 8 6a7.7 7.7 0 004.1-1.2M10 4c3.5 0 6.5 3.6 8 6-.6 1-1.6 2.3-2.9 3.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>`;
+    } else {
+        input.type = 'password';
+        icon.innerHTML = `<path d="M2 10s3-6 8-6 8 6 8 6-3 6-8 6-8-6-8-6z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.5"/>`;
+    }
+}
+
+function setRole(value) {
+    document.getElementById('roleSelect').value = value;
+}
+
+
+document.getElementById('pwdInput').addEventListener('input', function () {
+    const val = this.value;
+    const wrap = document.getElementById('strengthWrap');
+    const fill = document.getElementById('strengthFill');
+    const label = document.getElementById('strengthLabel');
+
+    if (!val) {
+        wrap.classList.remove('visible');
+        return;
+    }
+
+    wrap.classList.add('visible');
+
+    let score = 0;
+    if (val.length >= 6) score++;
+    if (val.length >= 10) score++;
+    if (/[A-Z]/.test(val)) score++;
+    if (/[0-9]/.test(val)) score++;
+    if (/[^A-Za-z0-9]/.test(val)) score++;
+
+    const levels = [
+        { pct: '20%', color: '#FF4757', text: 'Weak' },
+        { pct: '40%', color: '#FF6B35', text: 'Fair' },
+        { pct: '60%', color: '#FFB830', text: 'Good' },
+        { pct: '80%', color: '#00E5FF', text: 'Strong' },
+        { pct: '100%', color: '#00FFA3', text: 'Great' },
+    ];
+
+    const level = levels[Math.min(score - 1, 4)];
+    fill.style.width = level.pct;
+    fill.style.background = level.color;
+    label.textContent = level.text;
+    label.style.color = level.color;
+});
+</script>

@@ -1,0 +1,462 @@
+﻿@model SmartHealthcare.Models.DTOs.UpdatePrescriptionDTO
+
+@{
+    ViewData["Title"] = "Edit Prescription";
+    var appointment = ViewBag.Appointment as SmartHealthcare.Models.DTOs.AppointmentDTO;
+    var prescriptionId = (int)ViewBag.PrescriptionId;
+}
+
+<div class="container py-4">
+
+    @* ── Page header ── *@
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <div>
+            <h2 class="mb-1 fw-semibold text-warning">
+                <i class="bi bi-pencil-square me-2"></i>Edit Prescription
+            </h2>
+            @if (appointment != null)
+            {
+                <p class="text-muted mb-0">
+                    Appointment #@appointment.Id &mdash;
+                    Patient: <strong>@appointment.PatientName</strong> &mdash;
+                    Date: <strong>@appointment.AppointmentDate.ToString("dd MMM yyyy, hh:mm tt")</strong>
+                </p>
+            }
+            <div class="mt-2">
+                <span class="badge bg-warning text-dark">
+                    <i class="bi bi-pencil me-1"></i>Editing Prescription #@prescriptionId
+                </span>
+                <span class="badge bg-info text-dark ms-2">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Changes will replace all existing medicine entries
+                </span>
+            </div>
+        </div>
+        <div class="d-flex gap-2">
+            <a asp-controller="Prescription" asp-action="Details" asp-route-id="@prescriptionId"
+               class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left me-1"></i>Back to Prescription
+            </a>
+        </div>
+    </div>
+
+    @* ── Alert messages ── *@
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>@TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            Please fix the validation errors below before saving.
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @* ── Info banner explaining the update behaviour ── *@
+    <div class="alert alert-warning d-flex align-items-start gap-3 mb-4" role="alert">
+        <i class="bi bi-exclamation-triangle-fill fs-5 mt-1 flex-shrink-0"></i>
+        <div>
+            <strong>Important:</strong> When you save this form, the existing list of medicines
+            will be completely replaced with whatever you have entered below. Make sure all
+            medicines you want to keep are still listed before saving.
+        </div>
+    </div>
+
+    <form asp-action="Edit"
+          asp-controller="Prescription"
+          asp-route-id="@prescriptionId"
+          method="post"
+          id="editPrescriptionForm">
+        @Html.AntiForgeryToken()
+
+        <div class="row g-4">
+
+            @* ── Left column: Diagnosis & Notes ── *@
+            <div class="col-lg-5">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-warning text-dark py-3">
+                        <h5 class="mb-0">
+                            <i class="bi bi-clipboard2-pulse me-2"></i>Clinical Details
+                        </h5>
+                    </div>
+                    <div class="card-body p-4">
+
+                        <div class="mb-4">
+                            <label asp-for="Diagnosis" class="form-label fw-semibold">
+                                Diagnosis <span class="text-danger">*</span>
+                            </label>
+                            <textarea asp-for="Diagnosis"
+                                      class="form-control"
+                                      rows="5"
+                                      placeholder="Enter the patient's diagnosis in detail..."
+                                      id="diagnosisField"></textarea>
+                            <span asp-validation-for="Diagnosis" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-2">
+                            <label asp-for="Notes" class="form-label fw-semibold">
+                                Additional Notes
+                                <span class="text-muted fw-normal">(optional)</span>
+                            </label>
+                            <textarea asp-for="Notes"
+                                      class="form-control"
+                                      rows="4"
+                                      placeholder="Any follow-up instructions, lifestyle advice, referrals..."></textarea>
+                            <span asp-validation-for="Notes" class="text-danger small"></span>
+                        </div>
+
+                        @* ── Danger zone: delete prescription ── *@
+                        <div class="mt-4 pt-3 border-top">
+                            <p class="text-muted small mb-2">
+                                <i class="bi bi-shield-exclamation me-1"></i>
+                                <strong>Danger Zone</strong> — this action cannot be undone.
+                            </p>
+                            <button type="button"
+                                    class="btn btn-outline-danger btn-sm w-100"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                <i class="bi bi-trash3 me-2"></i>Delete This Prescription
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            @* ── Right column: Medicines ── *@
+            <div class="col-lg-7">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-success text-white py-3 d-flex align-items-center justify-content-between">
+                        <h5 class="mb-0">
+                            <i class="bi bi-capsule me-2"></i>Prescribed Medicines
+                        </h5>
+                        <button type="button" class="btn btn-light btn-sm fw-semibold" id="addMedicineBtn">
+                            <i class="bi bi-plus-circle me-1"></i>Add Medicine
+                        </button>
+                    </div>
+                    <div class="card-body p-4">
+
+                        <p class="text-muted small mb-3">
+                            These are the current medicines on this prescription. You can add new ones,
+                            edit existing entries, or remove any that are no longer needed.
+                        </p>
+
+                        @* ── Medicine rows container ── *@
+                        <div id="medicinesContainer">
+                            @for (int i = 0; i < Model.Medicines.Count; i++)
+                            {
+                                <div class="medicine-row card border mb-3" data-index="@i">
+                                    <div class="card-body p-3">
+
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <span class="fw-semibold text-success medicine-label">
+                                                <i class="bi bi-capsule-pill me-1"></i>Medicine @(i + 1)
+                                            </span>
+                                            <button type="button"
+                                                    class="btn btn-outline-danger btn-sm remove-medicine-btn"
+                                                    title="Remove this medicine">
+                                                <i class="bi bi-trash3"></i>
+                                            </button>
+                                        </div>
+
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label class="form-label small fw-semibold">
+                                                    Medicine Name <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text"
+                                                       name="Medicines[@i].Name"
+                                                       value="@Model.Medicines[i].Name"
+                                                       class="form-control form-control-sm medicine-name"
+                                                       placeholder="e.g. Paracetamol 500mg"
+                                                       required />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label small fw-semibold">
+                                                    Dosage <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text"
+                                                       name="Medicines[@i].Dosage"
+                                                       value="@Model.Medicines[i].Dosage"
+                                                       class="form-control form-control-sm"
+                                                       placeholder="e.g. 1 tablet twice daily"
+                                                       required />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label small fw-semibold">
+                                                    Duration <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text"
+                                                       name="Medicines[@i].Duration"
+                                                       value="@Model.Medicines[i].Duration"
+                                                       class="form-control form-control-sm"
+                                                       placeholder="e.g. 5 days"
+                                                       required />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label small fw-semibold">
+                                                    Instructions
+                                                    <span class="text-muted fw-normal">(optional)</span>
+                                                </label>
+                                                <input type="text"
+                                                       name="Medicines[@i].Instructions"
+                                                       value="@Model.Medicines[i].Instructions"
+                                                       class="form-control form-control-sm"
+                                                       placeholder="e.g. Take after meals" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        @* ── Empty state ── *@
+                        <div id="noMedicinesMessage" class="text-center text-muted py-4" style="display:none;">
+                            <i class="bi bi-capsule fs-2 d-block mb-2 text-secondary"></i>
+                            All medicines removed. Add at least one or save without medicines.
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        @* ── Form action buttons ── *@
+        <div class="d-flex justify-content-end gap-3 mt-4">
+            <a asp-controller="Prescription"
+               asp-action="Details"
+               asp-route-id="@prescriptionId"
+               class="btn btn-outline-secondary btn-lg px-4">
+                <i class="bi bi-x-circle me-2"></i>Cancel
+            </a>
+            <button type="submit" class="btn btn-warning btn-lg px-5 text-dark fw-semibold" id="submitBtn">
+                <i class="bi bi-check2-circle me-2"></i>Save Changes
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+@* ── Delete confirmation modal ── *@
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-danger">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>Delete Prescription
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-2">
+                    Are you sure you want to permanently delete
+                    <strong>Prescription #@prescriptionId</strong>?
+                </p>
+                <p class="text-danger small mb-0">
+                    <i class="bi bi-exclamation-circle me-1"></i>
+                    This will also remove all medicines listed under this prescription.
+                    This action <strong>cannot be undone</strong>.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    <i class="bi bi-x me-1"></i>Cancel
+                </button>
+                @* This is a separate mini-form just for the delete action *@
+                <form asp-action="Delete"
+                      asp-controller="Prescription"
+                      asp-route-id="@prescriptionId"
+                      method="post"
+                      class="d-inline">
+                    @Html.AntiForgeryToken()
+                    @if (appointment != null)
+                    {
+                        <input type="hidden" name="appointmentId" value="@appointment.Id" />
+                    }
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash3 me-2"></i>Yes, Delete Prescription
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ── Hidden template for dynamically added medicine rows ── *@
+<template id="medicineRowTemplate">
+    <div class="medicine-row card border mb-3" data-index="__INDEX__">
+        <div class="card-body p-3">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="fw-semibold text-success medicine-label">
+                    <i class="bi bi-capsule-pill me-1"></i>Medicine __NUMBER__
+                </span>
+                <button type="button"
+                        class="btn btn-outline-danger btn-sm remove-medicine-btn"
+                        title="Remove this medicine">
+                    <i class="bi bi-trash3"></i>
+                </button>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold">
+                        Medicine Name <span class="text-danger">*</span>
+                    </label>
+                    <input type="text"
+                           name="Medicines[__INDEX__].Name"
+                           class="form-control form-control-sm medicine-name"
+                           placeholder="e.g. Paracetamol 500mg"
+                           required />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold">
+                        Dosage <span class="text-danger">*</span>
+                    </label>
+                    <input type="text"
+                           name="Medicines[__INDEX__].Dosage"
+                           class="form-control form-control-sm"
+                           placeholder="e.g. 1 tablet twice daily"
+                           required />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold">
+                        Duration <span class="text-danger">*</span>
+                    </label>
+                    <input type="text"
+                           name="Medicines[__INDEX__].Duration"
+                           class="form-control form-control-sm"
+                           placeholder="e.g. 5 days"
+                           required />
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label small fw-semibold">
+                        Instructions
+                        <span class="text-muted fw-normal">(optional)</span>
+                    </label>
+                    <input type="text"
+                           name="Medicines[__INDEX__].Instructions"
+                           class="form-control form-control-sm"
+                           placeholder="e.g. Take after meals" />
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        $(document).ready(function () {
+
+            // Start nextIndex from however many medicines were pre-loaded
+            // so new rows always get a fresh unique index and never collide
+            // with the pre-populated Razor-rendered rows
+            let nextIndex = @Model.Medicines.Count;
+
+            function reNumberMedicineLabels() {
+                $('#medicinesContainer .medicine-row').each(function (i) {
+                    $(this).find('.medicine-label').html(
+                        '<i class="bi bi-capsule-pill me-1"></i>Medicine ' + (i + 1)
+                    );
+                });
+            }
+
+            function updateEmptyState() {
+                const count = $('#medicinesContainer .medicine-row').length;
+                if (count === 0) {
+                    $('#noMedicinesMessage').show();
+                } else {
+                    $('#noMedicinesMessage').hide();
+                }
+            }
+
+            // ── Initial state
+            reNumberMedicineLabels();
+            updateEmptyState();
+
+            // ── Add Medicine button
+            $('#addMedicineBtn').on('click', function () {
+                const template = document.getElementById('medicineRowTemplate');
+                let html = template.innerHTML;
+
+                html = html.replaceAll('__INDEX__', nextIndex);
+                html = html.replaceAll('__NUMBER__', nextIndex + 1);
+
+                $('#medicinesContainer').append(html);
+                nextIndex++;
+
+                reNumberMedicineLabels();
+                updateEmptyState();
+
+                const newRow = $('#medicinesContainer .medicine-row').last();
+                newRow[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                newRow.find('.medicine-name').focus();
+            });
+
+            // ── Remove Medicine button (delegated)
+            $('#medicinesContainer').on('click', '.remove-medicine-btn', function () {
+                const row = $(this).closest('.medicine-row');
+                row.fadeOut(200, function () {
+                    row.remove();
+                    reNumberMedicineLabels();
+                    updateEmptyState();
+                });
+            });
+
+            // ── Warn before leaving if there are unsaved changes
+            let formChanged = false;
+
+            $('#editPrescriptionForm input, #editPrescriptionForm textarea').on('input change', function () {
+                formChanged = true;
+            });
+
+            $(window).on('beforeunload', function () {
+                if (formChanged) {
+                    return 'You have unsaved changes. Are you sure you want to leave?';
+                }
+            });
+
+            // Clear the dirty flag on intentional submit so the beforeunload doesn't fire
+            $('#editPrescriptionForm').on('submit', function () {
+                formChanged = false;
+
+                $('#submitBtn')
+                    .prop('disabled', true)
+                    .html('<span class="spinner-border spinner-border-sm me-2"></span>Saving...');
+            });
+
+            // ── Diagnosis character counter
+            const diagnosisField = $('#diagnosisField');
+            const maxLength = 500;
+
+            diagnosisField.after(
+                '<div class="d-flex justify-content-between mt-1">' +
+                    '<span class="text-danger small" id="diagnosisValidation"></span>' +
+                    '<span class="text-muted small" id="diagnosisCounter">0 / ' + maxLength + '</span>' +
+                '</div>'
+            );
+
+            diagnosisField.on('input', function () {
+                const length = $(this).val().length;
+                $('#diagnosisCounter').text(length + ' / ' + maxLength);
+                if (length > maxLength) {
+                    $('#diagnosisCounter').addClass('text-danger').removeClass('text-muted');
+                } else {
+                    $('#diagnosisCounter').addClass('text-muted').removeClass('text-danger');
+                }
+            });
+
+            diagnosisField.trigger('input');
+
+        });
+    </script>
+}

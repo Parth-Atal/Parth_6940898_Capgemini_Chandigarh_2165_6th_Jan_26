@@ -1,0 +1,79 @@
+@* ── Prescription section inside Appointment Details ── *@
+@{
+    var prescription = ViewBag.Prescription as SmartHealthcare.Models.DTOs.PrescriptionDTO;
+    var apptRole = ViewBag.Role as string;
+}
+
+<div class="card shadow-sm border-0 mt-4">
+    <div class="card-header bg-primary text-white py-3 d-flex align-items-center justify-content-between">
+        <h5 class="mb-0">
+            <i class="bi bi-file-earmark-medical-fill me-2"></i>Prescription
+        </h5>
+        @if (apptRole == "Doctor")
+        {
+            @if (prescription == null)
+            {
+                <a asp-controller="Prescription"
+                   asp-action="Create"
+                   asp-route-appointmentId="@Model.Id"
+                   class="btn btn-light btn-sm fw-semibold">
+                    <i class="bi bi-plus-circle me-1"></i>Write Prescription
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Prescription"
+                   asp-action="Edit"
+                   asp-route-id="@prescription.Id"
+                   class="btn btn-warning btn-sm fw-semibold text-dark">
+                    <i class="bi bi-pencil me-1"></i>Edit Prescription
+                </a>
+            }
+        }
+    </div>
+    <div class="card-body p-4">
+        @if (prescription == null)
+        {
+            <div class="text-center text-muted py-4">
+                <i class="bi bi-file-earmark-x fs-1 d-block mb-3 text-secondary"></i>
+                <p class="mb-0">No prescription has been written for this appointment yet.</p>
+                @if (apptRole == "Doctor")
+                {
+                    <a asp-controller="Prescription"
+                       asp-action="Create"
+                       asp-route-appointmentId="@Model.Id"
+                       class="btn btn-outline-primary btn-sm mt-3">
+                        <i class="bi bi-plus-circle me-1"></i>Write Prescription Now
+                    </a>
+                }
+            </div>
+        }
+        else
+        {
+            <dl class="row mb-3">
+                <dt class="col-sm-3 text-muted">Diagnosis</dt>
+                <dd class="col-sm-9">@prescription.Diagnosis</dd>
+
+                @if (!string.IsNullOrWhiteSpace(prescription.Notes))
+                {
+                    <dt class="col-sm-3 text-muted">Notes</dt>
+                    <dd class="col-sm-9">@prescription.Notes</dd>
+                }
+
+                <dt class="col-sm-3 text-muted">Medicines</dt>
+                <dd class="col-sm-9">
+                    <span class="badge bg-success rounded-pill">
+                        @prescription.Medicines.Count medicine@(prescription.Medicines.Count == 1 ? "" : "s")
+                    </span>
+                </dd>
+            </dl>
+
+            <a asp-controller="Prescription"
+               asp-action="Details"
+               asp-route-id="@prescription.Id"
+               class="btn btn-outline-primary btn-sm">
+                <i class="bi bi-eye me-1"></i>View Full Prescription
+            </a>
+        }
+    </div>
+</div>

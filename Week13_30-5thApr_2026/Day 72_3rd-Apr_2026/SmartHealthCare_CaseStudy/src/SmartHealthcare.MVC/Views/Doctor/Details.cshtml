@@ -1,0 +1,260 @@
+@model SmartHealthcare.Models.DTOs.DoctorDTO
+@{
+    ViewData["Title"] = "Doctor Profile";
+}
+
+<div class="container-main">
+
+    <a href="@Url.Action("Index")" class="back-btn">← Back</a>
+
+    <div class="hero">
+
+        <div class="avatar">
+            @Model.FullName.Substring(0,1)
+        </div>
+
+        <div class="hero-info">
+            <h1>Dr. @Model.FullName</h1>
+            <p>@string.Join(" • ", Model.Specializations ?? new List<string>())</p>
+        </div>
+
+        <div class="status @(Model.IsAvailable ? "available" : "unavailable")">
+            @(Model.IsAvailable ? "Available" : "Unavailable")
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <div class="grid">
+
+            <div class="section">
+                <h3>Contact</h3>
+                <p>Email: <span>@Model.Email</span></p>
+                <p>Phone: <span>@Model.Phone</span></p>
+                <p>License: <span>@Model.LicenseNumber</span></p>
+            </div>
+
+            <div class="section">
+                <h3>Professional</h3>
+                <p>Experience: <span>@Model.YearsOfExperience yrs</span></p>
+                <p>Fee: <span>₹@Model.ConsultationFee</span></p>
+
+                <div class="chips">
+                    @foreach (var spec in (Model.Specializations ?? new List<string>()))
+                    {
+                        <span class="chip">@spec</span>
+                    }
+                </div>
+            </div>
+
+        </div>
+
+        <div class="about">
+            <h3>About</h3>
+            <p>
+                Dr. @Model.FullName has @Model.YearsOfExperience years of experience 
+                in @(Model.Specializations?.Count > 0 ? string.Join(", ", Model.Specializations) : "multiple medical domains").
+                Dedicated to providing high-quality patient care.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="actions">
+
+        @if (Context.Session.GetString("Role") == "Doctor")
+        {
+            <a asp-controller="Doctor" asp-action="Edit" class="btn-secondary">Edit Profile</a>
+        }
+
+        @if (Model.IsAvailable)
+        {
+            <a asp-controller="Appointment" asp-action="Create" class="btn-primary">Book Appointment</a>
+        }
+
+    </div>
+
+</div>
+
+<style>
+
+:root{
+    --bg:#f6f9ff;
+    --card:#ffffff;
+    --border:#e6ecff;
+
+    --text:#0f172a;
+    --muted:#64748b;
+
+    --cyan:#06b6d4;
+    --violet:#6366f1;
+}
+
+body{
+    background:linear-gradient(135deg,#f8fbff,#eef3ff);
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+}
+
+.container-main{
+    max-width:900px;
+    margin:auto;
+    padding:50px 40px;
+}
+
+/* BACK */
+.back-btn{
+    color:var(--muted);
+    text-decoration:none;
+    font-size:14px;
+}
+
+/* HERO */
+.hero{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.avatar{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--violet),var(--cyan));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    font-weight:700;
+    color:white;
+}
+
+.hero-info h1{
+    margin:0;
+    font-size:1.8rem;
+    font-weight:800;
+}
+
+.hero-info p{
+    color:var(--muted);
+}
+
+.status{
+    margin-left:auto;
+    padding:8px 16px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.available{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.unavailable{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+/* CARD */
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+/* SECTION */
+.section{
+    background:#f8fbff;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid var(--border);
+}
+
+.section h3{
+    margin-bottom:10px;
+}
+
+.section p{
+    margin:6px 0;
+}
+
+.section span{
+    color:var(--violet);
+    font-weight:500;
+}
+
+/* CHIPS */
+.chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+}
+
+.chip{
+    padding:6px 12px;
+    border-radius:20px;
+    background:#eef2ff;
+    border:1px solid var(--border);
+    color:var(--violet);
+    font-size:13px;
+}
+
+/* ABOUT */
+.about{
+    margin-top:20px;
+}
+
+/* BUTTONS */
+.actions{
+    display:flex;
+    gap:10px;
+}
+
+.btn-primary{
+    flex:1;
+    padding:12px;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--violet),var(--cyan));
+    color:white;
+    text-align:center;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(99,102,241,.3);
+}
+
+.btn-secondary{
+    flex:1;
+    padding:12px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    text-align:center;
+    color:var(--muted);
+    text-decoration:none;
+    background:white;
+}
+
+.btn-secondary:hover{
+    background:#f1f5ff;
+}
+
+</style>

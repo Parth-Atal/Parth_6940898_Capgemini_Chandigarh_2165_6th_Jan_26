@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learnmore – My Learning</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-brand"><a href="courses.html">🎓 Learnmore</a></div>
+      <div class="nav-links">
+        <a href="courses.html">Courses</a>
+        <a href="my-enrollments.html" class="active">My Learning</a>
+      </div>
+      <div class="nav-user">
+        <span id="nav-username"></span>
+        <span id="nav-role-badge" class="role-badge"></span>
+        <button onclick="logout()" class="btn btn-sm btn-outline">
+          Logout
+        </button>
+      </div>
+    </nav>
+
+    <main class="container">
+      <div class="page-header">
+        <h2>📚 My Learning</h2>
+        <p>Track your enrolled courses</p>
+      </div>
+
+      <div id="alert-box" class="alert hidden"></div>
+
+      <div id="loading-spinner" class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading your courses…</p>
+      </div>
+
+      <div id="enrollments-grid" class="courses-grid hidden"></div>
+
+      <div id="empty-state" class="empty-state hidden">
+        <div class="empty-icon">🎯</div>
+        <h3>No enrollments yet</h3>
+        <p>Start learning today!</p>
+        <a href="courses.html" class="btn btn-primary">Browse Courses</a>
+      </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+      const userInfo = requireAuth();
+      document.getElementById("nav-username").textContent = userInfo.username;
+      document.getElementById("nav-role-badge").textContent = userInfo.role;
+      document.getElementById("nav-role-badge").className =
+        `role-badge role-${userInfo.role.toLowerCase()}`;
+
+      async function loadEnrollments() {
+        try {
+          const enrollments = await apiGet("/api/v1/enroll/my");
+          document.getElementById("loading-spinner").classList.add("hidden");
+
+          if (!enrollments.length) {
+            document.getElementById("empty-state").classList.remove("hidden");
+            return;
+          }
+
+          const grid = document.getElementById("enrollments-grid");
+          grid.classList.remove("hidden");
+          grid.innerHTML = enrollments
+            .map(
+              (e) => `
+          <div class="course-card">
+            <div class="course-thumb">
+              <div class="thumb-placeholder">📖</div>
+            </div>
+            <div class="course-body">
+              <h3 class="course-title">${escapeHtml(e.CourseTitle)}</h3>
+              <p class="course-desc">Instructor: ${escapeHtml(e.InstructorName)}</p>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" style="width:${e.Progress}%"></div>
+              </div>
+              <small>${e.Progress}% complete</small>
+            </div>
+            <div class="course-footer">
+              <span class="text-muted">Enrolled ${new Date(e.EnrolledAt).toLocaleDateString()}</span>
+              <button class="btn btn-sm btn-outline btn-danger"
+                onclick="unenroll(${e.CourseId}, this)">Unenroll</button>
+            </div>
+          </div>
+        `,
+            )
+            .join("");
+        } catch (err) {
+          document.getElementById("loading-spinner").classList.add("hidden");
+          showAlert("Failed to load enrollments: " + err.message, "error");
+        }
+      }
+
+      async function unenroll(courseId, btn) {
+        if (!confirm("Are you sure you want to unenroll from this course?"))
+          return;
+        btn.disabled = true;
+        try {
+          await apiDelete(`/api/v1/enroll/${courseId}`);
+          showAlert("Successfully unenrolled.", "success");
+          setTimeout(() => loadEnrollments(), 800);
+        } catch (err) {
+          showAlert(err.message, "error");
+          btn.disabled = false;
+        }
+      }
+
+      function escapeHtml(str) {
+        const d = document.createElement("div");
+        d.textContent = str;
+        return d.innerHTML;
+      }
+
+      loadEnrollments();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learnmore – Create Course</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="nav-brand"><a href="courses.html">🎓 Learnmore</a></div>
+      <div class="nav-links">
+        <a href="courses.html">Courses</a>
+        <a href="create-course.html" class="active">+ Create Course</a>
+      </div>
+      <div class="nav-user">
+        <span id="nav-username"></span>
+        <span id="nav-role-badge" class="role-badge"></span>
+        <button onclick="logout()" class="btn btn-sm btn-outline">
+          Logout
+        </button>
+      </div>
+    </nav>
+
+    <main class="container form-page">
+      <div class="form-header">
+        <h2>🎬 Create a New Course</h2>
+        <p>Share your knowledge with students worldwide</p>
+      </div>
+
+      <div id="alert-box" class="alert hidden"></div>
+
+      <form id="create-course-form" novalidate>
+        <div class="form-card">
+          <h3>Course Details</h3>
+
+          <div class="form-group">
+            <label for="title"
+              >Course Title <span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="title"
+              placeholder="e.g. Complete Python Bootcamp"
+              maxlength="200"
+            />
+            <span class="field-error" id="title-error"></span>
+            <span class="char-count" id="title-count">0 / 200</span>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+              id="description"
+              rows="4"
+              placeholder="What will students learn?"
+              maxlength="2000"
+            ></textarea>
+            <span class="char-count" id="desc-count">0 / 2000</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="category"
+                >Category <span class="required">*</span></label
+              >
+              <select id="category">
+                <option value="">-- Select Category --</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Frontend">Frontend</option>
+                <option value="Backend">Backend</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Mobile">Mobile</option>
+                <option value="DevOps">DevOps</option>
+                <option value="Design">Design</option>
+                <option value="Other">Other</option>
+              </select>
+              <span class="field-error" id="category-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="price">Price (USD)</label>
+              <input
+                type="number"
+                id="price"
+                value="0"
+                min="0"
+                max="10000"
+                step="0.01"
+              />
+              <span class="field-error" id="price-error"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="thumbnail">Thumbnail URL</label>
+            <input
+              type="url"
+              id="thumbnail"
+              placeholder="https://example.com/image.jpg"
+            />
+          </div>
+
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="is-published" />
+              <span>Publish immediately (students can see and enroll)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- LESSONS SECTION -->
+        <div class="form-card" id="lessons-section" style="display: none">
+          <h3>📖 Course Lessons</h3>
+          <p class="hint">
+            Add lessons after creating the course, or add the first one here.
+          </p>
+          <div id="lessons-list"></div>
+          <button
+            type="button"
+            class="btn btn-outline"
+            onclick="addLessonRow()"
+          >
+            + Add Lesson
+          </button>
+        </div>
+
+        <div class="form-actions">
+          <a href="courses.html" class="btn btn-outline">Cancel</a>
+          <button type="submit" class="btn btn-primary" id="submit-btn">
+            <span class="btn-text">🚀 Create Course</span>
+            <span class="btn-spinner hidden">⏳ Creating…</span>
+          </button>
+        </div>
+      </form>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+      const userInfo = requireAuth(["Instructor", "Admin"]);
+      document.getElementById("nav-username").textContent = userInfo.username;
+      document.getElementById("nav-role-badge").textContent = userInfo.role;
+      document.getElementById("nav-role-badge").className =
+        `role-badge role-${userInfo.role.toLowerCase()}`;
+
+      // Character counters
+      document.getElementById("title").addEventListener("input", function () {
+        document.getElementById("title-count").textContent =
+          `${this.value.length} / 200`;
+      });
+      document
+        .getElementById("description")
+        .addEventListener("input", function () {
+          document.getElementById("desc-count").textContent =
+            `${this.value.length} / 2000`;
+        });
+
+      document
+        .getElementById("create-course-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          clearErrors();
+
+          const title = document.getElementById("title").value.trim();
+          const description = document
+            .getElementById("description")
+            .value.trim();
+          const category = document.getElementById("category").value;
+          const price = parseFloat(document.getElementById("price").value) || 0;
+          const thumbnail = document.getElementById("thumbnail").value.trim();
+          const isPublished = document.getElementById("is-published").checked;
+
+          // Client-side validation
+          let valid = true;
+          if (!title) {
+            showFieldError("title-error", "Course title is required");
+            valid = false;
+          } else if (title.length < 5) {
+            showFieldError(
+              "title-error",
+              "Title must be at least 5 characters",
+            );
+            valid = false;
+          }
+          if (!category) {
+            showFieldError("category-error", "Please select a category");
+            valid = false;
+          }
+          if (price < 0 || price > 10000) {
+            showFieldError("price-error", "Price must be between 0 and 10,000");
+            valid = false;
+          }
+          if (!valid) return;
+
+          setLoading(true);
+          try {
+            const payload = {
+              Title: title,
+              Description: description,
+              Category: category,
+              Price: price,
+              ThumbnailUrl: thumbnail || null,
+              IsPublished: isPublished,
+            };
+
+            const created = await apiPost("/api/v1/courses", payload);
+            showAlert(
+              `Course "${created.Title}" created successfully!`,
+              "success",
+            );
+            setTimeout(() => (window.location.href = "courses.html"), 1200);
+          } catch (err) {
+            showAlert(err.message || "Failed to create course.", "error");
+          } finally {
+            setLoading(false);
+          }
+        });
+
+      function setLoading(loading) {
+        const btn = document.getElementById("submit-btn");
+        btn.querySelector(".btn-text").classList.toggle("hidden", loading);
+        btn.querySelector(".btn-spinner").classList.toggle("hidden", !loading);
+        btn.disabled = loading;
+      }
+    </script>
+  </body>
+</html>

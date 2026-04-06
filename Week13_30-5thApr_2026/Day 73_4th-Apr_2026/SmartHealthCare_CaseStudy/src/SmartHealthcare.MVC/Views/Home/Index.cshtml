@@ -1,0 +1,290 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    var token = Context.Session.GetString("Token");
+}
+
+<div class="container-main">
+
+    <section class="hero">
+
+        <div class="hero-left">
+            <span class="badge">Connected Care Platform</span>
+
+            <h1>Smart Healthcare<br><span>Management System</span></h1>
+
+            <p>
+                Manage patients, doctors, appointments, prescriptions and workflows
+                from one powerful intelligent dashboard.
+            </p>
+
+            <div class="actions">
+                @if (token == null)
+                {
+                    <a asp-controller="Account" asp-action="Register" class="btn-primary">Get Started</a>
+                    <a asp-controller="Doctor" asp-action="Index" class="btn-secondary">Browse Doctors</a>
+                }
+                else
+                {
+                    <a asp-controller="Dashboard" asp-action="Index" class="btn-primary">Dashboard</a>
+                    <a asp-controller="Appointment" asp-action="Create" class="btn-secondary">Book Appointment</a>
+                }
+            </div>
+        </div>
+
+        <div class="hero-right">
+
+            <div class="stat">
+                <h3>24/7</h3>
+                <p>Access</p>
+            </div>
+
+            <div class="stat">
+                <h3>Fast</h3>
+                <p>Booking</p>
+            </div>
+
+            <div class="stat">
+                <h3>Secure</h3>
+                <p>System</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="features">
+
+        <div class="card">
+            <h3>Patients</h3>
+            <p>Book appointments, manage history, and access prescriptions easily.</p>
+        </div>
+
+        <div class="card">
+            <h3>Doctors</h3>
+            <p>Manage schedules, patients, and prescriptions efficiently.</p>
+        </div>
+
+        <div class="card">
+            <h3>Admin</h3>
+            <p>Control users, monitor system activity, and manage operations.</p>
+        </div>
+
+    </section>
+
+    <section class="why">
+
+        <div class="left">
+            <h2>Why Choose Us</h2>
+
+            <ul>
+                <li>Easy appointment booking</li>
+                <li>Verified professionals</li>
+                <li>Digital prescriptions</li>
+                <li>Secure system</li>
+                <li>24/7 access</li>
+            </ul>
+        </div>
+
+        <div class="right">
+            <div class="highlight">
+                <h3>Your Health, Our Priority</h3>
+                <p>Accessible, affordable and modern healthcare experience.</p>
+
+                @if (token == null)
+                {
+                    <a asp-controller="Account" asp-action="Register" class="btn-primary">Start Now</a>
+                }
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+<style>
+
+:root{
+    --bg:#f6f9ff;
+    --card:#ffffff;
+    --border:#e6ecff;
+
+    --text:#0f172a;
+    --muted:#64748b;
+
+    --cyan:#06b6d4;
+    --violet:#6366f1;
+    --pink:#ec4899;
+}
+
+body{
+    background:linear-gradient(135deg,#f8fbff,#eef3ff);
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+}
+
+.container-main{
+    padding:60px 40px;
+}
+
+/* HERO */
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+    margin-bottom:80px;
+}
+
+.hero-left{
+    max-width:600px;
+}
+
+.hero h1{
+    font-size:3.2rem;
+    font-weight:900;
+    line-height:1.2;
+}
+
+.hero h1 span{
+    background:linear-gradient(90deg,var(--violet),var(--cyan));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    color:var(--muted);
+    margin:20px 0;
+    font-size:16px;
+}
+
+.badge{
+    background:#eef2ff;
+    color:var(--violet);
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+}
+
+/* BUTTONS */
+.actions{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+}
+
+.btn-primary{
+    padding:12px 22px;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--violet),var(--cyan));
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(99,102,241,.3);
+}
+
+.btn-secondary{
+    padding:12px 22px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    color:var(--muted);
+    text-decoration:none;
+    background:white;
+}
+
+.btn-secondary:hover{
+    background:#f1f5ff;
+}
+
+/* STATS */
+.hero-right{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.stat{
+    background:white;
+    border:1px solid var(--border);
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.stat h3{
+    font-size:20px;
+    font-weight:800;
+}
+
+/* FEATURES */
+.features{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin-bottom:80px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:30px;
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+/* WHY */
+.why{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+}
+
+.why h2{
+    margin-bottom:20px;
+}
+
+.why ul{
+    list-style:none;
+    padding:0;
+}
+
+.why li{
+    margin:12px 0;
+    color:var(--muted);
+    font-size:15px;
+}
+
+.highlight{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.highlight h3{
+    margin-bottom:10px;
+}
+
+.highlight p{
+    color:var(--muted);
+    margin-bottom:20px;
+}
+
+</style>

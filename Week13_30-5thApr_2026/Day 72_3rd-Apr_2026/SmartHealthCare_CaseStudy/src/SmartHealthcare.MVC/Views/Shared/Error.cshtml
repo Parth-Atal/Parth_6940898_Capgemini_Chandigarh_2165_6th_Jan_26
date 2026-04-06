@@ -1,0 +1,205 @@
+﻿@model SmartHealthcare.MVC.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="error-container">
+    <div class="error-card">
+        <div class="error-icon">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+        </div>
+        <div class="error-content">
+            <h1 class="error-title">Oops! Something went wrong</h1>
+            <p class="error-message">@Model?.Message</p>
+            @if (Model?.ShowRequestId == true)
+            {
+                <div class="request-id">
+                    <small class="text-muted">Request ID: @Model.RequestId</small>
+                </div>
+            }
+            <div class="error-actions">
+                <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+                    <i class="bi bi-house"></i> Go Home
+                </a>
+                <button onclick="window.history.back()" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Go Back
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .error-container {
+        width: 100%;
+        max-width: 600px;
+        padding: 2rem;
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .error-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        border: none;
+        overflow: hidden;
+        text-align: center;
+        padding: 3rem 2rem;
+        animation: slideInScale 0.6s ease-out;
+    }
+
+    @@keyframes slideInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    .error-icon {
+        font-size: 4rem;
+        color: #dc3545;
+        margin-bottom: 1.5rem;
+        animation: bounceIn 0.8s ease-out;
+    }
+
+    @@keyframes bounceIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.3);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        70% {
+            transform: scale(0.9);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .error-title {
+        color: #2d3748;
+        font-weight: 700;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .error-message {
+        color: #4a5568;
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .request-id {
+        background: rgba(248, 249, 250, 0.8);
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .error-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        color: white;
+    }
+
+    .btn-outline-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: #6c757d;
+        border: 2px solid rgba(108, 117, 125, 0.3);
+        backdrop-filter: blur(10px);
+    }
+
+    .btn-outline-secondary:hover {
+        background: rgba(108, 117, 125, 0.1);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    @@media (max-width: 768px) {
+        .error-container {
+            padding: 1rem;
+        }
+
+        .error-card {
+            padding: 2rem 1.5rem;
+        }
+
+        .error-title {
+            font-size: 2rem;
+        }
+
+        .error-icon {
+            font-size: 3rem;
+        }
+
+        .error-actions {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 200px;
+            justify-content: center;
+        }
+    }
+</style>

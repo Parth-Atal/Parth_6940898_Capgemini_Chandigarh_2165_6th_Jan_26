@@ -1,0 +1,130 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<div class="container-main">
+
+    <div class="card">
+
+        <div class="header">
+            <h1>Privacy Policy</h1>
+            <p>Your data security and privacy matters to us</p>
+        </div>
+
+        <div class="content">
+
+            <div class="section">
+                <h3>About This Application</h3>
+                <p>
+                    This platform is a comprehensive healthcare management system designed
+                    to streamline interactions between patients, doctors, and administrators.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>Data Privacy</h3>
+                <p>
+                    We ensure that all personal and medical data is securely stored and handled
+                    following industry-grade protection standards.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3>Policy Details</h3>
+                <p>
+                    This page outlines how data is collected, used, and protected, along with
+                    user rights and responsibilities within the platform.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+:root{
+    --bg:#f6f9ff;
+    --card:#ffffff;
+    --border:#e6ecff;
+
+    --text:#0f172a;
+    --muted:#64748b;
+
+    --cyan:#06b6d4;
+    --violet:#6366f1;
+}
+
+body{
+    background:linear-gradient(135deg,#f8fbff,#eef3ff);
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+}
+
+.container-main{
+    max-width:800px;
+    margin:auto;
+    padding:60px 40px;
+}
+
+/* CARD */
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+/* HEADER */
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:2.5rem;
+    font-weight:800;
+    background:linear-gradient(90deg,var(--violet),var(--cyan));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.header p{
+    color:var(--muted);
+}
+
+/* CONTENT */
+.content{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+/* SECTIONS */
+.section{
+    padding:20px;
+    border-radius:15px;
+    background:#f8fbff;
+    border:1px solid var(--border);
+    transition:.3s;
+}
+
+.section:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 20px rgba(0,0,0,.05);
+}
+
+.section h3{
+    margin-bottom:10px;
+    color:var(--text);
+}
+
+.section p{
+    color:var(--muted);
+    line-height:1.6;
+}
+
+</style>

@@ -1,0 +1,228 @@
+@model SmartHealthcare.Models.DTOs.CreateAppointmentDTO
+@{
+    ViewData["Title"] = "Book Appointment";
+    var doctors = ViewBag.Doctors as IEnumerable<SmartHealthcare.Models.DTOs.DoctorDTO> ?? Enumerable.Empty<SmartHealthcare.Models.DTOs.DoctorDTO>();
+}
+
+<div class="container-main">
+
+    <div class="header fade-in">
+        <h1>Book Appointment</h1>
+        <p>Schedule your visit with top doctors in seconds</p>
+    </div>
+
+    <div class="form-wrapper fade-in">
+
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+
+        <form asp-action="Create" method="post" class="form">
+
+            <div asp-validation-summary="All" class="error-box"></div>
+
+            <!-- DOCTOR -->
+            <div class="field">
+                <label>Select Doctor</label>
+                <select asp-for="DoctorId">
+                    <option value="">Choose doctor</option>
+                    @foreach (var doctor in doctors)
+                    {
+                        <option value="@doctor.Id">
+                            Dr. @doctor.FullName - ₹@doctor.ConsultationFee
+                        </option>
+                    }
+                </select>
+                <span asp-validation-for="DoctorId"></span>
+            </div>
+
+            <!-- DATE -->
+            <div class="field">
+                <label>Date & Time</label>
+                <input asp-for="AppointmentDate" type="datetime-local" />
+                <span asp-validation-for="AppointmentDate"></span>
+            </div>
+
+            <!-- NOTES -->
+            <div class="field">
+                <label>Notes</label>
+                <textarea asp-for="Notes" rows="4" placeholder="Describe your symptoms..."></textarea>
+                <span asp-validation-for="Notes"></span>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="actions">
+                <button type="submit" class="btn-primary">Book Appointment</button>
+                <a href="@Url.Action("Index")" class="btn-secondary">Cancel</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<style>
+
+:root{
+    --bg:#f6f9ff;
+    --card:#ffffff;
+    --border:#e6ecff;
+
+    --text:#0f172a;
+    --muted:#64748b;
+
+    --cyan:#06b6d4;
+    --violet:#6366f1;
+    --pink:#ec4899;
+}
+
+body{
+    background:linear-gradient(135deg,#f8fbff,#eef3ff);
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+}
+
+.container-main{
+    max-width:600px;
+    margin:auto;
+    padding:60px 40px;
+}
+
+/* HEADER */
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:2.5rem;
+    font-weight:900;
+    background:linear-gradient(90deg,var(--violet),var(--cyan));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.header p{
+    color:var(--muted);
+}
+
+/* FORM WRAPPER */
+.form-wrapper{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:30px;
+    box-shadow:0 20px 50px rgba(0,0,0,.05);
+    position:relative;
+}
+
+/* PROGRESS */
+.progress-bar{
+    height:6px;
+    background:#eef2ff;
+    border-radius:10px;
+    margin-bottom:20px;
+    overflow:hidden;
+}
+
+.progress{
+    height:100%;
+    width:60%;
+    background:linear-gradient(90deg,var(--violet),var(--cyan));
+}
+
+/* FORM */
+.form{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.field label{
+    font-size:13px;
+    color:var(--muted);
+}
+
+.field input,
+.field select,
+.field textarea{
+    padding:12px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:white;
+    color:var(--text);
+    transition:.3s;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:var(--violet);
+    outline:none;
+    box-shadow:0 0 0 2px rgba(99,102,241,.15);
+}
+
+/* BUTTONS */
+.actions{
+    display:flex;
+    gap:10px;
+}
+
+.btn-primary{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--violet),var(--cyan));
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:0 15px 35px rgba(99,102,241,.3);
+}
+
+.btn-secondary{
+    flex:1;
+    padding:12px;
+    border-radius:12px;
+    text-align:center;
+    text-decoration:none;
+    border:1px solid var(--border);
+    color:var(--muted);
+    background:white;
+}
+
+.btn-secondary:hover{
+    background:#eef2ff;
+}
+
+/* ERROR */
+.error-box{
+    background:#fef2f2;
+    color:#7f1d1d;
+    padding:10px;
+    border-radius:10px;
+}
+
+/* ANIMATION */
+.fade-in{
+    animation:fadeIn .6s ease;
+}
+
+@@keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+</style>

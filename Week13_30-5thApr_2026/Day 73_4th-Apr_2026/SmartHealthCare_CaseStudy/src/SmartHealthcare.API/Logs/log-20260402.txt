@@ -1,0 +1,202 @@
+2026-04-02 17:50:31.086 +05:30 [INF] Executed DbCommand (227ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [SmartHealthCareDB];
+2026-04-02 17:50:31.221 +05:30 [INF] Executed DbCommand (92ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [SmartHealthCareDB] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2026-04-02 17:50:31.245 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-02 17:50:31.325 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [__EFMigrationsHistory] (
+    [MigrationId] nvarchar(150) NOT NULL,
+    [ProductVersion] nvarchar(32) NOT NULL,
+    CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+);
+2026-04-02 17:50:31.332 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-02 17:50:31.350 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-02 17:50:31.379 +05:30 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-02 17:50:31.403 +05:30 [INF] Applying migration '20260402121946_initial'.
+2026-04-02 17:50:31.532 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Specializations] (
+    [Id] int NOT NULL IDENTITY,
+    [Name] nvarchar(100) NOT NULL,
+    [Description] nvarchar(300) NULL,
+    CONSTRAINT [PK_Specializations] PRIMARY KEY ([Id])
+);
+2026-04-02 17:50:31.539 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Users] (
+    [Id] int NOT NULL IDENTITY,
+    [FullName] nvarchar(100) NOT NULL,
+    [Email] nvarchar(150) NOT NULL,
+    [PasswordHash] nvarchar(max) NOT NULL,
+    [Role] nvarchar(20) NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY ([Id])
+);
+2026-04-02 17:50:31.546 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Doctors] (
+    [Id] int NOT NULL IDENTITY,
+    [UserId] int NOT NULL,
+    [LicenseNumber] nvarchar(50) NOT NULL,
+    [YearsOfExperience] int NOT NULL,
+    [ConsultationFee] decimal(10,2) NOT NULL,
+    [Phone] nvarchar(15) NOT NULL,
+    [IsAvailable] bit NOT NULL,
+    CONSTRAINT [PK_Doctors] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Doctors_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE
+);
+2026-04-02 17:50:31.552 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Patients] (
+    [Id] int NOT NULL IDENTITY,
+    [UserId] int NOT NULL,
+    [DateOfBirth] datetime2 NOT NULL,
+    [Gender] nvarchar(10) NOT NULL,
+    [BloodGroup] nvarchar(5) NULL,
+    [Address] nvarchar(300) NOT NULL,
+    [Phone] nvarchar(15) NOT NULL,
+    CONSTRAINT [PK_Patients] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Patients_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE
+);
+2026-04-02 17:50:31.559 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [RefreshTokens] (
+    [Id] int NOT NULL IDENTITY,
+    [UserId] int NOT NULL,
+    [Token] nvarchar(max) NOT NULL,
+    [ExpiresAt] datetime2 NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [IsRevoked] bit NOT NULL,
+    CONSTRAINT [PK_RefreshTokens] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_RefreshTokens_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE
+);
+2026-04-02 17:50:31.566 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [DoctorSpecializations] (
+    [DoctorId] int NOT NULL,
+    [SpecializationId] int NOT NULL,
+    CONSTRAINT [PK_DoctorSpecializations] PRIMARY KEY ([DoctorId], [SpecializationId]),
+    CONSTRAINT [FK_DoctorSpecializations_Doctors_DoctorId] FOREIGN KEY ([DoctorId]) REFERENCES [Doctors] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_DoctorSpecializations_Specializations_SpecializationId] FOREIGN KEY ([SpecializationId]) REFERENCES [Specializations] ([Id]) ON DELETE CASCADE
+);
+2026-04-02 17:50:31.574 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Appointments] (
+    [Id] int NOT NULL IDENTITY,
+    [PatientId] int NOT NULL,
+    [DoctorId] int NOT NULL,
+    [AppointmentDate] datetime2 NOT NULL,
+    [Status] nvarchar(20) NOT NULL,
+    [Notes] nvarchar(500) NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    CONSTRAINT [PK_Appointments] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Appointments_Doctors_DoctorId] FOREIGN KEY ([DoctorId]) REFERENCES [Doctors] ([Id]) ON DELETE NO ACTION,
+    CONSTRAINT [FK_Appointments_Patients_PatientId] FOREIGN KEY ([PatientId]) REFERENCES [Patients] ([Id]) ON DELETE NO ACTION
+);
+2026-04-02 17:50:31.588 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Prescriptions] (
+    [Id] int NOT NULL IDENTITY,
+    [AppointmentId] int NOT NULL,
+    [Diagnosis] nvarchar(500) NOT NULL,
+    [Notes] nvarchar(1000) NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    CONSTRAINT [PK_Prescriptions] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Prescriptions_Appointments_AppointmentId] FOREIGN KEY ([AppointmentId]) REFERENCES [Appointments] ([Id]) ON DELETE CASCADE
+);
+2026-04-02 17:50:31.595 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Medicines] (
+    [Id] int NOT NULL IDENTITY,
+    [PrescriptionId] int NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [Dosage] nvarchar(100) NOT NULL,
+    [Duration] nvarchar(50) NOT NULL,
+    [Instructions] nvarchar(300) NULL,
+    CONSTRAINT [PK_Medicines] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Medicines_Prescriptions_PrescriptionId] FOREIGN KEY ([PrescriptionId]) REFERENCES [Prescriptions] ([Id]) ON DELETE CASCADE
+);
+2026-04-02 17:50:31.675 +05:30 [INF] Executed DbCommand (77ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Description', N'Name') AND [object_id] = OBJECT_ID(N'[Specializations]'))
+    SET IDENTITY_INSERT [Specializations] ON;
+INSERT INTO [Specializations] ([Id], [Description], [Name])
+VALUES (1, N'Heart and cardiovascular system', N'Cardiology'),
+(2, N'Skin conditions', N'Dermatology'),
+(3, N'Nervous system disorders', N'Neurology'),
+(4, N'Musculoskeletal system', N'Orthopedics'),
+(5, N'Children''s health', N'Pediatrics'),
+(6, N'General health care', N'General Medicine');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Description', N'Name') AND [object_id] = OBJECT_ID(N'[Specializations]'))
+    SET IDENTITY_INSERT [Specializations] OFF;
+2026-04-02 17:50:31.709 +05:30 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CreatedAt', N'Email', N'FullName', N'PasswordHash', N'Role') AND [object_id] = OBJECT_ID(N'[Users]'))
+    SET IDENTITY_INSERT [Users] ON;
+INSERT INTO [Users] ([Id], [CreatedAt], [Email], [FullName], [PasswordHash], [Role])
+VALUES (1, '2026-04-02T12:19:44.9714865Z', N'admin@healthcare.com', N'System Admin', N'$2a$11$TZkBK3aujGSfLIdxr42wbulxyLx6GYirWJeDBCtQJ4z7/kzaDTL2a', N'Admin');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'CreatedAt', N'Email', N'FullName', N'PasswordHash', N'Role') AND [object_id] = OBJECT_ID(N'[Users]'))
+    SET IDENTITY_INSERT [Users] OFF;
+2026-04-02 17:50:31.716 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Appointments_DoctorId] ON [Appointments] ([DoctorId]);
+2026-04-02 17:50:31.721 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Appointments_PatientId] ON [Appointments] ([PatientId]);
+2026-04-02 17:50:31.726 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_Doctors_UserId] ON [Doctors] ([UserId]);
+2026-04-02 17:50:31.731 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_DoctorSpecializations_SpecializationId] ON [DoctorSpecializations] ([SpecializationId]);
+2026-04-02 17:50:31.736 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Medicines_PrescriptionId] ON [Medicines] ([PrescriptionId]);
+2026-04-02 17:50:31.739 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_Patients_UserId] ON [Patients] ([UserId]);
+2026-04-02 17:50:31.743 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_Prescriptions_AppointmentId] ON [Prescriptions] ([AppointmentId]);
+2026-04-02 17:50:31.748 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_RefreshTokens_UserId] ON [RefreshTokens] ([UserId]);
+2026-04-02 17:50:31.766 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_Users_Email] ON [Users] ([Email]);
+2026-04-02 17:50:31.771 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20260402121946_initial', N'8.0.0');
+2026-04-02 17:50:41.365 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-02 17:50:41.438 +05:30 [INF] Executed DbCommand (16ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-02 17:50:41.445 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-04-02 17:50:41.450 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-04-02 17:50:41.479 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-04-02 17:50:41.500 +05:30 [INF] No migrations were applied. The database is already up to date.
+2026-04-02 17:50:41.523 +05:30 [INF] User profile is available. Using 'C:\Users\shiva\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-02 17:50:41.605 +05:30 [INF] Now listening on: http://localhost:5293
+2026-04-02 17:50:41.609 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-02 17:50:41.611 +05:30 [INF] Hosting environment: Development
+2026-04-02 17:50:41.612 +05:30 [INF] Content root path: E:\SmartHealthCare\src\SmartHealthcare.API
+2026-04-02 17:51:04.026 +05:30 [WRN] As of ""2026-04-02T12:21:04.0237819+00:00"", the heartbeat has been running for ""00:00:02.2752858"" which is longer than ""00:00:01"". This could be caused by thread pool starvation.
+2026-04-02 17:51:56.584 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5293/ - null null
+2026-04-02 17:51:56.647 +05:30 [WRN] Failed to determine the https port for redirect.
+2026-04-02 17:51:56.652 +05:30 [INF] Incoming Request: GET / at "2026-04-02T12:21:56.6509849Z"
+2026-04-02 17:51:59.189 +05:30 [INF] Outgoing Response: 404 for GET / in 2538ms
+2026-04-02 17:51:59.200 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5293/ - 404 0 null 2619.063ms
+2026-04-02 17:51:59.208 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5293/, Response status code: 404
+2026-04-02 17:52:02.279 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5293/swagger - null null
+2026-04-02 17:52:02.285 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5293/swagger - 301 0 null 6.1477ms
+2026-04-02 17:52:02.291 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5293/swagger/index.html - null null
+2026-04-02 17:52:02.372 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5293/swagger/index.html - 200 null text/html;charset=utf-8 81.6456ms
+2026-04-02 17:52:02.409 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5293/swagger/swagger-ui-bundle.js - null null
+2026-04-02 17:52:02.409 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5293/swagger/swagger-ui.css - null null
+2026-04-02 17:52:02.436 +05:30 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2026-04-02 17:52:02.440 +05:30 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2026-04-02 17:52:02.441 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5293/swagger/swagger-ui.css - 200 144929 text/css 32.0175ms
+2026-04-02 17:52:02.443 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5293/swagger/swagger-ui-bundle.js - 200 1061536 text/javascript 34.3782ms
+2026-04-02 17:52:02.709 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5293/swagger/swagger-ui-standalone-preset.js - null null
+2026-04-02 17:52:02.714 +05:30 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2026-04-02 17:52:02.716 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5293/swagger/swagger-ui-standalone-preset.js - 200 312163 text/javascript 7.4953ms
+2026-04-02 17:52:02.790 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5293/swagger/v1/swagger.json - null null
+2026-04-02 17:52:02.811 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5293/swagger/favicon-32x32.png - null null
+2026-04-02 17:52:02.814 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-04-02 17:52:02.817 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5293/swagger/favicon-32x32.png - 200 628 image/png 5.9001ms
+2026-04-02 17:52:02.935 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5293/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 144.8357ms
+2026-04-02 17:57:16.571 +05:30 [INF] Application is shutting down...

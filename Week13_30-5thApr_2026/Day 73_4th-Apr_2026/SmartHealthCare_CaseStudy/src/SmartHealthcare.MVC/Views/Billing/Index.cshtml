@@ -1,0 +1,277 @@
+﻿@model SmartHealthcare.Models.DTOs.PagedResult<SmartHealthcare.Models.DTOs.BillDTO>
+
+@{
+    ViewData["Title"] = "Billing History";
+    var role = ViewBag.Role as string;
+    var currentPage = (int)(ViewBag.CurrentPage ?? 1);
+    var totalCount = (int)(ViewBag.TotalCount ?? 0);
+    var pageSize = (int)(ViewBag.PageSize ?? 10);
+    var totalPages = (int)Math.Ceiling((double)totalCount / pageSize);
+}
+
+<div class="container py-4">
+
+    @* ── Page header ── *@
+    <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+        <div>
+            <h2 class="mb-1 fw-semibold">
+                <i class="bi bi-receipt me-2 text-success"></i>
+                @(role == "Admin" ? "All Bills" : "My Bills")
+            </h2>
+            <p class="text-muted mb-0">
+                @if (role == "Admin")
+                {
+                    <span>Complete billing history across all patients — @totalCount total bill(s)</span>
+                }
+                else
+                {
+                    <span>Your personal billing history — @totalCount bill(s)</span>
+                }
+            </p>
+        </div>
+        @if (role == "Admin")
+        {
+            <a asp-controller="Appointment" asp-action="Index"
+               class="btn btn-outline-primary btn-sm">
+                <i class="bi bi-calendar-check me-1"></i>View Appointments
+            </a>
+        }
+    </div>
+
+    @* ── Alerts ── *@
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            <i class="bi bi-check-circle-fill me-2"></i>@TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    @if (TempData["Info"] != null)
+    {
+        <div class="alert alert-info alert-dismissible fade show">
+            <i class="bi bi-info-circle-fill me-2"></i>@TempData["Info"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @* ── Summary stats (admin only) ── *@
+    @if (role == "Admin" && Model?.Items != null && Model.Items.Any())
+    {
+        var allItems = Model.Items.ToList();
+        var totalRevenue = allItems.Where(b => b.PaymentStatus == "Paid").Sum(b => b.TotalAmount);
+        var pendingAmount = allItems.Where(b => b.PaymentStatus == "Unpaid").Sum(b => b.TotalAmount);
+        var paidCount = allItems.Count(b => b.PaymentStatus == "Paid");
+        var unpaidCount = allItems.Count(b => b.PaymentStatus == "Unpaid");
+        var waivedCount = allItems.Count(b => b.PaymentStatus == "Waived");
+
+        <div class="row g-3 mb-4">
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm text-center p-3">
+                    <p class="text-muted small mb-1">Collected (this page)</p>
+                    <p class="fw-bold text-success fs-5 mb-0">₹@totalRevenue.ToString("N2")</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm text-center p-3">
+                    <p class="text-muted small mb-1">Pending (this page)</p>
+                    <p class="fw-bold text-danger fs-5 mb-0">₹@pendingAmount.ToString("N2")</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm text-center p-3">
+                    <p class="text-muted small mb-1">Paid Bills</p>
+                    <p class="fw-bold text-success fs-5 mb-0">@paidCount</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card border-0 shadow-sm text-center p-3">
+                    <p class="text-muted small mb-1">Unpaid / Waived</p>
+                    <p class="fw-bold text-warning fs-5 mb-0">@unpaidCount / @waivedCount</p>
+                </div>
+            </div>
+        </div>
+    }
+
+    @* ── Bills table ── *@
+    @if (Model?.Items == null || !Model.Items.Any())
+    {
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center py-5">
+                <i class="bi bi-receipt fs-1 d-block mb-3 text-secondary"></i>
+                <h5 class="text-muted">No bills found</h5>
+                <p class="text-muted small mb-0">
+                    @if (role == "Patient")
+                    {
+                        <span>Bills will appear here once a doctor generates them for your appointments.</span>
+                    }
+                    else
+                    {
+                        <span>No bills have been generated yet.</span>
+                    }
+                </p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4">Bill #</th>
+                                @if (role == "Admin")
+                                {
+                                    <th>Patient</th>
+                                    <th>Doctor</th>
+                                }
+                                <th>Appointment Date</th>
+                                <th>Consultation</th>
+                                <th>Medicines</th>
+                                <th class="fw-bold">Total</th>
+                                <th>Status</th>
+                                <th>Generated</th>
+                                <th class="text-end pe-4">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var bill in Model.Items)
+                            {
+                                var statusClass = bill.PaymentStatus switch
+                                {
+                                    "Paid" => "bg-success",
+                                    "Waived" => "bg-warning text-dark",
+                                    _ => "bg-danger"
+                                };
+                                var statusIcon = bill.PaymentStatus switch
+                                {
+                                    "Paid" => "bi-check-circle-fill",
+                                    "Waived" => "bi-slash-circle-fill",
+                                    _ => "bi-clock-fill"
+                                };
+                                var rowClass = bill.PaymentStatus switch
+                                {
+                                    "Paid" => "",
+                                    "Waived" => "table-warning bg-opacity-25",
+                                    _ => "table-danger bg-opacity-10"
+                                };
+
+                                <tr class="@rowClass">
+                                    <td class="ps-4">
+                                        <span class="fw-semibold">#@bill.Id.ToString("D6")</span>
+                                    </td>
+                                    @if (role == "Admin")
+                                    {
+                                        <td>
+                                            <span class="fw-semibold">@bill.PatientName</span>
+                                        </td>
+                                        <td class="text-muted small">
+                                            Dr. @bill.DoctorName
+                                        </td>
+                                    }
+                                    <td class="small text-muted">
+                                        @bill.AppointmentDate.ToString("dd MMM yyyy")
+                                        <span class="d-block text-muted" style="font-size:11px;">
+                                            @bill.AppointmentDate.ToString("hh:mm tt")
+                                        </span>
+                                    </td>
+                                    <td class="small">₹@bill.ConsultationFee.ToString("N2")</td>
+                                    <td class="small">₹@bill.MedicineCharges.ToString("N2")</td>
+                                    <td>
+                                        <span class="fw-bold text-success">
+                                            ₹@bill.TotalAmount.ToString("N2")
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge @statusClass rounded-pill px-3">
+                                            <i class="bi @statusIcon me-1"></i>
+                                            @bill.PaymentStatus
+                                        </span>
+                                        @if (bill.PaidAt.HasValue)
+                                        {
+                                            <span class="d-block text-muted mt-1"
+                                                  style="font-size:11px;">
+                                                @bill.PaidAt.Value.ToString("dd MMM yyyy")
+                                            </span>
+                                        }
+                                    </td>
+                                    <td class="small text-muted">
+                                        @bill.GeneratedAt.ToString("dd MMM yyyy")
+                                    </td>
+                                    <td class="text-end pe-4">
+                                        <div class="d-flex gap-1 justify-content-end">
+                                            <a asp-action="Details"
+                                               asp-controller="Billing"
+                                               asp-route-id="@bill.Id"
+                                               class="btn btn-outline-primary btn-sm">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            @if ((role == "Doctor" || role == "Admin")
+                                                                                && bill.PaymentStatus == "Unpaid")
+                                            {
+                                                <a asp-action="Details"
+                                                   asp-controller="Billing"
+                                                   asp-route-id="@bill.Id"
+                                                   class="btn btn-success btn-sm"
+                                                   title="Mark as Paid">
+                                                    <i class="bi bi-check-circle"></i>
+                                                </a>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                @* ── Table footer with totals for current page ── *@
+                <div class="px-4 py-3 border-top bg-light d-flex align-items-center
+                                justify-content-between flex-wrap gap-2">
+                    <span class="text-muted small">
+                        Showing @Model.Items.Count() of @totalCount bill(s)
+                    </span>
+                    <span class="fw-semibold small">
+                        Page total:
+                        <span class="text-success ms-1">
+                            ₹@Model.Items.Sum(b => b.TotalAmount).ToString("N2")
+                        </span>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+
+        @* ── Pagination ── *@
+        @if (totalPages > 1)
+        {
+            <nav class="mt-4" aria-label="Bills pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                        <a class="page-link"
+                           href="?page=@(currentPage - 1)">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                    </li>
+
+                    @for (int p = Math.Max(1, currentPage - 2);
+                                p <= Math.Min(totalPages, currentPage + 2); p++)
+                    {
+                        <li class="page-item @(p == currentPage ? "active" : "")">
+                            <a class="page-link" href="?page=@p">@p</a>
+                        </li>
+                    }
+
+                    <li class="page-item @(currentPage >= totalPages ? "disabled" : "")">
+                        <a class="page-link"
+                           href="?page=@(currentPage + 1)">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        }
+    }
+
+</div>

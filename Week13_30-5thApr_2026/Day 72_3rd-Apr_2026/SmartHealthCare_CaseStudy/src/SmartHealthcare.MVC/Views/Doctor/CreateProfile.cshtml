@@ -1,0 +1,293 @@
+@model SmartHealthcare.Models.DTOs.CreateDoctorDTO
+@{
+    ViewData["Title"] = "Doctor Profile";
+    var specializations = ViewBag.Specializations as IEnumerable<SmartHealthcare.Models.DTOs.SpecializationDTO> ?? Enumerable.Empty<SmartHealthcare.Models.DTOs.SpecializationDTO>();
+}
+
+<div class="container-main">
+
+    <div class="header">
+        <h1>Complete Your Profile</h1>
+        <p>Let patients discover and book you easily</p>
+    </div>
+
+    <div class="card">
+
+        <form asp-action="CreateProfile" method="post" class="form">
+
+            <div asp-validation-summary="All" class="error-box"></div>
+
+            <div class="field">
+                <label>License Number</label>
+                <input asp-for="LicenseNumber" placeholder="Enter license ID" />
+                <span asp-validation-for="LicenseNumber"></span>
+            </div>
+
+            <div class="row">
+                <div class="field">
+                    <label>Experience (Years)</label>
+                    <input asp-for="YearsOfExperience" type="number" />
+                </div>
+
+                <div class="field">
+                    <label>Consultation Fee (₹)</label>
+                    <input asp-for="ConsultationFee" type="number" />
+                </div>
+            </div>
+
+            <div class="field">
+                <label>Phone</label>
+                <input asp-for="Phone" placeholder="+91 XXXXX XXXXX" />
+            </div>
+
+            <div class="field">
+                <label>Specializations</label>
+
+                <div class="chips">
+                    @foreach (var spec in specializations)
+                    {
+                        <label class="chip">
+                            <input type="checkbox" name="SpecializationIds" value="@spec.Id" />
+                            <span>@spec.Name</span>
+                        </label>
+                    }
+                </div>
+            </div>
+
+            <div class="toggle">
+                <span>Available for appointments</span>
+                <label class="switch">
+                    <input asp-for="IsAvailable" type="checkbox" />
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="btn-primary">Create Profile</button>
+                <a href="@Url.Action("Index","Doctor")" class="btn-secondary">Cancel</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<style>
+
+:root{
+    --bg:#f6f9ff;
+    --card:#ffffff;
+    --border:#e6ecff;
+
+    --text:#0f172a;
+    --muted:#64748b;
+
+    --cyan:#06b6d4;
+    --violet:#6366f1;
+}
+
+body{
+    background:linear-gradient(135deg,#f8fbff,#eef3ff);
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+}
+
+.container-main{
+    max-width:700px;
+    margin:auto;
+    padding:50px 40px;
+}
+
+/* HEADER */
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:2.2rem;
+    font-weight:800;
+    background:linear-gradient(90deg,var(--violet),var(--cyan));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.header p{
+    color:var(--muted);
+}
+
+/* CARD */
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+/* FORM */
+.form{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.field label{
+    font-size:13px;
+    color:var(--muted);
+}
+
+.field input{
+    padding:12px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:white;
+    color:var(--text);
+}
+
+.field input:focus{
+    border-color:var(--violet);
+    outline:none;
+    box-shadow:0 0 0 2px rgba(99,102,241,.15);
+}
+
+/* ROW */
+.row{
+    display:flex;
+    gap:10px;
+}
+
+.row .field{
+    flex:1;
+}
+
+/* CHIPS */
+.chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.chip{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:8px 14px;
+    border-radius:20px;
+    background:#f1f5ff;
+    cursor:pointer;
+    border:1px solid var(--border);
+    transition:.3s;
+}
+
+.chip input{
+    display:none;
+}
+
+.chip:hover{
+    background:#e0e7ff;
+}
+
+.chip input:checked + span{
+    color:var(--violet);
+    font-weight:600;
+}
+
+/* TOGGLE */
+.toggle{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.switch{
+    position:relative;
+    width:42px;
+    height:22px;
+}
+
+.switch input{
+    display:none;
+}
+
+.slider{
+    position:absolute;
+    inset:0;
+    background:#d1d5db;
+    border-radius:20px;
+    transition:.3s;
+}
+
+.slider::before{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:18px;
+    left:2px;
+    top:2px;
+    background:white;
+    border-radius:50%;
+    transition:.3s;
+}
+
+.switch input:checked + .slider{
+    background:linear-gradient(135deg,var(--violet),var(--cyan));
+}
+
+.switch input:checked + .slider::before{
+    transform:translateX(20px);
+}
+
+/* BUTTONS */
+.actions{
+    display:flex;
+    gap:10px;
+}
+
+.btn-primary{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--violet),var(--cyan));
+    color:white;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(99,102,241,.3);
+}
+
+.btn-secondary{
+    flex:1;
+    text-align:center;
+    padding:12px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    color:var(--muted);
+    text-decoration:none;
+    background:white;
+}
+
+.btn-secondary:hover{
+    background:#f1f5ff;
+}
+
+/* ERROR */
+.error-box{
+    background:#fef2f2;
+    color:#7f1d1d;
+    padding:10px;
+    border-radius:10px;
+}
+
+</style>

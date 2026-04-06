@@ -1,0 +1,277 @@
+@model SmartHealthcare.Models.DTOs.PatientDTO
+@{
+    ViewData["Title"] = "My Profile";
+    var needsProfile = ViewBag.NeedsProfile as bool? ?? false;
+}
+
+<div class="container-main">
+
+    @if (needsProfile)
+    {
+        <div class="card">
+
+            <div class="header">
+                <h1>Complete Your Profile</h1>
+                <p>Fill in your details to start booking appointments</p>
+            </div>
+
+            <form asp-action="CreateProfile" method="post" class="form">
+
+                <div asp-validation-summary="All" class="error-box"></div>
+
+                <div class="field">
+                    <label>Date of Birth</label>
+                    <input type="date" name="DateOfBirth" required />
+                </div>
+
+                <div class="field">
+                    <label>Gender</label>
+                    <select name="Gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Blood Group</label>
+                    <input name="BloodGroup" placeholder="O+, A-, etc." />
+                </div>
+
+                <div class="field">
+                    <label>Address</label>
+                    <textarea name="Address" rows="3" required></textarea>
+                </div>
+
+                <div class="field">
+                    <label>Phone</label>
+                    <input name="Phone" type="tel" required />
+                </div>
+
+                <div class="actions">
+                    <button type="submit" class="btn-primary">Create Profile</button>
+                    <a href="@Url.Action("Index","Dashboard")" class="btn-secondary">Cancel</a>
+                </div>
+
+            </form>
+
+        </div>
+    }
+    else
+    {
+        <div class="card">
+
+            <div class="header">
+                <h1>Your Profile</h1>
+                <p>View your medical information</p>
+            </div>
+
+            <div class="grid">
+
+                <div class="section">
+                    <h3>Personal</h3>
+                    <p><span>Name:</span> @Model.FullName</p>
+                    <p><span>Email:</span> @Model.Email</p>
+                </div>
+
+                <div class="section">
+                    <h3>Contact</h3>
+                    <p><span>Phone:</span> @Model.Phone</p>
+                    <p><span>Address:</span> @Model.Address</p>
+                </div>
+
+                <div class="section">
+                    <h3>Medical</h3>
+                    <p><span>DOB:</span> @Model.DateOfBirth.ToString("dd MMM yyyy")</p>
+                    <p><span>Age:</span> @((DateTime.Now.Year - Model.DateOfBirth.Year)) yrs</p>
+                </div>
+
+                <div class="section">
+                    <h3>Health</h3>
+                    <p><span>Gender:</span> @Model.Gender</p>
+                    <p>
+                        <span>Blood:</span>
+                        @if (!string.IsNullOrEmpty(Model.BloodGroup))
+                        {
+                            <span class="badge">@Model.BloodGroup</span>
+                        }
+                        else
+                        {
+                            <span class="muted">Not specified</span>
+                        }
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="actions">
+                <a href="@Url.Action("Index","Appointment")" class="btn-primary">Book Appointment</a>
+                <a href="@Url.Action("Index","Doctor")" class="btn-secondary">Find Doctor</a>
+            </div>
+
+        </div>
+    }
+
+</div>
+
+<style>
+
+:root{
+    --bg:#f6f9ff;
+    --card:#ffffff;
+    --border:#e6ecff;
+
+    --text:#0f172a;
+    --muted:#64748b;
+
+    --cyan:#06b6d4;
+    --violet:#6366f1;
+}
+
+body{
+    background:linear-gradient(135deg,#f8fbff,#eef3ff);
+    font-family:'Inter',sans-serif;
+    color:var(--text);
+}
+
+.container-main{
+    max-width:900px;
+    margin:auto;
+    padding:40px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:2rem;
+    font-weight:800;
+    background:linear-gradient(90deg,var(--violet),var(--cyan));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.header p{
+    color:var(--muted);
+}
+
+/* FORM */
+.form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.field label{
+    font-size:13px;
+    color:var(--muted);
+}
+
+.field input,
+.field select,
+.field textarea{
+    padding:12px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:white;
+    color:var(--text);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+    border-color:var(--violet);
+    outline:none;
+    box-shadow:0 0 0 2px rgba(99,102,241,.15);
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.section{
+    background:#f8fbff;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid var(--border);
+}
+
+.section h3{
+    margin-bottom:10px;
+}
+
+.section span{
+    color:var(--muted);
+}
+
+/* BUTTONS */
+.actions{
+    margin-top:20px;
+    display:flex;
+    gap:10px;
+}
+
+.btn-primary{
+    flex:1;
+    text-align:center;
+    padding:12px;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--violet),var(--cyan));
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.btn-secondary{
+    flex:1;
+    text-align:center;
+    padding:12px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    color:var(--muted);
+    text-decoration:none;
+}
+
+.btn-secondary:hover{
+    background:#f1f5ff;
+}
+
+.badge{
+    background:#eef2ff;
+    color:var(--violet);
+    padding:4px 10px;
+    border-radius:10px;
+}
+
+.muted{
+    color:var(--muted);
+}
+
+.error-box{
+    background:#fef2f2;
+    color:#7f1d1d;
+    padding:10px;
+    border-radius:10px;
+}
+
+</style>

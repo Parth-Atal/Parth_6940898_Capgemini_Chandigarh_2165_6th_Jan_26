@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SmartHealthcare.API/SmartHealthcare.API.csproj" />
+    <Project Path="src/SmartHealthcare.Models/SmartHealthcare.Models.csproj" />
+    <Project Path="src/SmartHealthcare.MVC/SmartHealthcare.MVC.csproj" />
+  </Folder>
+</Solution>

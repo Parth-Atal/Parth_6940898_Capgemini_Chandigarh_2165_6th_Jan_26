@@ -1,0 +1,141 @@
+@model LoginViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .card {
+            width: 360px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #fff;
+
+            /* smooth hover instead of animation */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        input:focus {
+            background: rgba(255,255,255,0.3);
+            box-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #333;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #f1f1f1;
+            transform: translateY(-2px);
+        }
+
+        .error {
+            margin-top: 12px;
+            color: #ff6b6b;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .hint {
+            margin-top: 18px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="icon">🛍️</div>
+        <h2>Welcome Back</h2>
+
+        <form method="post">
+            <div class="input-group">
+                <input asp-for="Username" placeholder="Username" />
+            </div>
+
+            <div class="input-group">
+                <input asp-for="Password" type="password" placeholder="Password" />
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        @if (ViewBag.Error != null)
+        {
+            <p class="error">@ViewBag.Error</p>
+        }
+
+        <p class="hint">Admin: admin / 123 | User: user / 123</p>
+    </div>
+</body>
+</html>

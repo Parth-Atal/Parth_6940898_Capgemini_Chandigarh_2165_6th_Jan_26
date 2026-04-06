@@ -1,0 +1,267 @@
+@model IEnumerable<SmartHealthcare.Models.DTOs.UserDTO>
+@{
+    ViewData["Title"] = "User Management";
+}
+
+<div class="page">
+
+    <div class="bg-orb orb1"></div>
+    <div class="bg-orb orb2"></div>
+
+    <div class="content">
+
+        <div class="header">
+            <div>
+                <h1>User Management</h1>
+                <p>Manage patients, doctors and admins in one place</p>
+            </div>
+            <div class="header-badge">Live System</div>
+        </div>
+
+        @if (Model.Any())
+        {
+            <div class="card">
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Created</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var user in Model)
+                            {
+                                <tr>
+                                    <td class="id">@user.Id</td>
+
+                                    <td class="user-cell">
+                                        <div class="avatar">@user.FullName.Substring(0,1)</div>
+                                        <span>@user.FullName</span>
+                                    </td>
+
+                                    <td class="email">@user.Email</td>
+
+                                    <td>
+                                        <span class="role @user.Role.ToLower()">@user.Role</span>
+                                    </td>
+
+                                    <td class="date">@user.CreatedAt.ToString("dd MMM yyyy")</td>
+
+                                    <td>
+                                        <form asp-action="DeleteUser" method="post" onsubmit="return confirm('Delete user?');">
+                                            <input type="hidden" name="id" value="@user.Id" />
+                                            <button class="delete-btn">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        }
+        else
+        {
+            <div class="empty">
+                <h3>No Users Found</h3>
+                <p>System is currently empty</p>
+            </div>
+        }
+
+    </div>
+</div>
+
+<style>
+
+:root{
+    --bg:#0b0f1a;
+    --card:#121826;
+    --glass:rgba(255,255,255,0.05);
+    --border:rgba(255,255,255,0.08);
+    --text:#e6edff;
+    --muted:#9aa4c7;
+
+    --cyan:#00e5ff;
+    --violet:#7b2ff7;
+    --pink:#ff3cac;
+}
+
+body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+}
+
+.page{
+    position: relative;
+    min-height:100vh;
+    padding:40px;
+}
+
+.bg-orb{
+    position:absolute;
+    border-radius:50%;
+    filter: blur(120px);
+    opacity:.4;
+}
+
+.orb1{
+    width:400px;
+    height:400px;
+    background: var(--violet);
+    top:-100px;
+    left:-100px;
+}
+
+.orb2{
+    width:350px;
+    height:350px;
+    background: var(--cyan);
+    bottom:-100px;
+    right:-100px;
+}
+
+.content{
+    position:relative;
+    z-index:2;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:2rem;
+    font-weight:700;
+}
+
+.header p{
+    color:var(--muted);
+}
+
+.header-badge{
+    background:linear-gradient(135deg,var(--cyan),var(--violet));
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+.card{
+    background:var(--glass);
+    backdrop-filter: blur(16px);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+    color:var(--muted);
+    font-size:12px;
+    text-transform:uppercase;
+}
+
+th, td{
+    padding:16px;
+    text-align:left;
+}
+
+tbody tr{
+    border-top:1px solid var(--border);
+    transition:all .3s ease;
+}
+
+tbody tr:hover{
+    background:rgba(255,255,255,0.03);
+    transform:scale(1.01);
+}
+
+.id{
+    font-weight:600;
+    color:var(--cyan);
+}
+
+.user-cell{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.avatar{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--violet),var(--pink));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:600;
+}
+
+.email{
+    color:var(--muted);
+}
+
+.role{
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.role.admin{
+    background:rgba(255,0,0,.2);
+}
+
+.role.doctor{
+    background:rgba(0,255,150,.2);
+}
+
+.role.patient{
+    background:rgba(0,200,255,.2);
+}
+
+.date{
+    color:var(--muted);
+}
+
+.delete-btn{
+    border:none;
+    padding:8px 14px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#ff4d4d,#ff0000);
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.delete-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(255,0,0,.4);
+}
+
+.empty{
+    text-align:center;
+    padding:60px;
+    background:var(--glass);
+    border-radius:20px;
+}
+
+</style>

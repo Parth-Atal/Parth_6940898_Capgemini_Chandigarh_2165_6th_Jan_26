@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LearnMore – Login</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="auth-page">
+    <div class="auth-container">
+      <div class="auth-brand">
+        <div class="brand-icon">🎓</div>
+        <h1>Learnmore</h1>
+        <p>Your gateway to knowledge</p>
+      </div>
+
+      <div class="auth-card">
+        <h2>Welcome Back</h2>
+        <p class="auth-subtitle">Sign in to continue learning</p>
+
+        <div id="alert-box" class="alert hidden"></div>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
+            <span class="field-error" id="email-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-icon-wrap">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="••••••••"
+                autocomplete="current-password"
+              />
+              <button
+                type="button"
+                class="toggle-pw"
+                onclick="togglePassword('password', this)"
+              >
+                👁
+              </button>
+            </div>
+            <span class="field-error" id="password-error"></span>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            id="login-btn"
+          >
+            <span class="btn-text">Sign In</span>
+            <span class="btn-spinner hidden">⏳ Signing in…</span>
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          Don't have an account? <a href="register.html">Create one</a>
+        </div>
+
+        <div class="demo-credentials">
+          <strong>Demo Accounts:</strong><br />
+          Admin: parth@mail.com / Parth@123<br />
+          Instructor: mahesh@mail.com / Mahesh@123<br />
+          User: shivansh@mail.com / Shivansh@123
+        </div>
+      </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+      // Redirect if already logged in
+      if (localStorage.getItem("jwt_token")) {
+        window.location.href = "courses.html";
+      }
+
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          clearErrors();
+
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value;
+
+          // Client-side validation
+          let valid = true;
+          if (!email) {
+            showFieldError("email-error", "Email is required");
+            valid = false;
+          } else if (!isValidEmail(email)) {
+            showFieldError("email-error", "Please enter a valid email address");
+            valid = false;
+          }
+          if (!password) {
+            showFieldError("password-error", "Password is required");
+            valid = false;
+          }
+          if (!valid) return;
+
+          setLoading(true);
+
+          try {
+            const data = await apiPost("/api/auth/login", {
+              Email: email,
+              Password: password,
+            });
+            localStorage.setItem("jwt_token", data.Token);
+            localStorage.setItem(
+              "user_info",
+              JSON.stringify({
+                username: data.Username,
+                email: data.Email,
+                role: data.Role,
+                expiresAt: data.ExpiresAt,
+              }),
+            );
+            showAlert("Login successful! Redirecting…", "success");
+            setTimeout(() => (window.location.href = "courses.html"), 800);
+          } catch (err) {
+            showAlert(
+              err.message || "Login failed. Please check your credentials.",
+              "error",
+            );
+          } finally {
+            setLoading(false);
+          }
+        });
+
+      function setLoading(loading) {
+        const btn = document.getElementById("login-btn");
+        btn.querySelector(".btn-text").classList.toggle("hidden", loading);
+        btn.querySelector(".btn-spinner").classList.toggle("hidden", !loading);
+        btn.disabled = loading;
+      }
+    </script>
+  </body>
+</html>

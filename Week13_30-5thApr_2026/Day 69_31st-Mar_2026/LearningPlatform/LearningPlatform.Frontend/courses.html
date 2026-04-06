@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learnmore – Courses</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="nav-brand">🎓 Learnmore</div>
+      <div class="nav-links">
+        <a href="courses.html" class="active">Courses</a>
+        <span id="nav-create-link" class="hidden"
+          ><a href="create-course.html">+ Create Course</a></span
+        >
+        <span id="nav-enrollments-link"
+          ><a href="my-enrollments.html">My Learning</a></span
+        >
+      </div>
+      <div class="nav-user">
+        <span id="nav-username">Loading…</span>
+        <span id="nav-role-badge" class="role-badge"></span>
+        <button onclick="logout()" class="btn btn-sm btn-outline">
+          Logout
+        </button>
+      </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <section class="hero">
+      <h1>Explore Courses</h1>
+      <p>Expand your skills with expert-led courses</p>
+      <div class="search-bar">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search courses…"
+          oninput="filterCourses()"
+        />
+        <select id="category-filter" onchange="filterCourses()">
+          <option value="">All Categories</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- ALERT -->
+    <div class="container">
+      <div id="alert-box" class="alert hidden"></div>
+    </div>
+
+    <!-- COURSES GRID -->
+    <main class="container">
+      <div id="loading-spinner" class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading courses…</p>
+      </div>
+      <div id="courses-grid" class="courses-grid hidden"></div>
+      <div id="empty-state" class="empty-state hidden">
+        <div class="empty-icon">📚</div>
+        <h3>No courses found</h3>
+        <p>Try a different search or category</p>
+      </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+      let allCourses = [];
+      const userInfo = requireAuth(); // Redirect to login if not authenticated
+
+      // Setup navbar
+      document.getElementById("nav-username").textContent = userInfo.username;
+      document.getElementById("nav-role-badge").textContent = userInfo.role;
+      document.getElementById("nav-role-badge").className =
+        `role-badge role-${userInfo.role.toLowerCase()}`;
+      if (userInfo.role === "Instructor" || userInfo.role === "Admin") {
+        document.getElementById("nav-create-link").classList.remove("hidden");
+      }
+
+      async function loadCourses() {
+        try {
+          const res = await apiGet("/api/v1/courses");
+          allCourses = res.data || res;
+          populateCategoryFilter(allCourses);
+          renderCourses(allCourses);
+        } catch (err) {
+          showAlert("Failed to load courses: " + err.message, "error");
+          document.getElementById("loading-spinner").classList.add("hidden");
+        }
+      }
+
+      function populateCategoryFilter(courses) {
+        const categories = [...new Set(courses.map((c) => c.Category))].sort();
+        const sel = document.getElementById("category-filter");
+        categories.forEach((cat) => {
+          const opt = document.createElement("option");
+          opt.value = cat;
+          opt.textContent = cat;
+          sel.appendChild(opt);
+        });
+      }
+
+      function renderCourses(courses) {
+        document.getElementById("loading-spinner").classList.add("hidden");
+        const grid = document.getElementById("courses-grid");
+        const empty = document.getElementById("empty-state");
+
+        if (!courses.length) {
+          grid.classList.add("hidden");
+          empty.classList.remove("hidden");
+          return;
+        }
+
+        empty.classList.add("hidden");
+        grid.classList.remove("hidden");
+        grid.innerHTML = courses
+          .map(
+            (course) => `
+        <div class="course-card" onclick="window.location.href='course-detail.html?id=${course.Id}'">
+          <div class="course-thumb">
+            ${
+              course.ThumbnailUrl
+                ? `<img src="${course.ThumbnailUrl}" alt="${course.Title}" />`
+                : `<div class="thumb-placeholder">${getCategoryEmoji(course.Category)}</div>`
+            }
+          </div>
+          <div class="course-body">
+            <span class="course-category">${course.Category}</span>
+            <h3 class="course-title">${escapeHtml(course.Title)}</h3>
+            <p class="course-desc">${escapeHtml(course.Description || "No description available.")}</p>
+            <div class="course-meta">
+              <span>👨‍🏫 ${escapeHtml(course.InstructorName)}</span>
+              <span>📖 ${course.LessonCount} lessons</span>
+              <span>👥 ${course.EnrollmentCount} students</span>
+            </div>
+          </div>
+          <div class="course-footer">
+            <span class="course-price">${course.Price > 0 ? "$" + course.Price.toFixed(2) : "FREE"}</span>
+            <button class="btn btn-sm btn-primary"
+              onclick="event.stopPropagation(); enrollCourse(${course.Id}, this)"
+              ${userInfo.role === "Instructor" ? 'disabled title="Instructors cannot enroll"' : ""}>
+              Enroll Now
+            </button>
+          </div>
+        </div>
+      `,
+          )
+          .join("");
+      }
+
+      function filterCourses() {
+        const search = document
+          .getElementById("search-input")
+          .value.toLowerCase();
+        const category = document.getElementById("category-filter").value;
+        const filtered = allCourses.filter((c) => {
+          const matchSearch =
+            !search ||
+            c.Title.toLowerCase().includes(search) ||
+            (c.Description || "").toLowerCase().includes(search);
+          const matchCat = !category || c.Category === category;
+          return matchSearch && matchCat;
+        });
+        renderCourses(filtered);
+      }
+
+      async function enrollCourse(courseId, btn) {
+        if (userInfo.role !== "Student" && userInfo.role !== "Admin") {
+          showAlert("Only students can enroll in courses.", "error");
+          return;
+        }
+        btn.disabled = true;
+        btn.textContent = "⏳";
+        try {
+          await apiPost("/api/v1/enroll", { CourseId: courseId });
+          btn.textContent = "✅ Enrolled";
+          btn.classList.add("btn-success");
+          showAlert("Successfully enrolled! Check My Learning.", "success");
+        } catch (err) {
+          showAlert(err.message || "Enrollment failed.", "error");
+          btn.disabled = false;
+          btn.textContent = "Enroll Now";
+        }
+      }
+
+      function getCategoryEmoji(cat) {
+        const map = {
+          "Web Development": "🌐",
+          Frontend: "🎨",
+          Backend: "⚙️",
+          "Data Science": "📊",
+          Mobile: "📱",
+          DevOps: "🚀",
+          Design: "✏️",
+        };
+        return map[cat] || "📚";
+      }
+
+      function escapeHtml(str) {
+        const div = document.createElement("div");
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      loadCourses();
+    </script>
+  </body>
+</html>

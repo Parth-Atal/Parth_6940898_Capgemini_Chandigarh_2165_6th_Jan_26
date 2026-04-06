@@ -1,0 +1,177 @@
+﻿@model SmartHealthcare.Models.DTOs.PrescriptionDTO
+
+@{
+    ViewData["Title"] = "Prescription Details";
+    var role = ViewBag.Role as string;
+    var isDoctor = role == "Doctor";
+    var isAdmin = role == "Admin";
+}
+
+<div class="container py-4">
+
+    ```
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="d-flex justify-content-between mb-4">
+        <div>
+            <h2>Prescription Details</h2>
+            <p>
+                #@Model.Id —
+                @Model.CreatedAt.ToString("dd MMM yyyy, hh:mm tt")
+            </p>
+        </div>
+
+        <div>
+            <a asp-controller="Appointment"
+               asp-action="Details"
+               asp-route-id="@Model.AppointmentId"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+            @if (isDoctor)
+            {
+                <a asp-controller="Prescription"
+                   asp-action="Edit"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-warning">
+                    Edit
+                </a>
+            }
+
+            <button onclick="window.print()" class="btn btn-primary">
+                Print
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <!-- LEFT SIDE -->
+        <div class="col-md-4">
+
+            <!-- Appointment Info -->
+            <div class="card mb-3">
+                <div class="card-header">Appointment</div>
+                <div class="card-body">
+                    <p>
+                        <a asp-controller="Appointment"
+                           asp-action="Details"
+                           asp-route-id="@Model.AppointmentId">
+                            Appointment #@Model.AppointmentId
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Meta -->
+            <div class="card mb-3">
+                <div class="card-header">Info</div>
+                <div class="card-body">
+                    <p>ID: @Model.Id</p>
+                    <p>Date: @Model.CreatedAt.ToString("dd MMM yyyy")</p>
+                    <p>Time: @Model.CreatedAt.ToString("hh:mm tt")</p>
+                    <p>Medicines: @Model.Medicines.Count</p>
+                </div>
+            </div>
+
+            @if (isDoctor || isAdmin)
+            {
+                <form asp-action="Delete"
+                      asp-controller="Prescription"
+                      asp-route-id="@Model.Id"
+                      method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="appointmentId" value="@Model.AppointmentId" />
+                    <button class="btn btn-danger w-100">
+                        Delete Prescription
+                    </button>
+                </form>
+            }
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="col-md-8">
+
+            <!-- Diagnosis -->
+            <div class="card mb-3">
+                <div class="card-header">Diagnosis</div>
+                <div class="card-body">
+                    <p>@Model.Diagnosis</p>
+                </div>
+            </div>
+
+            <!-- Notes -->
+            @if (!string.IsNullOrEmpty(Model.Notes))
+            {
+                <div class="card mb-3">
+                    <div class="card-header">Notes</div>
+                    <div class="card-body">
+                        <p>@Model.Notes</p>
+                    </div>
+                </div>
+            }
+
+            <!-- Medicines -->
+            <div class="card">
+                <div class="card-header">
+                    Medicines (@Model.Medicines.Count)
+                </div>
+                <div class="card-body">
+
+                    @if (!Model.Medicines.Any())
+                    {
+                        <p>No medicines added</p>
+                    }
+                    else
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Dosage</th>
+                                    <th>Duration</th>
+                                    <th>Instructions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.Medicines.Count; i++)
+                                {
+                                    var m = Model.Medicines[i];
+                                    <tr>
+                                        <td>@(i + 1)</td>
+                                        <td>@m.Name</td>
+                                        <td>@m.Dosage</td>
+                                        <td>@m.Duration</td>
+                                        <td>@m.Instructions</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    ```
+
+</div>

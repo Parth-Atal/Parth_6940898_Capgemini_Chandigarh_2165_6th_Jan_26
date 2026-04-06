@@ -1,0 +1,266 @@
+@model IEnumerable<SmartHealthcare.Models.DTOs.AppointmentDTO>
+@{
+    ViewData["Title"] = "Appointments";
+    var role = ViewBag.Role as string;
+}
+
+<div class="container-main">
+
+    <div class="header fade-in">
+        <div>
+            <h1>Appointments</h1>
+            <p>Manage and track your medical visits</p>
+        </div>
+
+        @if (role == "Patient")
+        {
+            <a asp-action="Create" class="btn-primary">+ Book Appointment</a>
+        }
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="grid">
+
+            @foreach (var item in Model)
+            {
+                <div class="card fade-in">
+
+                    <div class="card-top">
+                        <h4>#@item.Id</h4>
+                        <span class="status @item.Status.ToLower()">@item.Status</span>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="info">
+                            <label>Patient</label>
+                            <p>@item.PatientName</p>
+                        </div>
+
+                        <div class="info">
+                            <label>Doctor</label>
+                            <p>Dr. @item.DoctorName</p>
+                        </div>
+
+                        <div class="info">
+                            <label>Date</label>
+                            <p>@item.AppointmentDate.ToString("dd MMM yyyy, HH:mm")</p>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(item.Notes))
+                        {
+                            <div class="info">
+                                <label>Notes</label>
+                                <p class="muted">@item.Notes</p>
+                            </div>
+                        }
+
+                    </div>
+
+                    <div class="card-footer">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn-secondary">
+                            View Details →
+                        </a>
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    }
+    else
+    {
+        <div class="empty fade-in">
+            <h3>No Appointments</h3>
+            <p>You haven't booked any appointments yet</p>
+
+            @if (role == "Patient")
+            {
+                <a asp-action="Create" class="btn-primary">Book First Appointment</a>
+            }
+        </div>
+    }
+
+</div>
+
+<style>
+
+:root{
+    --bg:#f6f9ff;
+    --card:#ffffff;
+    --border:#e6ecff;
+
+    --text:#0f172a;
+    --muted:#64748b;
+
+    --cyan:#06b6d4;
+    --violet:#6366f1;
+    --green:#22c55e;
+    --red:#ef4444;
+    --yellow:#f59e0b;
+}
+
+body{
+    background:linear-gradient(135deg,#f8fbff,#eef3ff);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+}
+
+.container-main{
+    padding:50px 40px;
+}
+
+/* HEADER */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:2.3rem;
+    font-weight:900;
+    background:linear-gradient(90deg,var(--violet),var(--cyan));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.header p{
+    color:var(--muted);
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+/* CARD */
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:20px;
+    transition:.3s;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+    position:relative;
+    overflow:hidden;
+}
+
+.card:hover{
+    transform:translateY(-8px) scale(1.02);
+    box-shadow:0 20px 40px rgba(99,102,241,.15);
+}
+
+/* TOP */
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+/* STATUS */
+.status{
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.status.pending{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.status.completed{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.status.cancelled{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+/* BODY */
+.card-body{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.info label{
+    font-size:11px;
+    color:var(--muted);
+}
+
+.info p{
+    margin:0;
+    font-weight:500;
+}
+
+/* FOOTER */
+.card-footer{
+    margin-top:15px;
+}
+
+/* BUTTONS */
+.btn-primary{
+    padding:10px 18px;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--violet),var(--cyan));
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(99,102,241,.3);
+}
+
+.btn-secondary{
+    display:block;
+    text-align:center;
+    padding:10px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    color:var(--muted);
+    text-decoration:none;
+    background:white;
+}
+
+.btn-secondary:hover{
+    background:#eef2ff;
+}
+
+/* EMPTY */
+.empty{
+    text-align:center;
+    padding:40px;
+    background:white;
+    border-radius:20px;
+    border:1px solid var(--border);
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.muted{
+    color:var(--muted);
+}
+
+/* ANIMATION */
+.fade-in{
+    animation:fadeIn .6s ease;
+}
+
+@@keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+</style>

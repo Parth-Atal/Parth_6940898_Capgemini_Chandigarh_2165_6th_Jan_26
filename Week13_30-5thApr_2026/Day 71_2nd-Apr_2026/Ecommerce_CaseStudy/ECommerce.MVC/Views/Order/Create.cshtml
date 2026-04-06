@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Place Order</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #00c9a7, #845ec2);
+        }
+
+        .card {
+            width: 360px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #fff;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        input:focus {
+            background: rgba(255,255,255,0.3);
+            box-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #333;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #f1f1f1;
+            transform: translateY(-2px);
+        }
+
+        .error {
+            margin-top: 12px;
+            color: #ff6b6b;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .back {
+            margin-top: 18px;
+        }
+
+        .back a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 13px;
+            opacity: 0.85;
+            transition: 0.3s;
+        }
+
+        .back a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="icon">📦</div>
+        <h2>Place Order</h2>
+
+        <form method="post">
+            <div class="input-group">
+                <input name="UserId" type="number" placeholder="Enter User ID" required />
+            </div>
+
+            <button type="submit">Place Order</button>
+        </form>
+
+        @if (ViewBag.Error != null)
+        {
+            <p class="error">@ViewBag.Error</p>
+        }
+
+        <div class="back">
+            <a href="/Order/Index">← Back to Orders</a>
+        </div>
+    </div>
+</body>
+</html>
