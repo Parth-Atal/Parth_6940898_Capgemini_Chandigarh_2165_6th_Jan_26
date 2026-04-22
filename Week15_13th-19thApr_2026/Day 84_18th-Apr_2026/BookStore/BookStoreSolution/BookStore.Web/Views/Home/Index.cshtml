@@ -1,0 +1,41 @@
+@{ ViewData["Title"] = "Home"; }
+
+<div class="hero">
+    <h1>Where Great Stories Find Their Readers</h1>
+    <p>Curated books, fair prices, fast delivery — all in one place.</p>
+    <div class="hero-btns">
+        <a asp-controller="Books" asp-action="Index" class="btn btn-primary btn-lg">Browse Collection</a>
+        <a asp-controller="Auth" asp-action="Register" class="btn btn-ghost btn-lg">Create Account</a>
+    </div>
+</div>
+
+<div class="features-grid">
+    <div class="card feature-card">
+        <div class="card-body">
+            <div class="feature-kicker">Catalog</div>
+            <h3>Wide Selection</h3>
+            <p>Fiction, business, science, and timeless classics across every genre.</p>
+        </div>
+    </div>
+    <div class="card feature-card">
+        <div class="card-body">
+            <div class="feature-kicker">Fulfillment</div>
+            <h3>Fast Delivery</h3>
+            <p>Reliable dispatch and delivery workflows that keep readers happy.</p>
+        </div>
+    </div>
+    <div class="card feature-card">
+        <div class="card-body">
+            <div class="feature-kicker">Value</div>
+            <h3>Fair Pricing</h3>
+            <p>Competitive rates and smart offers without sacrificing quality.</p>
+        </div>
+    </div>
+    <div class="card feature-card">
+        <div class="card-body">
+            <div class="feature-kicker">Trust</div>
+            <h3>Quality First</h3>
+            <p>Books from trusted publishers, packed with care and consistency.</p>
+        </div>
+    </div>
+</div>

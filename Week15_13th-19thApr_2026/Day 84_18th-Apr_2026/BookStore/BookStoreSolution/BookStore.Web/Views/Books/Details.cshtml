@@ -1,0 +1,46 @@
+@model BookListItem
+@{ ViewData["Title"] = Model.Title; }
+
+<div class="page">
+    <div class="details-grid">
+        <div class="details-cover">📕</div>
+
+        <div class="stack">
+            <div>
+                <h1 style="font-size:1.6rem;font-weight:800;">@Model.Title</h1>
+                <p class="muted">by @Model.AuthorName</p>
+            </div>
+
+            <div class="details-price">₹@Model.Price.ToString("F2")</div>
+
+            @if (Model.Stock > 0)
+            {
+                <span class="badge badge-success">In Stock — @Model.Stock available</span>
+            }
+            else
+            {
+                <span class="badge badge-danger">Out of Stock</span>
+            }
+
+            <div class="card">
+                <div class="meta-list">
+                    <div class="meta-row"><span>Category</span><strong>@Model.CategoryName</strong></div>
+                    <div class="meta-row"><span>Publisher</span><strong>@Model.PublisherName</strong></div>
+                    <div class="meta-row"><span>ISBN</span><strong>@Model.ISBN</strong></div>
+                </div>
+            </div>
+
+            @if (Model.Stock > 0)
+            {
+                <form asp-action="AddToCart" method="post">
+                    <input type="hidden" name="bookId" value="@Model.BookId" />
+                    <input type="hidden" name="title" value="@Model.Title" />
+                    <input type="hidden" name="price" value="@Model.Price" />
+                    <button type="submit" class="btn btn-success btn-lg btn-full">Add to Cart</button>
+                </form>
+            }
+
+            <a asp-action="Index" class="btn btn-ghost btn-full">← Back to Books</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+@model List<OrderView>
+@{ ViewData["Title"] = "My Orders"; }
+
+<div class="page">
+    <div class="page-header">
+        <div>
+            <div class="page-title">My Orders</div>
+            <div class="page-sub">Track your order history and status.</div>
+        </div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="card table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th>Date</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td><strong>#@order.OrderId</strong></td>
+                            <td class="muted">@order.OrderDate.ToString("dd MMM yyyy")</td>
+                            <td><strong>₹@order.TotalAmount.ToString("F2")</strong></td>
+                            <td>
+                                @if (order.Status == "Delivered" || order.Status == "Completed")
+                                { <span class="badge badge-success">@order.Status</span> }
+                                else if (order.Status == "Pending")
+                                { <span class="badge badge-warning">@order.Status</span> }
+                                else
+                                { <span class="badge badge-info">@order.Status</span> }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="empty-state">
+            <h3>No orders yet</h3>
+            <p>Place your first order to see it here.</p>
+            <a asp-controller="Books" asp-action="Index" class="btn btn-primary mt-2">Browse Books</a>
+        </div>
+    }
+</div>

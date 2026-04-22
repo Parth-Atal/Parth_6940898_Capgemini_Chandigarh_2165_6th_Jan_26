@@ -1,0 +1,66 @@
+@model List<CartItem>
+@{
+    ViewData["Title"] = "Cart";
+    var total = Model.Sum(i => i.Price * i.Qty);
+}
+
+<div class="page">
+    <div class="page-header">
+        <div class="page-title">Shopping Cart</div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="cart-grid">
+            <div class="card">
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td><strong>@item.Title</strong></td>
+                                    <td>₹@item.Price.ToString("F2")</td>
+                                    <td>@item.Qty</td>
+                                    <td><strong>₹@((item.Price * item.Qty).ToString("F2"))</strong></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body stack">
+                    <div class="card-title">Order Summary</div>
+                    <div class="summary-rows">
+                        <div class="summary-row"><span>Subtotal</span><strong>₹@total.ToString("F2")</strong></div>
+                        <div class="summary-row"><span>Shipping</span><strong>FREE</strong></div>
+                        <hr class="summary-divider" />
+                        <div class="summary-row"><span>Total</span><span class="summary-total">₹@total.ToString("F2")</span></div>
+                    </div>
+                    <form asp-action="Checkout" method="post">
+                        <button type="submit" class="btn btn-primary btn-full">Checkout</button>
+                    </form>
+                    <a asp-action="Index" class="btn btn-ghost btn-full">Continue Shopping</a>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="empty-state">
+            <h3>Your cart is empty</h3>
+            <p>Browse our catalog and add some books.</p>
+            <a asp-controller="Books" asp-action="Index" class="btn btn-primary mt-2">Browse Books</a>
+        </div>
+    }
+</div>

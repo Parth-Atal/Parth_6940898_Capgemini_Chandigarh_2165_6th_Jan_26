@@ -1,0 +1,49 @@
+@model SalesReportView
+@{ ViewData["Title"] = "Sales Report"; }
+
+<div class="page">
+    <div class="page-header">
+        <div class="page-title">Sales Report</div>
+    </div>
+
+    <div class="kpi-grid mb-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="kpi-label">Total Orders</div>
+                <div class="kpi-value">@Model.TotalOrders</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="kpi-label">Total Revenue</div>
+                <div class="kpi-value">₹@Model.TotalRevenue.ToString("F2")</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-title mb-2" style="font-size:1.1rem">Top Selling Books</div>
+    @if (Model.TopBooks.Any())
+    {
+        <div class="card table-wrap">
+            <table>
+                <thead>
+                    <tr><th>Title</th><th>Copies Sold</th><th>Revenue</th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var b in Model.TopBooks)
+                    {
+                        <tr>
+                            <td><strong>@b.Title</strong></td>
+                            <td>@b.TotalSold</td>
+                            <td><strong>₹@b.Revenue.ToString("F2")</strong></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="empty-state"><h3>No sales data yet.</h3></div>
+    }
+</div>

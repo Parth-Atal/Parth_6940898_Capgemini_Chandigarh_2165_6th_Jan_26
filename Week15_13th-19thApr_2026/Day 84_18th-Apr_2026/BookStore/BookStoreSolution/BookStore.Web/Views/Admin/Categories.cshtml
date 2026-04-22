@@ -1,0 +1,40 @@
+@model List<CategoryView>
+@{ ViewData["Title"] = "Manage Categories"; }
+
+<div class="page">
+    <div class="page-header">
+        <div class="page-title">Categories</div>
+    </div>
+
+    <div class="card mb-3" style="max-width:480px">
+        <div class="card-body stack">
+            <div class="card-title">Add New Category</div>
+            <form asp-action="CreateCategory" method="post" class="inline-form">
+                <input type="text" name="name" class="form-control" placeholder="Category name" required />
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="card table-wrap" style="max-width:480px">
+            <table>
+                <thead><tr><th>ID</th><th>Name</th></tr></thead>
+                <tbody>
+                    @foreach (var c in Model)
+                    {
+                        <tr>
+                            <td class="td-id">#@c.CategoryId</td>
+                            <td><strong>@c.Name</strong></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="empty-state"><h3>No categories yet.</h3></div>
+    }
+</div>

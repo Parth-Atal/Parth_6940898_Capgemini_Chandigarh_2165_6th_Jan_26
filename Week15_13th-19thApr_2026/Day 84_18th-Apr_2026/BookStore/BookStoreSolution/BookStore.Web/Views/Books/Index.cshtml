@@ -1,0 +1,66 @@
+@using BookStore.Shared
+@model PaginatedResult<BookListItem>
+@{ ViewData["Title"] = "Browse Books"; }
+
+<div class="page">
+    <div class="page-header">
+        <div>
+            <div class="page-title">Browse Books</div>
+            <div class="page-sub">Find your next read from our full catalog.</div>
+        </div>
+        <a asp-action="Cart" class="btn btn-outline">View Cart</a>
+    </div>
+
+    <form method="get" class="search-bar mb-3">
+        <input type="text" name="search" value="@ViewBag.Search" class="form-control" placeholder="Search by title or author..." />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    @if (Model != null && Model.Items.Any())
+    {
+        <div class="books-grid">
+            @foreach (var book in Model.Items)
+            {
+                <div class="card book-card">
+                    <div class="book-cover">📕</div>
+                    <div class="book-meta">
+                        <div class="book-title">@book.Title</div>
+                        <div class="book-author">@book.AuthorName</div>
+                        <div class="book-price">₹@book.Price</div>
+                    </div>
+                    <div class="book-footer">
+                        <a asp-action="Details" asp-route-id="@book.BookId" class="btn btn-ghost">Details</a>
+                        <form asp-action="AddToCart" method="post" style="flex:1">
+                            <input type="hidden" name="bookId" value="@book.BookId" />
+                            <input type="hidden" name="title" value="@book.Title" />
+                            <input type="hidden" name="price" value="@book.Price" />
+                            <button type="submit" class="btn btn-success w-full">Add</button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (Model.TotalPages > 1)
+        {
+            <nav>
+                <ul class="pagination">
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li class="page-item @(i == ViewBag.Page ? "active" : "")">
+                            <a href="?page=@i&search=@ViewBag.Search">@i</a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        }
+    }
+    else
+    {
+        <div class="empty-state">
+            <h3>No books found</h3>
+            <p>Try a different search term.</p>
+            <a asp-action="Index" class="btn btn-primary mt-2">View All</a>
+        </div>
+    }
+</div>

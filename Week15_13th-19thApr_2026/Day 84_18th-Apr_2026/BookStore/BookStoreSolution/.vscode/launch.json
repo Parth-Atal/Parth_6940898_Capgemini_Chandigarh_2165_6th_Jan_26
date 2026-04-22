@@ -1,0 +1,7 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    { "name": "Launch API", "type": "coreclr", "request": "launch", "preLaunchTask": "build", "program": "${workspaceFolder}/BookStore.API/bin/Debug/net10.0/BookStore.API.dll", "cwd": "${workspaceFolder}/BookStore.API", "stopAtEntry": false, "env": { "ASPNETCORE_ENVIRONMENT": "Development" } },
+    { "name": "Launch Web", "type": "coreclr", "request": "launch", "preLaunchTask": "build", "program": "${workspaceFolder}/BookStore.Web/bin/Debug/net10.0/BookStore.Web.dll", "cwd": "${workspaceFolder}/BookStore.Web", "stopAtEntry": false, "env": { "ASPNETCORE_ENVIRONMENT": "Development" } }
+  ]
+}

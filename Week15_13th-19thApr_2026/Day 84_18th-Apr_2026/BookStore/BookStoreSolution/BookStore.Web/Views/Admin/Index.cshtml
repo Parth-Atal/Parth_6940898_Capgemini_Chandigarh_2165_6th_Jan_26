@@ -1,0 +1,41 @@
+@{ ViewData["Title"] = "Admin Dashboard"; }
+
+<div class="page">
+    <div class="page-header">
+        <div>
+            <div class="page-title">Admin Dashboard</div>
+            <div class="page-sub">Manage books, orders, categories, and reports.</div>
+        </div>
+    </div>
+
+    <div class="admin-grid">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">Books</div>
+                <p class="card-text">Add, edit, or remove books from the catalog.</p>
+                <a asp-action="Books" class="btn btn-primary btn-full">Manage Books</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">Orders</div>
+                <p class="card-text">Review and update customer order status.</p>
+                <a asp-action="Orders" class="btn btn-primary btn-full">Manage Orders</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">Categories</div>
+                <p class="card-text">Create and organize catalog categories.</p>
+                <a asp-action="Categories" class="btn btn-outline btn-full">Manage Categories</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">Sales Report</div>
+                <p class="card-text">View analytics and monitor performance trends.</p>
+                <a asp-action="Reports" class="btn btn-outline btn-full">View Reports</a>
+            </div>
+        </div>
+    </div>
+</div>

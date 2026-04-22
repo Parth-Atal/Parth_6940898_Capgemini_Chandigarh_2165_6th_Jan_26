@@ -1,0 +1,44 @@
+@model RegisterViewModel
+@{ ViewData["Title"] = "Create Account"; }
+
+<div class="auth-wrap">
+    <div class="card auth-card">
+        <div class="card-body">
+            <div>
+                <div class="auth-title">Create account</div>
+                <div class="auth-sub">Join BookStore Pro today.</div>
+            </div>
+
+            <form asp-action="Register" method="post" class="stack">
+                <div asp-validation-summary="All" class="alert alert-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FullName" class="form-label">Full Name</label>
+                    <input asp-for="FullName" class="form-control" placeholder="John Doe" />
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" type="email" placeholder="you@example.com" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <input asp-for="Password" class="form-control" type="password" placeholder="••••••••" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phone" class="form-label">Phone</label>
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "+91 98765 43210" })
+                    @Html.ValidationMessageFor(m => m.Phone, "", new { @class = "text-danger" })
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+            </form>
+
+            <div class="auth-footer">
+                Already have an account? <a asp-action="Login">Sign in</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

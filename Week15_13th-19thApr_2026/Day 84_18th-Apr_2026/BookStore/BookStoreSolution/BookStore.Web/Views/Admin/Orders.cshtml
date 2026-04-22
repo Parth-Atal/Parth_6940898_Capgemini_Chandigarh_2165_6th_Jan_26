@@ -1,0 +1,58 @@
+@model List<OrderView>
+@{ ViewData["Title"] = "Manage Orders"; }
+
+<div class="page">
+    <div class="page-header">
+        <div>
+            <div class="page-title">All Orders</div>
+            <div class="page-sub">Monitor and update order status.</div>
+        </div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="card table-wrap">
+            <table>
+                <thead>
+                    <tr><th>Order</th><th>Customer</th><th>Date</th><th>Total</th><th>Status</th><th>Update</th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        <tr>
+                            <td><strong>#@order.OrderId</strong></td>
+                            <td>@order.CustomerName</td>
+                            <td class="muted">@order.OrderDate.ToString("dd MMM yyyy")</td>
+                            <td><strong>₹@order.TotalAmount.ToString("F2")</strong></td>
+                            <td>
+                                @if (order.Status == "Delivered")
+                                { <span class="badge badge-success">@order.Status</span> }
+                                else if (order.Status == "Pending")
+                                { <span class="badge badge-warning">@order.Status</span> }
+                                else
+                                { <span class="badge badge-info">@order.Status</span> }
+                            </td>
+                            <td>
+                                <form asp-action="UpdateOrderStatus" method="post" class="inline-form">
+                                    <input type="hidden" name="orderId" value="@order.OrderId" />
+                                    <select name="status" class="form-select">
+                                        <option>Pending</option>
+                                        <option>Confirmed</option>
+                                        <option>Shipped</option>
+                                        <option>Delivered</option>
+                                        <option>Cancelled</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="empty-state"><h3>No orders yet.</h3></div>
+    }
+</div>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — BookStore Pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="topnav">
+    <div class="container topnav-inner">
+        <a class="brand" asp-controller="Home" asp-action="Index">
+            <span class="brand-dot"></span> BookStore Pro
+        </a>
+        <button class="nav-toggle" onclick="document.getElementById('navmenu').classList.toggle('open')">Menu</button>
+        <div class="navlinks" id="navmenu">
+            <a asp-controller="Books" asp-action="Index">Browse</a>
+            <a asp-controller="Books" asp-action="Cart">Cart</a>
+            <a asp-controller="Orders" asp-action="Index">Orders</a>
+            @if (Context.Session.GetString("UserRole") == "Admin")
+            {
+                <a asp-controller="Admin" asp-action="Index" class="nav-accent">Admin</a>
+            }
+            @if (Context.Session.GetString("JwtToken") != null)
+            {
+                <span class="nav-user">@Context.Session.GetString("UserName")</span>
+                <a asp-controller="Auth" asp-action="Logout">Logout</a>
+            }
+            else
+            {
+                <a asp-controller="Auth" asp-action="Login">Login</a>
+                <a asp-controller="Auth" asp-action="Register">Register</a>
+            }
+        </div>
+    </div>
+</nav>
+
+<div class="container page-content">
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">@TempData["Message"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+    @RenderBody()
+</div>
+
+<footer class="sitefooter">
+    <div class="container">© 2026 BookStore Pro</div>
+</footer>
+
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

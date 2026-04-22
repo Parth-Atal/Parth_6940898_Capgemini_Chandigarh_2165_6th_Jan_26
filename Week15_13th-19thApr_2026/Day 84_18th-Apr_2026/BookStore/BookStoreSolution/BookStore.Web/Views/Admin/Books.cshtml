@@ -1,0 +1,63 @@
+@using BookStore.Shared
+@model PaginatedResult<BookListItem>
+@{ ViewData["Title"] = "Manage Books"; }
+
+<div class="page">
+    <div class="page-header">
+        <div class="page-title">Manage Books</div>
+        <a asp-action="CreateBook" class="btn btn-primary">+ Add Book</a>
+    </div>
+
+    <form method="get" class="search-bar mb-3">
+        <input type="text" name="search" value="@ViewBag.Search" class="form-control" placeholder="Search books..." />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    @if (Model != null && Model.Items.Any())
+    {
+        <div class="card table-wrap">
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Title</th><th>Author</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var book in Model.Items)
+                    {
+                        <tr>
+                            <td class="td-id">#@book.BookId</td>
+                            <td><strong>@book.Title</strong></td>
+                            <td>@book.AuthorName</td>
+                            <td>@book.CategoryName</td>
+                            <td>₹@book.Price.ToString("F2")</td>
+                            <td>@book.Stock</td>
+                            <td>
+                                <div style="display:flex;gap:6px;">
+                                    <a asp-action="EditBook" asp-route-id="@book.BookId" class="btn btn-sm btn-ghost">Edit</a>
+                                    <form asp-action="DeleteBook" asp-route-id="@book.BookId" method="post" onsubmit="return confirm('Delete this book?')">
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @if (Model.TotalPages > 1)
+        {
+            <ul class="pagination">
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == ViewBag.Page ? "active" : "")">
+                        <a href="?page=@i&search=@ViewBag.Search">@i</a>
+                    </li>
+                }
+            </ul>
+        }
+    }
+    else
+    {
+        <div class="empty-state"><h3>No books found.</h3></div>
+    }
+</div>

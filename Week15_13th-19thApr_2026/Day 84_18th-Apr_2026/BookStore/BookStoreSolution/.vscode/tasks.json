@@ -1,0 +1,9 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "build", "command": "dotnet", "type": "process", "args": ["build", "${workspaceFolder}/BookStoreSolution.sln"], "problemMatcher": "$msCompile" },
+    { "label": "run-api", "command": "dotnet", "type": "process", "args": ["run", "--project", "${workspaceFolder}/BookStore.API/BookStore.API.csproj"], "problemMatcher": "$msCompile" },
+    { "label": "run-web", "command": "dotnet", "type": "process", "args": ["run", "--project", "${workspaceFolder}/BookStore.Web/BookStore.Web.csproj"], "problemMatcher": "$msCompile" },
+    { "label": "test", "command": "dotnet", "type": "process", "args": ["test", "${workspaceFolder}/BookStoreSolution.sln"], "problemMatcher": "$msCompile" }
+  ]
+}

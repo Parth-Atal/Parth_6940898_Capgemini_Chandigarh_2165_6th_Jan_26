@@ -1,0 +1,63 @@
+@model BookFormModel
+@{
+    ViewData["Title"] = "Add New Book";
+    var categories = ViewBag.Categories as List<CategoryView> ?? new();
+    var authors = ViewBag.Authors as List<AuthorView> ?? new();
+    var publishers = ViewBag.Publishers as List<PublisherView> ?? new();
+}
+
+<div class="page">
+    <div class="page-header">
+        <div class="page-title">Add New Book</div>
+    </div>
+
+    <div class="card" style="max-width:680px">
+        <div class="card-body stack">
+            <form asp-action="CreateBook" method="post" class="stack">
+                <div class="form-group">
+                    <label asp-for="Title" class="form-label">Title</label>
+                    <input asp-for="Title" class="form-control" placeholder="Book title" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ISBN" class="form-label">ISBN</label>
+                    <input asp-for="ISBN" class="form-control" placeholder="978-0-1234-5678-9" />
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label asp-for="Price" class="form-label">Price (₹)</label>
+                        <input asp-for="Price" class="form-control" type="number" step="0.01" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Stock" class="form-label">Stock</label>
+                        <input asp-for="Stock" class="form-control" type="number" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="form-label">Category</label>
+                    <select asp-for="CategoryId" class="form-select">
+                        <option value="">— Select Category —</option>
+                        @foreach (var c in categories) { <option value="@c.CategoryId">@c.Name</option> }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AuthorId" class="form-label">Author</label>
+                    <select asp-for="AuthorId" class="form-select">
+                        <option value="">— Select Author —</option>
+                        @foreach (var a in authors) { <option value="@a.AuthorId">@a.Name</option> }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PublisherId" class="form-label">Publisher</label>
+                    <select asp-for="PublisherId" class="form-select">
+                        <option value="">— Select Publisher —</option>
+                        @foreach (var p in publishers) { <option value="@p.PublisherId">@p.Name</option> }
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Create Book</button>
+                    <a asp-action="Books" class="btn btn-ghost">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
